@@ -1,0 +1,80 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#add-btn {
+	padding: 5px 10px;
+	border: 0;
+	background: #f80;
+	color: white;
+	border-radius: 5px;
+}
+
+ul {
+	padding: 0;
+	list-style-position: inside;
+}
+
+li {
+	border-bottom: 1px solid #999;
+	padding: 5px 0;
+}
+
+.active {
+	background: #abc;
+} /* step3: 목록 클릭 스타일 */
+</style>
+</head>
+<body>
+	<h1 id="title">제목 2</h1>
+	<button id="add-btn">목록 추가</button>
+	<ul id="list">
+		<li>제목 1</li>
+		<li>제목 2</li>
+		<li>제목 3</li>
+		<li>제목 4</li>
+	</ul>
+
+	<script type="text/javascript">
+		let title = document.getElementById("title");
+		let list = document.getElementById("list");
+		let li = document.getElementsByName("li");
+		let addbtn = document.getElementById("add-btn");
+		
+		function activeItem(event){ //이벤트 객체의 주소
+			console.log(event.target);
+			console.log("event.target :" + event.target);
+			console.log(event.currentTarget);
+			
+			if(event.target.nodeName == 'LI'){
+				//우리가 소문자로써도, 내부에서는 대문자로 관리를하기 때문에
+				//대문자로 쓰는거시다...
+				title.innerHTML = event.target.innerText;
+				
+				//목록 스타일 초기화 (class 제거)
+				for(let i = 0 ; i < event.target.parentNode.children.length; i++){
+					event.target.parentNode.children[i].removeAttribute('class');
+				}
+				
+				//스타일 적용(현재 선택한 LI)
+				event.target.setAttribute('class', 'active');
+			}
+		}
+		
+		list.addEventListener('click',activeItem);
+		
+		//목록추가
+		addbtn.addEventListener('click',function(){
+			let txt = document.createTextNode(prompt('제목 입력')); //내장함수
+			if(txt != null){
+				//list.innerHTML +='<li>' + txt + '</li>';
+				let li = document.createElement("li");
+				console.log(li);
+				li.appendChild(txt);
+				list.appendChild(li);
+			}
+		});
+</script>
+</body>
+</html>

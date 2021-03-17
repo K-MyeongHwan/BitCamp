@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <style>
+            html{border:5px solid red;padding:30px;}
+            body{border:5px solid green;padding:30px;}
+            fieldset{border:5px solid blue;padding:30px;}
+            input{border:5px solid black;padding:30px;}
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>event propagation</legend>
+            <input type="button" id="target" value="target">          
+        </fieldset>
+        
+        <script>
+        /*
+        capture: true // default 값은 false입니다.
+        */
+        function handler(event){
+            var phases = ['capturing', 'target', 'bubbling']
+            console.log(event.target.nodeName, this.nodeName,  phases[event.eventPhase-1] ,event.eventPhase);
+        }
+        //false bubble
+        //capturing
+        document.getElementById('target').addEventListener('click', handler, false);
+        document.querySelector('fieldset').addEventListener('click', handler, false);
+        document.querySelector('body').addEventListener('click', handler, false);
+        document.querySelector('html').addEventListener('click', handler, false);
+        </script>
+    </body>
+</html>
+<!--  
+Event 발생시, Event는 Phase(단계) 값을 가지게 된다.
+종류는
+0 : none
+1 : capture
+2 : target
+3 : bubble
+이벤트의 대상을 보고 싶다면 Target을 찾으면 되고
+이벤트 대상의 상위 DOM을 찾는다면 bubble을 보면 된다.
+           var eventPhaseMap = {
+                      0: 'NONE',
+                      1: 'CAPTURE',
+                      2: 'TARGET',
+                      3: 'BUBBLE'
+                };
+           function(e) {   
+                if(eventPhaseMap[e.eventPhase] === eventPhaseMap[2]){
+                    sendTag(eventPhaseMap[e.eventPhase] + " : "+ document.all[i]);
+                }
+            }
+-->
+ 

@@ -1,0 +1,43 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+		let a =8;
+		if(a%2 == 0) {
+			document.write("짝수 : " + a + "<br>");
+		} else {
+			document.write("홀수 : " + a + "<br>");
+		}
+		
+		let c = 7;
+		if(c % 2 == 0 ) {
+			document.write("2의 배수 : " + a + "<br>");
+		} else if(c%3==0) {
+			document.write("3의 배수 : " + a + "<br>");
+		} else {
+			document.write("2~3의 배수가 아니다.<br>");
+		}
+		
+		//for 1~100 의 합을 구하시오
+		let sum = 0;
+		for(let i = 0; i <= 100; i++ ) {
+			sum+=i;
+		}
+		document.write(sum+"<br>");
+		
+		//구구단 출력
+		for(let i = 2; i <= 9; i++) {
+			for(let j   = 1; j <= 9; j++) {
+				document.write(i +"X" + j + " = " + (i*j) + "&nbsp;&nbsp;&nbsp;");
+			}
+			document.write("<br>");
+		}
+		
+</script>
+<body>
+
+</body>
+</html>

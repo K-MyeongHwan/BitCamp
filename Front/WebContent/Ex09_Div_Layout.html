@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Div (영역을 정의하는 태그) (페이지 레이아웃)</title>
+<style type="text/css">
+#container {
+	width: 940px;
+	margin: 10px;
+	padding: 10px;
+	border: 1px solid blue
+}
+
+#header {
+	border: 1px solid blue;
+}
+
+#nav {
+	border: 1px solid blue;
+	width: 260px;
+	height : 223wepx;
+	float : left;
+}
+
+#article {
+	border: 1px solid blue;
+	width: 580px;
+	float : left;
+}
+
+#footer {
+	border: 1px solid blue;
+	clear : both;
+}
+</style>
+</head>
+<body>
+	<div id="container">
+		<div id="header">
+			<h3>City Gallery</h3>
+		</div>
+		<div id="nav">
+			<ul>
+				<li><a href="#">1교시</a></li>
+				<li><a href="#">2교시</a></li>
+				<li><a href="#">3교시</a></li>
+			</ul>
+		</div>
+		<div id="article">
+			<h1>London</h1>
+			<p>London is the capital city of England. It is the most populous
+				city in the United Kingdom, with a metropolitan area of over 13
+				million inhabitants.</p>
+			<p>Standing on the River Thames, London has been a major
+				settlement for two millennia, its history going back to its founding
+				by the Romans, who named it Londinium.</p>
+		</div>
+		<div id="footer">Copyright www.bit.or.kr</div>
+	</div>
+</body>
+</html>

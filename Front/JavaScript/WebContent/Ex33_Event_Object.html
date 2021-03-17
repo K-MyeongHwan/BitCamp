@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<form action="Ex33.jsp" id="form">
+		<fieldset>
+			<legend>주소록</legend>
+			<textarea rows="10" cols="30" name="txt" id="txt"></textarea>
+			<input type="submit" id="sub" value="전송하기">
+		</fieldset>
+	</form>
+</body>
+<script type="text/javascript">
+	let add = ["아무개", "email:cookie010305@naver.com"];
+	let form = document.getElementById("form");
+	
+	function addr_Search(event) {
+		console.log(event.type);
+		
+		let textarea = form.txt; //document.getElementByTagName("textarea");
+		textarea.value="이름/주소\n";
+		textarea.value+=add[0] + ", " + add[1] + "\n";
+	}
+	
+	//POINT
+	form.addEventListener("submit",(event)=> {
+		event.preventDefault(); //기본 이벤트 해제 ( <a <submit)
+		addr_Search(event);
+	});
+</script>
+</html>

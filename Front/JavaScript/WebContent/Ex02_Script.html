@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//javascript 해석 > 웹 브라우저 ( 해석 + 다양한 객체 공급)
+
+	//내장객체(브라우저가 가지고 있는 자원들) > window 객체
+	window.document.write("방가방가<br>");
+
+	//window 객체 생략 가능
+	document.write("방가방가<br>");
+
+	console.log("디버깅, 결과 미리보기, 미리확인<br>");
+	console.log(10 + 10);
+
+	document.write("<b>Hello World</b>");
+	document.write('<table border="1px solid blue">');
+	document.write('<tr><td>aa</td><td>bb</td></tr>');
+	document.write("</table>");
+
+	//var, let, const
+	var num; //타입이 정해지지 않았다 ( 정수, 문자, 날짜 )
+	let num2;
+
+	console.log(num); //	undefind >> 정의되지 않았다고 뜬다, 오류가 아니다.
+
+	num = 100; //타입이 설정된다. ( 내부적으로 number 타입이 된다. )
+
+	console.log("num : " + num);
+	console.log(typeof (num)); //타입확인 함수 ( typeof() )
+
+	//javascript는 순서대로 실행된다 ( 이게 진짜 중요하다 )
+
+	//var ele = window.document.forms[0].elements[0] //0번째 요소, 태그를 선택한다
+	//console.log(ele);
+	//Uncaught TypeError: Cannot read property 'elements' of undefined
+	//javascript는 순서대로 실행된다. >> forms나 등등 태그가 오지않은상태에서 사용되어서 오류가남.
+</script>
+</head>
+<body>
+	<form action="#" method="get" name="myform">
+		<input type="text" name="userid" value="hong"><br> <input
+			type="password" name="password" value="1004"><br> <input
+			type="submit" value="전송">
+	</form>
+	
+	<input type="button" value="클릭해봐" onclick="data()">
+</body>
+<script>
+	var ele = window.document.forms[0].elements[0] //0번째 요소, 태그를 선택한다
+	console.log(ele);
+	//ele 변수 > <input type="text" name="userid" value="hong"> 태그 전체를 가져옴
+	
+	//객체를 담고있다. (태그객체)
+	console.log(ele.value);
+	console.log(ele.value.length);
+	
+	var value = window.document.myform.userid.value;
+	console.log("타입 : " + typeof(value));
+	
+	//함수안에서 처리 . . . 그 함수를 호출하는 방법이 맞는 방법
+	if(value.length < 5){
+		alert("다시 입력해주세요!");
+		ele.value="";
+	}
+	
+	//순서에 상관없이 프로그래밍하고 싶어요
+	// > 함수를 생성 > 함수는 순서대로 실행되지 않고, 호출하지 않으면 쓰이지 않기 때문에!
+	function data() {
+		var ele = window.document.forms[0].elements[0] //0번째 요소, 태그를 선택한다
+		alert(ele); //[object HTMLInputElement]
+	}
+	</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>개발자 필수 태그 ( 암기 )</title>
+</head>
+<body>
+	<!-- 
+	회원가입, 로그인, 게시판 글쓰기
+ -->
+	<h3>로그인</h3>
+	<form action="Ex11_login.jsp" method="port">
+		ID : <input type="text" name="id"> <br> 
+		PWD : <input type="password" name="pwd"><br> 
+			<input type="submit"value="전송하기"><br> 
+			<input type="image" value="images/1.jpg"><br>
+		<input type="reset" value="취소하기">
+	</form>
+	<!-- 
+	from 태그는 전송을 담당하는 태그
+	클라이언트가 입력한 데이터를 가지고 서버로 가지고 간다.
+	네이버 -> 회원가입 요청 -> 회원가입 전달 -> 정보입력 -> 네이버(서버)에게 전달
+	-> 전송받은 데이터를 처리한다 -> DB -> insert
+	
+	form 은 전송 수단. ( input type="submit" : 출발 )
+	
+	1. 배 ( method="get") > 목적지 ( action = "login.jsp") 
+	http://localhost:8090/WebClient/Ex11_login.jsp?id=135&pwd=135
+	입력한데이터노출 > Ex11_login.jsp?id=hong&pwd=1007
+	게시판 글번호 링크
+	--<a href="boardcontent.jsp?num=100&category=board">1번글</a>
+	
+	2. 비행기 ( method="post") > 
+	http://localhost:8090/WebClient/Ex11_login.jsp
+	>> http 프로토콜 (header)안에 숨겨서 데이터를 전송
+	
+	//선장 : submit, reset
+	1. input type="submit" 전송
+	2.input type="image" 내부적으로 전송기능을 가지고 있음 ( submit )
+	3.input type="button" 디자인만 존재 > 별도의 함수를 만들어서 호출해주어야함.
+		function sub(){ document.form.submit() } 
+	
+	 -->
+
+
+</body>
+</html>

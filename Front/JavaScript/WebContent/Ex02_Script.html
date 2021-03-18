@@ -21,7 +21,7 @@
 	document.write("</table>");
 
 	//var, let, const
-	var num; //타입이 정해지지 않았다 ( 정수, 문자, 날짜 )
+	var num; //타입이 정해지지 않았다 ( 정수, 문자 )
 	let num2;
 
 	console.log(num); //	undefind >> 정의되지 않았다고 뜬다, 오류가 아니다.
@@ -36,14 +36,14 @@
 	//var ele = window.document.forms[0].elements[0] //0번째 요소, 태그를 선택한다
 	//console.log(ele);
 	//Uncaught TypeError: Cannot read property 'elements' of undefined
-	//javascript는 순서대로 실행된다. >> forms나 등등 태그가 오지않은상태에서 사용되어서 오류가남.
+	//script 태그가 body 태그가 전부 로딩되지 않은 상태에서 body태그의 요스를 읽으려고 했기 때문에 오류가남. >> script 태그를 body 태그 뒤에 쓰는 이유
 </script>
 </head>
 <body>
 	<form action="#" method="get" name="myform">
-		<input type="text" name="userid" value="hong"><br> <input
-			type="password" name="password" value="1004"><br> <input
-			type="submit" value="전송">
+		<input type="text" name="userid" value="hong"><br> 
+		<input type="password" name="password" value="1004"><br>
+		 <input type="submit" value="전송">
 	</form>
 	
 	<input type="button" value="클릭해봐" onclick="data()">
@@ -52,12 +52,14 @@
 	var ele = window.document.forms[0].elements[0] //0번째 요소, 태그를 선택한다
 	console.log(ele);
 	//ele 변수 > <input type="text" name="userid" value="hong"> 태그 전체를 가져옴
+	//document 를 통해서 HTML 요소를 가져오게되면, 태그전체를 가져온다.
 	
 	//객체를 담고있다. (태그객체)
 	console.log(ele.value);
 	console.log(ele.value.length);
 	
 	var value = window.document.myform.userid.value;
+	console.log(value);
 	console.log("타입 : " + typeof(value));
 	
 	//함수안에서 처리 . . . 그 함수를 호출하는 방법이 맞는 방법

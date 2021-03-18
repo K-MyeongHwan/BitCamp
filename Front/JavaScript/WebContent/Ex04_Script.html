@@ -14,18 +14,17 @@
 			-권장 : let, const 를 사용
 			
 			-초기화(처음 값을 가지는 과정)  시점에 타입 결정
-			-Javascript > 정수, 실수, boolean, 문자
-			-내부적으로 : Number, boolean, Array, Object .. 타입
+			-내부적으로 : Number, string, boolean, Array, Object .. 타입
 			
-			변수 ( scope ) 
+			변수의 유효범위 ( scope ) 
 			현재 페이지 기준 ( Ex04_Script 기준 )
 			1. page 전체에서 사용하는 변수 > 전역변수 ( 'Global' variable )
 			2.page안의 함수안에 사용하는 변수 > 지역변수 ( 'Local' variable )
 	*/
-		let num; //전역 > 모든 함수에서 사용가능
+		let num; //전역 > ,함수 밖 선언, 모든 함수에서 사용가능
 		
 		function call() {
-			let name; //지역 > 함수안에서만 사용가능
+			let name; //지역 > 함수 안 선언, 함수안에서만 사용가능
 			name="홍길동";
 		}
 		

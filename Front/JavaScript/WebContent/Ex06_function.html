@@ -12,8 +12,8 @@
 		    public int print(int num, int num2) {return num+num2;}
 	*/
 	
-	//javascript : void (x), return type(x)
-	function callConfirm() { //사용자 정의 함수 >> 내장되어있는 "내장함수" ( 웹 브라우저가 가지고 있음)
+	//javascript : return type(x)
+	function callConfirm() { //사용자 정의 함수, 내장되어있는 "내장함수" ( 웹 브라우저가 가지고 있음)
 		if(window.confirm("작업내용")) { 
 			//window.confirm 내장함수 ( 사용법 ), return true of false;
 			alert("삭제");
@@ -23,7 +23,7 @@
 	}
 	
 	function showPopup() {
-		window.open("Ex06_popup.html","zipcode","width:200px, height : 200px;") ;
+		open("Ex06_popup.html","zipcode","width:200px, height : 200px;") ;
 		//open() 새 창 띄우기
 		/*
 			https://www.w3schools.com/jsref/met_win_open.asp

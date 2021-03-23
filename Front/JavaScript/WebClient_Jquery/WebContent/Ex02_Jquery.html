@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+/* 	window.onload = function() {
+		document.getElementById("btn").onclick=function() {
+			alert("DOM Script");
+		}
+	} */
+	
+	$(document).ready(function(){
+		//ready == onload 이벤트
+		//&() = jquery의 함수, (document) 는 파라미터
+		$('#btn').click(function(){
+			//CSS의 selecter 처럼 '#btn' = id='btn' 인것으로 쓴다.
+			//alert("DOM Jquery");
+			$(this).hide(); //버튼을 숨긴다. 감춘다, #btn의 style="display: none;" 을 한다.
+			// == JavaScript 관련된 함수를 만든 것이 Jquery 이다.
+			
+		});
+	}); 
+</script>
+</head>
+<body>
+	<input type="button" id="btn" value="버튼">
+</body>
+</html>

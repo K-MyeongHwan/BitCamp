@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>이벤트 주의사항</title>
+<script type="text/javascript">
+	function displayDate() {
+		console.log("call");
+		document.getElementById("demo").innerHTML = new Date();
+	}
+	//document.getElementById("mybtn").onclick=displayDate(); --X	
+	//여기에 쓰면 body가 실행이 안되서 메모리에 없다 ... 
+	
+</script>
+</head>
+<body>
+	<button id="mybtn">눌러바</button>
+	<br>
+	<button id="mybtn2" onclick="displayDate()">눌러바</button>
+	<br>
+	<p id="demo"></p> 
+</body>
+<script>
+	//버튼을 클릭하면 함수를 호출하겠다.
+	//displayDate(); //함수를 호출했다.
+	
+	//document.getElementById("mybtn").onclick=displayDate();
+	//버튼을 클릭하면, displayDate를 실행하겠지 ? nononononononononononono
+			
+	//displayDate(); > 버튼을 클릭하기 전에 displayDate 가 호출되어버렸다;;;
+	
+	document.getElementById("mybtn").onclick=displayDate;
+	//함수의 ()를 빼면, 버튼을 클릭할 때, displayDate가 호출된다.
+	//이벤트에 함수를 직접적으로 제어할 때는, 함수에 괄호를 붙이지 않는다.
+	//괄호를 붙이게되면, 그 때 바로 실행이 된다.
+</script>
+</html>

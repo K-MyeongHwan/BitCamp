@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+		/*
+			try {
+				0/0 >> 익셉션 발생 >> 예외객체가 자동 new div 됨 >> 객체의 주소가 catch 됨
+			} catch(Exception e) {
+				확인 문제파악 ... 
+			}
+			
+			javascript >> 사건이 발생 ( onclick , mouseover ) >> 내부적으로 객체를 생성
+			>> Event 객체 >> 객체안에 다양한 정보 ( 누가 사건, 사건 주체, 영향 ...)
+			
+			https://cafe.naver.com/bit2021/525
+			
+			window.event.메서드
+			window.event.속성
+		*/
+		
+		window.onload = () => {
+			let btn = document.getElementById("mybtn");
+			btn.onclick=(e)=> { // 이벤트가 발생, 이벤트 객체가 자동생성됨. > e는 이벤트 객체의 주소를 받는다.
+				console.log(e.type); //click > 이벤트 종류를 알려준다.
+				console.log(e.target); //<span>눌러봐</span> > 뭘 눌러서 이벤트가 발생되었는가?
+				console.log(e.currentTarget); //<button id="mybtn"><span>눌러봐</span></button> > 현재 이벤트 발생에 대한 모든 태그
+				console.log(e.x); //좌표값
+				console.log(e.y); //좌표값
+			}
+			
+			let btn2= document.getElementById("mybtn2");
+			let handler = (event) => {
+				//event 객체가 이벤트의 종류를 구별할 수 있어서 가능한 것이다.
+				switch(event.type) {
+				case "click" : alert("이놈 클릭했구나!");
+					break;
+				case "mouseover" : event.target.style.backgroundColor="red";
+				break;
+				case "mouseout" : event.target.style.backgroundColor="";
+				break;
+				}
+			}
+
+			btn2.onclick=handler; //함수의 주소
+			btn2.onmouseover = handler;
+			btn2.onmouseout = handler;
+		}
+		</script>
+</head>
+<body>
+	<button id="mybtn">
+		<span>눌러봐</span>
+	</button>
+	<br>
+	<button id="mybtn2">눌러봐2</button>
+</body>
+</html>

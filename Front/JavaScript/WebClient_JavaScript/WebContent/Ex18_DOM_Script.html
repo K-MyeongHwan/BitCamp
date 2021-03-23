@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*
+		onload 라는 이벤트가 발생하는 시점 > 페이지가 전부 load 되었을 때 
+																	( = body 태그 안에 모든 요소가 브라우저에 로딩되고 난 후에 )
+																	( = DOM 객체가 모두 생성되고 난 후 )
+		function call() {  }
+		1. <body onload="call()">
+		2. window.onload = call(); 
+		
+		call() 재사용 안할 꺼다 > load 에서만 한번 쓰고 안쓸꺼다 > !익명함수!
+		
+		익명함수 : 한번만 쓴다. ( 일회성 함수 ) = 재사용이 안된다 
+		
+		function call() {}
+		window.onload = call(); >> 선호하지 않음
+		*/
+		window.onload = function() {
+			//page의 모든 요소가 loading 되고 난 후에 함수를 자동으로 호출한다. ( 익명함수 )
+			//이런 방식을 꽤나 선호한다.
+			let out = "";
+			out+="<ul>";
+				out+="<li>JavaScript</li>";
+				out+="<li>Jquery</li>";
+				out+="<li>vue</li>";
+			out+="</ul>";
+			
+			console.log(out);
+			document.body.innerHTML = out; //innerHTML 은 body를 재정의한다.
+			
+			//DOM > 동적이다. > 기존의 없던 것을 추가, 삭제, 변경 
+			let header = document.createElement("h1");
+			//<h1></h1>
+			
+			let textnode = document.createTextNode("hello");
+			//hello
+			
+			header.append(textnode);
+			//<h1>hello</h1>
+			
+			document.body.appendChild(header);
+			
+			//img 태그 동적 생성하고 src 속성도 추가, body태그의 자식으로 append
+			let img = document.createElement("img");
+			img.setAttribute("src","images/1_1.png");
+			img.setAttribute("alt","타블로~");
+			img.setAttribute("width","200px");
+			img.setAttribute("height","200px");
+			document.body.appendChild(img);
+			//<img src="images/1_1.png" alt="타블로~" width="200px" height="200px"/>
+		
+				
+		}
+		
+	</script>
+</head>
+<body>
+HELLO WORLD
+</body>
+</html>

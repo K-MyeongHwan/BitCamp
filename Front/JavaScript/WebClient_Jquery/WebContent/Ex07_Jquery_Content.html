@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Content</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#btn1').click(function(){
+				//val,text,html
+				alert("text : " + $('#test').text()); //read, getter
+				//test id 를 가진 p 태그가 <b> 태그를 가지고 있따면?
+				//순수 텍스트만 가져온다.		
+				//text : 안녕하세요정말방가방가
+			});
+			
+			$('#btn2').click(function(){
+				//val,text,html
+				alert("html : " + $('#test').html()); //read, getter
+				//test id 를 가진 p 태그가 <b> 태그를 가지고 있따면?
+				//태그를 인정, 해석하여 가져온다.
+				//html : 안녕하세요<b>정말</b>방가방가
+			});
+			
+			$('#btn3').click(function(){
+				/* $('#test').html("<div>AAAAA</div>"); */
+				$('#test').text("<div>AAAAA</div>");
+			});
+		});
+	</script>
+</head>
+<body>
+	<p id="test">안녕하세요<b>정말</b>방가방가</p>
+	<button id="btn1">show text</button>
+	<button id="btn2">show html</button>
+	<button id="btn3">html</button>
+	
+</body>
+</html>
+
+

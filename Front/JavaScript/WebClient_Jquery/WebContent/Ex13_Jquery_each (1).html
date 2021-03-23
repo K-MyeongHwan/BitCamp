@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table , tr , td {
+			border: 1px solid blue;
+			border-collapse: collapse;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//$(document).ready(function(){ 필요에 따라서  });
+		
+		//일반적인 javascript 함수
+		function javascriptFunc(){
+			let arrayobj=[];
+			//1. arrayobj 배열에 아래처럼 객체를 추가해 보세요
+			/*
+			101th  홍길동 10
+			102th  김유신 20
+			103th  유관순 30
+			
+			[{},{},{}] 객체 배열로 생성
+			ex) {th:101th , name:홍길동 , age:10} 형식
+			arrayobj.push({});
+			*/
+			$('table > tbody > tr').each(function(){
+				console.log(this);
+			});
+		}
+	</script>
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<td>기수</td><td>이름</td><td>번호</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>101th</td><td>홍길동</td><td>10</td>
+			</tr>
+			<tr>
+				<td>102th</td><td>김유신</td><td>20</td>
+			</tr>
+			<tr>
+				<td>103th</td><td>유관순</td><td>30</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<button onclick="javascriptFunc()">함수호출</button>
+	</p>
+	<div id="display"></div>
+	<div id="display2"></div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p>Outside myFunction() carName is undefined.</p>
+    <p id="demo1">string Volvo<hr></p>
+    <p id="demo2">undefined<hr></p>
+    <p id="demo3">string world</p>
+    <p id="demo4">string</p>
+
+<script>
+//GLOBAL variable ( 모든 함수에서 사용가능 )
+var gname = "world";
+
+myFunction();
+
+function myFunction() {
+	//[ 사용금지 ]
+	aaa ="아무개"; //함수안에 타입이 없는 변수 : global 
+	console.log(aaa);
+	
+	//Local JavaScript Variables
+    var carName = "Volvo"; 
+  	document.getElementById("demo1").innerHTML = typeof(carName) + " " + carName +"<hr>" ;
+  	//Global
+  	document.getElementById("demo3").innerHTML = typeof(gname) + " " + gname;
+}
+
+document.getElementById("demo2").innerHTML = typeof(carName) +"<hr>" ;
+document.getElementById("demo4").innerHTML = typeof(gname);
+/*  
+  전 (이전) : var
+  ES2015  두가지 키워드 : let  , const
+  
+  1. Global
+  2. Local
+  3. new block  : let , const
+ 
+ 
+ 
+ */
+</script>
+</body></html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+/*
+	JavaScript
+	1. for(let index in Array) {Array[index]}
+	2. Object(JSON) : for(let key in jsonobj) {jsonobj[key]}
+	3. array.forEach(function(currentvalue, index, array){} )
+	//callback 함수
+	기타 map() ,,, 
+	
+	Jquery ( $().each() : 반복구문 )
+	1. $(selector).each(function(){
+		//선택자가 배열이면, 이 익명함수를 배열길이만큼 사용한다.
+		//이 each문을 this를 활용하여 쓴다.
+	});
+	2. $(selector).each(function(index){ this 활용 });
+	3. $(selector).each(function(index, element){ element }); 
+	
+	Jquery : $.each() : selector 가 없음
+	1. $.each(Array || Object, function(){
+		//첫번째 파라미터에는 Array, Object가 오고,
+		//두번째에는 그에 맞는 함수가 온다.
+	});
+	2.$.each(Array || Object, function(index){ this 활용 });
+	3. $.each(Array || Object, function(index, element){ element });
+	
+	parameter 가 json 객체라면, let obj = {name : "홍길동", age: 100};
+	$(obj).each(function(key, value){
+		value	
+	});
+	
+	$each(obj, function(key, value){
+		value
+	});
+	
+ */
+ $(document).ready(function(){
+	 $('p').each(function(){
+		 //p태그의 갯수만큼 function 가 실행된다.
+		 //callback : 함수의 호출 실행 시점을 프로그래머가 아닌 시스템에서 결정하는 함수
+		 //callback 함수 3번 호출
+		 console.log("this : " + $(this).text());
+	 	//this 를 jquery 함수에 넣는 이유
+	 	//this는 그냥 p 태그들인데, jquery 함수안 선택자에 this를 써서 jquery함수를 이용하겠따.
+	 });
+	 
+	 $('p').each(function(index){
+		 console.log("index : " + index);
+		 console.log(this);
+		 
+		 //index 활용
+		 /* 
+		 $(this).attr("id","param"+index); //속성 정의함수 attr()
+		 $(this).attr("id","color"); 
+		 */ 
+		 $(this).attr(
+			{
+				"id" : "param-"+index,
+				"style" : "color:red"
+			}	
+			//jquery 대부분의 함수는 parameter 로 JSON 객체를 받는다.
+			//????
+		 );
+	 });
+	 
+	 $('p').each(function(index, element){
+		 console.log("index : " + index);
+		 console.log(element);
+		 console.log("element : " + $(element).text());
+	 });
+	 
+	 $('#btn').click(function(){
+		 alert($('#param-1').text());
+	 });
+	 
+	 //let arr = ["사과","배","포도"] ; ( Array )
+	 //let obj = {} ( JSON )
+	 //let arrobj = [{},{},{}] ( Object Array )
+	 
+	 let array = [
+		 {"name" : "naver", "link" : "www.naver.com"},
+		 {"name" : "daum", "link" : "www.daum.net"},
+		 {"name" : "bit", "link" : "www.bit.or.kr"}
+	 ]
+	 
+	 //Q. $.each(Array || Object , function(index, element){}) 를 사용해서
+	 //name 값하고, link 값을 출력해라
+	 $.each(array,function(index,obj) {
+		 //객체.속성명 or 객체["속성명"]
+		 /* 
+		 console.log(array[index].name);
+		 console.log(array[index].link);
+		 */
+		 console.log(obj.name + " / " + obj["link"]);
+	 });
+	 
+	 /*  $(array).each(function(index, element)){} */
+ 	//body 태그안에 요소를 얻어서 사용
+ 	
+ 	let boardobj = {
+			 values : [ { no:1,title:"hello world" },{ no:2,title:"korea" },{ no:3,title:"bit world" }],
+	 		search : "검색"
+	}
+	 //1. $.each를 사용해서, no 값, title 값을 출력
+	 $.each(boardobj.values,function(index, element) {
+		 console.log(element.no + "/" + element["title"]);
+	 });
+	 
+	 //2.$.each(boardobj) >> key, value 값을 출력
+	 $.each(boardobj, function(key,value){
+		 console.log(key + "/" + value);
+	 });
+	 
+	 //3. $.each를 사용해서 no, title, search 값을 출력
+	 $.each(boardobj, function(key, value){
+		 if(typeof(value)== "object") {
+			$.each(value,function(index,obj){
+				console.log(index + "/" + obj.no + "," + obj["title"]);
+			});
+		 } else {
+			 console.log(key + "/" + value);
+		 }
+	 });
+ });
+</script>
+</head>
+<body>
+	<p>java</p>
+	<p>jsp</p>
+	<p>oracle</p>
+	<input type="button" value="click" id="btn">
+</body>
+</html>

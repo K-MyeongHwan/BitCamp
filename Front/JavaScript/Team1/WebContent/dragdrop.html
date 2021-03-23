@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Drag & Drop - Team1</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/dragdrop_css.css" rel="stylesheet">
+  
+  <!-- =======================================================
+  * Template Name: Kelly - v2.1.1
+  * Template URL: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+
+      <h1 class="logo"><a href="index.html">BIT196 Team1</a></h1>
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="geolocation.html">Geolocation</a></li>
+          <li class="active"><a href="dragdrop.html">Drag & Drop</a></li>
+          <li><a href="localstorage.html">Local Storage</a></li>
+        </ul>
+      </nav><!-- .nav-menu -->
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Resume Section ======= -->
+    <section id="resume" class="resume">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Drag & Drop</h2>
+          <p>드래그 앤 드롭 API는 웹 페이지 내의 요소를 사용자가 자유롭게 드래그할 수 있도록 설정해줍니다.<br>현재 주요 웹 브라우저들은 모두 이 기능을 지원하며, 따라서 웹 페이지 내의 모든 요소는 드래그될 수 있습니다.</p>
+        </div>
+		<hr>
+		
+        <div class="board">
+        <article></article>
+          <article class="draggable-elements">  
+            <div class="fas fa-cat draggable" draggable="true" style="background-color: #ff6384;" id="cat"></div>
+            <div class="fas fa-dog draggable" draggable="true" style="background-color: #36a2eb;" id="dog"></div>
+            <div class="fas fa-dove draggable" draggable="true" style="background-color: #ffce56;" id="dove"></div>
+            <div class="fas fa-fish draggable" draggable="true" style="background-color: #9966ff;" id="fish"></div>
+            <div class="fas fa-frog draggable" draggable="true" style="background-color: #4bc0c0;" id="frog"></div>
+          </article>
+          <article class="droppable-elements">
+            <div class="droppable" data-draggable-id="frog"><span>Green</span></div>
+            <div class="droppable" data-draggable-id="dove"><span>Yellow</span></div>
+            <div class="droppable" data-draggable-id="cat"><span>Red</span></div>
+            <div class="droppable" data-draggable-id="fish"><span>Violet</span></div>
+            <div class="droppable" data-draggable-id="dog"><span>Blue</span></div>
+          </article>
+          
+          
+          
+          
+        </div> <!-- board -->
+
+      </div>
+    </section><!-- End Resume Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>BIT196 Team1</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/kelly-free-bootstrap-cv-resume-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End  Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="bx bx-up-arrow-alt"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="assets/vendor/counterup/counterup.min.js"></script>
+  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/venobox/venobox.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dragdrop_javascript.js"></script>
+
+</body>
+
+</html>

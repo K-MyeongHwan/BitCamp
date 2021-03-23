@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+//val(), text(), html()
+//3개의 함수 ( val(), text(), html() ) >> 값을 read, write >> get, setter 역할을 한다.
+
+	//$(document).ready(function(){});
+	$(function(){ //document.ready의 줄임표현
+		$('#btncopy').click(function() {
+/* 			let data = $('#txtuserid').val();
+			$('#txtcopyuserid').val(data); */
+			$('#txtcopyuserid').val($('#txtuserid').val());
+		});
+
+		//select 태그
+		$('#select_hobby').change(function(){  //값의 변화가 일어나면
+			const text = $(':selected').text();
+			const text2 = $('#select_hobby option:selected').text();
+			const val=$('select_hobby').val();
+			console.log(text);
+			console.log(text2);
+			console.log(val);		
+		});
+		
+		//암호확인
+		$('#txtpwd2').keyup(function(){ //키가 입력되었을 때.
+			if($('#txtpwd').val != $('#txtpwd2').val()) {
+				// innerTEXT는 정말 텍스트로 한다
+					$('#message').text("<h3>암호가 일치하지않아요</h3>");
+			} else {
+				//innerHTML 은 태그포함해석한다.
+				$('#message').html("<h3>암호가 일치해요</h3>");
+			}
+		});
+		
+		//결국, 겹치는 태그가 있으면 배열형태로 가져온다.
+		//body안에 모든 input 태그
+		//console.log($('input'));
+		
+		$('input').focus(function() {
+			console.log($(this)); //POINT
+			$(this).css('background-color','gray');
+		});
+		
+		$('input').focus(function() {
+			console.log($(this));
+			$(this).css('background-color','white');
+		});
+		
+		//toggle : On || Off , 극단적인 표현들 . . . 
+		//hover(function(){}, function(){})  
+		$('p').hover(function() {
+			$(this).css('background-color','gold');
+		}, function() {
+			$(this).css('background-color','red');
+		});
+	});
+</script>
+</head>
+<body>
+	<p>Jquery hover(mouseover , mouseleave)</p>
+
+	ID:
+	<input type="text" id="txtuserid">
+	<hr>
+	<input type="button" id="btncopy" value="copy">
+	<hr>
+	Copy ID:
+	<input type="text" id="txtcopyuserid">
+
+	<hr>
+	<select id="select_hobby">
+		<option value="JAVA">java</option>
+		<option value="SCRIPT">script</option>
+		<option>jdbc</option>
+	</select>
+	<br>
+	<input type="text" id="txtselect">
+	<hr>
+	<table style="border: 1px solid red;">
+		<tr>
+			<td>암호</td>
+			<td><input type="text" id="txtpwd" size="20" maxlength="5">
+			</td>
+		</tr>
+		<tr>
+			<td>암호확인</td>
+			<td><input type="text" id="txtpwd2" size="20" maxlength="5">
+			</td>
+		</tr>
+	</table>
+	<div id="message" style="color: red"></div>
+	<p>123123123</p>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+		//https://www.w3schools.com/jquery/jquery_ref_html.asp
+		//https://www.w3schools.com/jquery/jquery_ref_selectors.asp
+		//https://api.jquery.com/category/selectors/form-selectors/
+		
+		$(function(){
+				$('#txtname').val('hong');
+				console.log($('#txtname').val());
+				
+				//1. radio 기본 값 설정 ( checked , selected 빼고 거의 다 checked )
+				 $('input:radio').val(['F']);
+				//input 에서 radio를 사용하는 애를 찾아서, 기본값을 설정하는데, val에 F 를 체크
+				console.log($('input:radio').val());
+				console.log($('input:checked').val());
+				//radio가 여러개있다면, 처음만나는 태그의 value를 read해온다.
+				//다른 radio가 있으면?
+				console.log($('input:radio[name=gender]:checked').val());
+				
+				
+				//select
+				//단일선택, 다중선택
+				//웹 접근성 문제;
+				console.log($('#isF').val()); //선택된 option value
+				$('#isF').val('oracle'); //사용하겠다 => selected
+				
+				$('#isF2').val(['java','oracle']); //다중선택
+				
+				$('#btnok').click(function(){
+					//핸들러 : 어떤 사건이 발생했을 때, 실행되는 함수
+					let selecttag = $('#isF2').val();
+					console.log(selecttag);
+					for(let index in selecttag) {
+						console.log("value : " + selecttag[index]);
+					}
+					
+				});
+				
+				if($('#myform').children().is('input:submit')) {
+					//myform의 자식으로 input type="submit" 이 있니?
+					console.log("true");
+				} else {
+					console.log("false");
+				}
+		});
+		
+	</script>
+</head>
+<body>
+	Textbox :
+	<input type="text" id="txtname">
+	<br> RadioButton : Checked 속성
+	<input type="radio" name="gender" value="M">남
+	<input type="radio" name="gender" value="F">여
+	<br> Dropdownlist(select 태그)
+	<select id="isF">
+		<option value="java">자바</option>
+		<option value="jsp">웹</option>
+		<option value="oracle">오라클</option>
+	</select>
+	<br> Dropdownlist(select 태그)
+	<select id="isF2" multiple="multiple" size="3">
+		<option value="java">자바</option>
+		<option value="jsp">웹</option>
+		<option value="oracle">오라클</option>
+	</select>
+	<br>
+	<input type="button" value="확인" id="btnok">
+	<br>
+	<div id="myform">
+		submit button : <input type="submit" value="전송">
+	</div>
+</body>
+</html>

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<title>Kakao 지도 시작하기</title>
+	<link rel="stylesheet" type="text/css" href="mycommon.css" />
+</head>
+
+<body>
+
+	<!-- 화면 시작시 흐려질 파란 박스-->
+	<div class="cover">
+
+	</div>
+
+	<script type="text/javascript"
+		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=843a110ed4c9eea5cfd6884e22de3050&libraries=clusterer,services,drawing"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script type="text/javascript">
+
+		//전체 인원수 +1
+		let number = 29;
+
+
+		// 페이지 제목
+		let header = document.createElement("header");
+		let title = document.createTextNode("BITMAP");
+		header.appendChild(title);
+
+		// 메인 컨텐츠 전체를 감싸는 박스
+		let wrap = document.createElement("div");
+		wrap.setAttribute("id", "wrap");
+
+		// 왼쪽 리스트를 담당할 박스
+		let aside = document.createElement("aside");
+
+		// 왼쪽 리스트박스 검색
+		let search = document.createElement("input");
+		search.setAttribute("id", "search");
+		search.setAttribute("placeholder", "검색");
+		search.setAttribute("onkeypress", "if(event.keyCode == 13){searchmember();}")
+		aside.appendChild(search);
+
+		let memberlist = document.createElement("ul");
+		memberlist.setAttribute("id", "memberlist");
+		aside.appendChild(memberlist);
+
+		// 왼쪽 리스트박스
+		for (let i = 0; i < number; i++) {
+			let member = document.createElement("li");
+			member.setAttribute("id", "member" + i);
+			member.setAttribute("class", "members");
+			//비트캠프 클릭이벤트
+			if (i == 0) {
+				member.setAttribute("onclick", "showMarkers(0);");
+			}
+			memberlist.appendChild(member);
+		}
+
+		//svg를 사용할 마우스(수정중)
+		let mouse = document.createElement("svg");
+		mouse.setAttribute("id", "mouse");
+		let g = document.createElement("g");
+		g.setAttribute("fill", "none");
+
+		aside.appendChild(mouse);
+
+		// 지도와 기능 버튼 구역을 감싸는 컨테이너
+		let container = document.createElement("div");
+		container.setAttribute("id", "container");
+
+		let eleul = document.createElement("ul");
+		eleul.setAttribute("id", "menu");
+
+		// 조별버튼이 들어갈 메뉴바
+		let menuarea = document.createElement("div");
+		menuarea.setAttribute("id", "menuarea");
+		menuarea.appendChild(eleul);
+
+		// 조별버튼
+		let partnumber = 8;
+		for (let i = 1; i < partnumber; i++) {
+			let eleli = document.createElement("li");
+			eleul.appendChild(eleli);
+			let menubutton = document.createElement("input");
+			menubutton.setAttribute("type", "button");
+			menubutton.setAttribute("id", "" + i);
+			if (i < 6) {
+
+				menubutton.setAttribute("value", i + "조 보기");
+			} else if (i == 6) {
+
+				menubutton.setAttribute("value", "모두보기");
+
+			} else {
+
+				menubutton.setAttribute("value", "모두감추기");
+			}
+			eleli.appendChild(menubutton);
+		}
+
+		//지도
+		let maparea = document.createElement("div");
+		maparea.setAttribute("id", "map");
+
+		// 좌표간 거리 구하는 버튼
+		let start = document.createElement("input");
+		start.setAttribute("type", "text");
+		start.setAttribute("placeholder", "시작마크");
+		start.setAttribute("id", "start");
+		start.setAttribute("class", "dtext");
+
+		let end = document.createElement("input");
+		end.setAttribute("type", "text");
+		end.setAttribute("placeholder", "도착마크");
+		end.setAttribute("id", "end");
+		end.setAttribute("class", "dtext");
+
+		//거리 재기 버튼
+		let distance = document.createElement("input");
+		distance.setAttribute("type", "button");
+		distance.setAttribute("onclick", "getDistance()");
+		distance.setAttribute("value", "거리재기");
+		distance.setAttribute("class", "dis");
+
+		//거리 삭제 버튼
+		let redistance = document.createElement("input");
+		redistance.setAttribute("type", "button");
+		redistance.setAttribute("onclick", "resetDistance()");
+		redistance.setAttribute("value", "거리초기화");
+		redistance.setAttribute("class", "dis");
+
+		let buttonarea = document.createElement("div");
+		buttonarea.setAttribute("id", "buttonarea")
+
+		buttonarea.appendChild(start);
+		buttonarea.appendChild(end);
+		buttonarea.appendChild(distance);
+		buttonarea.appendChild(redistance);
+
+		let result = document.createElement("p");
+		result.setAttribute("id", "result");
+
+		// 위에서 만든 요소들이 화면에 보이게 구조를 잡는다
+		document.body.appendChild(header);
+		document.body.appendChild(wrap);
+		wrap.appendChild(aside);
+		wrap.appendChild(container);
+
+		container.appendChild(menuarea);
+		container.appendChild(maparea);
+		container.appendChild(buttonarea);
+		container.appendChild(result);
+	</script>
+
+</body>
+<script>
+
+	var students = [{
+		"department": 0,
+		"name": "비트캠프",
+		"address": "강남대로 459"
+	}, {
+		"department": 1,
+		"name": "김수연",
+		"address": "동작구 장승배기로3길"
+	}, {
+		"department": 1,
+		"name": "김영허",
+		"address": "장승배기로24가길"
+	}, {
+		"department": 1,
+		"name": "박주현",
+		"address": "노원구 노원로"
+	}, {
+		"department": 1,
+		"name": "이승준",
+		"address": "수지구 성복2로"
+	}, {
+		"department": 1,
+		"name": "현상진",
+		"address": "평택시 비전2로"
+	}, {
+		"department": 2,
+		"name": "이가희",
+		"address": "관악구 남부순환로"
+	}, {
+		"department": 2,
+		"name": "김명환",
+		"address": "감일백제로"
+	}, {
+		"department": 2,
+		"name": "김현진",
+		"address": "송파구 송이로"
+	}, {
+		"department": 2,
+		"name": "김영훈",
+		"address": "송파구 올림픽로"
+	}, {
+		"department": 2,
+		"name": "서태희",
+		"address": "권선구 금곡로"
+	}, {
+		"department": 2,
+		"name": "이상엽",
+		"address": "덕양구 중앙로"
+	}, {
+		"department": 3,
+		"name": "김대업",
+		"address": "강동구 구천면로17길"
+	}, {
+		"department": 3,
+		"name": "김진아",
+		"address": "중원구 자혜로8번길"
+	}, {
+		"department": 3,
+		"name": "안승주",
+		"address": "동대문구 고산자로"
+	}, {
+		"department": 3,
+		"name": "이동근",
+		"address": "동대문구 장한로27가길"
+	}, {
+		"department": 3,
+		"name": "이보희",
+		"address": "가평읍 오목내길"
+	}, {
+		"department": 3,
+		"name": "한석희",
+		"address": "송파구 백제고분로"
+	},
+	{
+		"department": 4,
+		"name": "백보성",
+		"address": "서초구 효령로"
+	}, {
+		"department": 4,
+		"name": "정아인",
+		"address": "기흥구 언동로"
+	}, {
+		"department": 4,
+		"name": "하준수",
+		"address": "김포시 김포대로"
+	}, {
+		"department": 4,
+		"name": "박선희",
+		"address": "영등포구 도신로"
+	}, {
+		"department": 4,
+		"name": "문형철",
+		"address": "수원시 봉영로"
+	}, {
+		"department": 5,
+		"name": "이광희",
+		"address": "관악구 신림로65길"
+	}, {
+		"department": 5,
+		"name": "이성훈",
+		"address": "동작구 사당로2길"
+	}, {
+		"department": 5,
+		"name": "임나영",
+		"address": "동작구 서달로12길"
+	}, {
+		"department": 5,
+		"name": "오주환",
+		"address": "노원구 공릉로"
+	}, {
+		"department": 5,
+		"name": "정수빈",
+		"address": "중랑구 동일로109길"
+	}, {
+		"department": 5,
+		"name": "조하선",
+		"address": "영등포구 디지털로56길"
+	}
+
+	];
+
+	// 위의 정보 왼쪽 리스트박스에 넣어주기
+
+	let memberinfo;
+	for (let i in students) {
+		memberinfo = "";
+		if (i == 0) {
+			memberinfo += students[i].name;
+			let info = document.createTextNode(memberinfo);
+			document.getElementById("member" + i).appendChild(info);
+		} else {
+			memberinfo += students[i].department + "조 " + students[i].name;
+			let info = document.createTextNode(memberinfo);
+			document.getElementById("member" + i).appendChild(info);
+		}
+	}
+
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+		mapOption = {
+			center: new kakao.maps.LatLng(37.50302603815009, 127.02421346491303), // 지도의 중심좌표
+			level: 11
+			// 지도의 확대 레벨
+		};
+
+	var geocoder = new kakao.maps.services.Geocoder();
+
+	var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+	var mapTypeControl = new kakao.maps.MapTypeControl();
+
+	// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+	// kakao.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+	map.addControl(mapTypeControl, kakao.maps.ControlPosition.TOPRIGHT);
+
+	// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+	var zoomControl = new kakao.maps.ZoomControl();
+	map.addControl(zoomControl, kakao.maps.ControlPosition.BOTTOMRIGHT);
+	// 마커를 표시할 위치와 title 객체 배열입니다 
+
+	var markers = [];
+	var startLa;
+	var startMa;
+	var endLa;
+	var endMa;
+	for (let index in students) {
+		//주소를 통한 좌표검색
+		var coords;
+		geocoder
+			.addressSearch(
+				students[index].address,
+				function (result, status) {
+					// 정상적으로 검색이 완료됐으면
+					if (status === kakao.maps.services.Status.OK) {
+						coords = new kakao.maps.LatLng(result[0].y,
+							result[0].x);
+						// 마커를 생성합니다
+					}
+					if (index == 0) {//처음에 비트캠프 반경 10km의 원을 만들어 줍니다.
+						var circle = new kakao.maps.Circle({
+							center: coords,  // 원의 중심좌표 입니다 
+							radius: 10000, // 미터 단위의 원의 반지름입니다 
+							strokeWeight: 3, // 선의 두께입니다 
+							strokeColor: '#75B8FA', // 선의 색깔입니다
+							strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+							strokeStyle: 'dashed', // 선의 스타일 입니다
+							fillColor: '#031e79', // 채우기 색깔입니다
+							fillOpacity: 0.3  // 채우기 불투명도 입니다   
+						});
+
+						// 지도에 원을 표시합니다 
+						circle.setMap(map);
+					}
+
+					var marker;
+					if (students[index].department === 0) {   //department가 0이면 "비트캠프" >> 마커에 이미지 입혀주기
+						var imageSrc =
+							"https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+						// 마커 이미지의 이미지 크기 입니다
+						var imageSize = new kakao.maps.Size(24, 35);
+						// 마커 이미지를 생성합니다
+						var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+						// 마커를 생성합니다
+						marker = new kakao.maps.Marker({
+							map: map, // 마커를 표시할 지도
+							position: coords,
+							image: markerImage, // 마커 이미지
+							title: students[index].department
+						});
+					} else {                            //department가 0이 아니면 조원들 >> 기본 마커
+						marker = new kakao.maps.Marker({
+							map: map,
+							position: coords,
+							title: students[index].department,
+						});
+					}
+					var infowindow;
+					if (students[index].department == 0) {          //비트캠프 infowindow
+						infowindow = new kakao.maps.InfoWindow({
+							content:
+								'<div style="width:150px;text-align:center;padding:6px 0;">' +
+								students[index].name +
+								"</div>",
+						});
+					}
+					else {                                     //조원들 infowindow
+						infowindow = new kakao.maps.InfoWindow({
+							content:
+								'<div style="width:150px;text-align:center;padding:6px 0;">' +
+								students[index].department + "조 " + students[index].name +
+								"</div>",
+						});
+					}
+
+					// 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+					// 이벤트 리스너로는 클로저를 만들어 등록합니다 
+					// for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+					kakao.maps.event.addListener(marker, 'mouseover',
+						makeOverListener(map, marker, infowindow));
+					kakao.maps.event.addListener(marker, 'mouseout',
+						makeOutListener(infowindow));
+					kakao.maps.event.addListener(marker, 'click', function (mouseEvent) {
+						// 클릭한 위도, 경도 정보를 가져옵니다 
+						var markerName = students[index].name;
+						var start = document.getElementById("start");
+						var end = document.getElementById("end");
+
+						if (start.value == "") {
+							startLa = marker.getPosition().La;
+							startMa = marker.getPosition().Ma;
+							start.setAttribute("value", markerName);
+						} else {
+							endLa = marker.getPosition().La;
+							endMa = marker.getPosition().Ma;
+							end.setAttribute("value", markerName);
+						}
+						console.log(startLa);
+						console.log(startMa);
+						console.log(endLa);
+						console.log(endMa);
+					});
+					markers.push(marker);
+				})
+	}
+
+	function makeOverListener(map, marker, infowindow) {
+		return function () {
+			infowindow.open(map, marker);//infowindow를 map과 marker에 올려줍니다.
+		};
+	}
+
+	// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+	function makeOutListener(infowindow) {
+		return function () {
+			infowindow.close();
+		};
+	}
+
+	function setMarkers(map, team_num) {			//마커들을 맵에 찍어주는 함수입니다.
+		for (var i = 0; i < markers.length; i++) {
+			if (team_num == -1) {
+				markers[i].setMap(map);
+			} else if (markers[i].getTitle() == team_num) {
+				markers[i].setMap(map);
+			}
+		}
+	}
+	// "마커 감추기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에서 삭제하는 함수입니다
+	function hideMarkers(team_num) {
+		setMarkers(null, team_num);
+	}
+
+	// "마커 보이기" 버튼을 클릭하면 호출되어 배열에 추가된 마커를 지도에 표시하는 함수입니다
+	function showMarkers(team_num) {
+		hideMarkers(-1);
+		setMarkers(map, 0);
+		setMarkers(map, team_num);
+	}
+
+	// "마커 보이기"와 같은 이벤트에 걸리는 함수 왼쪽 리스트 필터
+	function showlist(team_num) {
+
+		let members = document.getElementsByClassName("members");
+
+		for (let i = 1; i < members.length; i++) {
+			if (team_num < 6 && !members[i].innerHTML.includes(team_num + "조")) {
+				members[i].style.display = "none";
+			} else {
+				members[i].style.display = "block";
+			}
+		}
+	}
+	// 조별 버튼 클릭 시 호출되는 함수 걸어주기
+	for (let i = 1; i < 8; i++) {
+		document.getElementById(i).addEventListener("click", function (event) {
+			if (i == 6) {
+				showMarkers(-1);
+			} else if(i==7) {
+				hideMarkers(-1);
+			}else {
+				showMarkers(i);
+			}
+			showlist(i);
+		});
+	}
+	function getDistance(sL, sM, eL, eM) {					//두 마커들 사이의 거리를 계산하는 함수입니다.
+		var result = document.getElementById('result');
+		var polyline = new daum.maps.Polyline({
+			/* map:map, */
+			path: [new daum.maps.LatLng(startLa, startMa),
+			new daum.maps.LatLng(endLa, endMa)],
+			strokeWeight: 2,
+			strokeColor: '#FF00FF',
+			strokeOpacity: 0.8,
+			strokeStyle: 'dashed'
+		});
+
+		var length = Math.round(polyline.getLength() / 1000);
+
+		if (startLa == undefined || endLa == undefined) {
+			swal("비교할 좌표를 선택해주세요!");
+			//result.innerHTML="비교할 좌표를 선택해주세요";
+		} else if (startLa == endLa && startMa == endMa) {
+			swal("같은 장소입니다!");
+			//result.innerHTML = "같은 장소입니다";
+			console.log(sL, eL);
+		} else {
+			swal(length + "km 차이가 납니다");
+			result.innerHTML = length + "km 차이가 납니다";
+		}
+
+	}
+
+	function resetDistance() {	// 두 마커를 넣어주는 input박스의 값을 초기화 해주는 함수입니다.
+		var result = document.getElementById('result');
+		var start = document.getElementById('start');
+		var end = document.getElementById('end');
+		result.setAttribute("value", "");
+		start.setAttribute("value", "");
+		end.setAttribute("value", "");
+
+		startLa = undefined;
+		startMa = undefined;
+		endLa = undefined;
+		endMa = undefined;
+		result.innerHTML = "";
+
+	}
+
+	kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+
+		// 클릭한 위도, 경도 정보를 가져옵니다 
+		var latlng = mouseEvent.latLng;
+
+		var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+		message += '경도는 ' + latlng.getLng() + ' 입니다';
+
+		var resultDiv = document.getElementById('result');
+		resultDiv.innerHTML = message;
+
+	});
+
+	//리스트에서 검색 기능
+	function searchmember() {
+
+		let searchval = document.getElementById("search").value;
+		let members = document.getElementsByClassName("members");
+		let count = members.length;
+		for (let i = 0; i < members.length; i++) {
+			if (!members[i].innerHTML.includes(searchval)) {
+				members[i].style.display = "none";
+				count--;
+				if (count == 0) {
+					swal("일치하는 결과가 없습니다");
+					for (let j = 0; j < members.length; j++) {
+						members[j].style.display = "block";
+					}
+				}
+			} else { // 이 블럭이 없으면 검색 결과 내에서만 재검색이 된다
+				members[i].style.display = "block";
+			}
+		}
+	}
+		// let members = document.querySelector("ul");
+		// members.addEventListener("click",(event)=>{
+
+		// 	let position;
+		// 	let marker_name =  event.target.id;
+		// 	console.log(marker_name.substr(marker_name.length-1))
+		// 	for(let index in markers){
+		// 		console.log(markers[index].getTitle())
+		// 		if(markers[index].getTitle() ===  marker_name.substr(marker_name.length-1)){
+		// 			console.log(marker_name)
+		// 			console.log(markers[index].position)
+		// 			position = markers[index].position;
+		// 			map.setCenter(position)
+		// 		}
+		// 	}
+
+		// })
+
+</script>
+
+</html>

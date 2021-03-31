@@ -1,0 +1,619 @@
+@charset "utf-8";
+
+/*공통*/
+
+#maintxtBox{
+	width:1000px;
+	height:500px;
+	margin:auto;
+	background-color:white;
+	display:flex;
+	align-items:center;
+}
+
+#titlebox{
+	width:80%;
+	text-align: center;
+}
+#titlebox p {
+	font-size:45px;
+	color:rgb(82, 197, 82);
+	font-family: 'Oxygen', sans-serif;
+	margin:auto;
+}
+
+.txtBox{
+	background: #fff;
+	width: 600px;
+	display: inline-block;
+	position: relative;
+	padding: 120px 0;
+}
+
+
+#mainlist{
+
+	width:15%;
+	height:450px;
+	margin:auto;
+	align-items: center;
+	padding-top:10px;
+
+}
+
+.innerAccordion{
+	/*border-bottom: 1px solid rgb(179, 176, 176);*/
+	background-color:white;
+	height:55px;
+	/*border-radius:3px;*/
+	color:gray;
+	align-items: center;
+	text-align:center;
+	padding-top:15px;
+}
+
+.innerAccordion a{
+	color:rgb(138, 138, 138);	
+}
+
+.innerAccordion a:hover{
+	text-decoration:none;
+}
+.memberimg{
+	width:100%;
+	height:100%;
+	border-radius: 70%;
+	display:flex;
+
+}
+
+.circle{
+	border-radius: 70%;
+	width:20px;
+	height:20px;
+	background-color: rgb(82, 197, 82);
+	margin: 3px 0 0 50px;
+}
+
+#circle1{
+	background-color: rgb(236, 222, 255);
+}
+#circle2{
+	background-color: rgb(255, 195, 203);
+}
+
+#circle3{
+	background-color: rgb(194, 194, 199);
+}
+
+#circle4{
+	background-color: rgb(185, 239, 255);
+}
+
+#circle5{
+	background-color: rgb(101, 173, 255);
+}
+
+#circle6{
+	background-color: rgb(245, 214, 128);
+}
+
+
+.memberimg p {
+	margin-left:20px;
+}
+.about .txtBox{
+	padding: 90px 0;
+}
+
+.menu{
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+}
+
+/*menulnb*/
+.section{
+		position: relative;
+}
+
+
+.pageName{
+	position: absolute;
+	top: 37px;
+	left:250px;
+	margin: auto;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: 5px;
+}
+pageName span{
+	vertical-align: middle;
+}
+.pageName:after{
+	content: "";
+	height: 1px;
+	width: 60px;
+	background: #333;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: 4px;
+}
+
+
+.logo{
+	width: 15px;
+	height: 93px;
+	position: absolute;
+	top: 109px;
+	left: 13px;
+}
+
+.introTxt{
+	/*width: 357px;*/
+	position: absolute;
+	top: 50%;
+	margin-top: -153px; 
+	left: 278px;
+}
+.introTxt dt{	
+	font-size: 60px;
+	line-height: 80px;
+	font-weight: 900;
+}
+.introTxt dd{
+	font-size: 23px;
+	font-weight: 400;
+}
+.introTxt dd span{
+	font-weight: 600;
+}
+
+.inner{
+	position: relative;
+}
+.Btn{
+	cursor: pointer;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 1;
+}
+.Btn i{
+	font-size: 50px;
+}
+
+
+#section1 .txtBox, #section2 .txtBox, #section3 .txtBox, #section4 .txtBox, #section5 .txtBox, #section6 .txtBox,
+
+#section1 .examples, #section2 .examples, #section3 .examples, #section4 .examples, #section5 .examples, #section6 .examples{
+	background: rgba(133, 136, 133, 0.2);
+
+}
+
+#section1 .examples, #section2 .examples, #section3 .examples, #section4 .examples, #section5 .examples, #section6 .examples{
+	margin-top:20px;
+}
+
+.mbti{
+	width:500px;
+	height:450px;
+}
+
+
+
+/***Intro***/
+#section0{
+	background-color:white;
+	background-size: cover;
+	width: 100%;
+}
+
+/***About***/
+#section1{
+	background: rgb(236, 222, 255);
+	width: 100%;
+	float : left;
+}
+
+/**좌측메뉴**/
+.aboutL{
+	float: left;
+}
+.aboutTxt{
+	text-align: center;
+}
+
+
+
+.aboutPhoto{
+	background: no-repeat center center;
+	background-size: cover;
+	width: 400px;
+	height: 400px;
+	text-indent: -9999px;
+	margin: 0 auto;
+} 
+
+.aboutIntro{
+	width: 400px;
+	line-height: 34px;
+	margin: 30px auto;
+	font-family: 'NanumSquare', sans-serif;
+	font-size: 20px;
+	font-weight: 400;
+	text-align: left;
+}
+.aboutIntro span{
+	font-size: 22px;
+	font-weight: 900;
+}
+
+.nameSign{
+	text-align: right;
+	margin-right: 100px;
+}
+.name{
+	vertical-align: middle;
+	font-size: 18px;
+	font-weight: 500
+}
+.sign{
+	vertical-align: middle;
+}
+
+/**우측메뉴**/
+.aboutR{
+	float: right;
+	margin: 0 auto;
+	line-height: 35px;
+}
+.processbar{
+	width:500px;
+	height:300px;
+	margin-top: 30px;
+}
+.cssProgress-label-num{
+	position:absolute;
+	right:1px;
+}
+
+
+.aboutR dt{
+	font-size: 25px;
+	font-family: 'tmonmonsori', sans-serif;
+	padding-bottom: 5px;
+}
+.aboutR dd{
+	font-size: 20px;
+	font-weight: 400;
+	padding-bottom: 20px;
+}
+.aboutR dd:last-child{
+	padding-bottom: 0;
+}
+.aboutR dd span{
+	font-size: 22px;
+	font-weight: 500;
+	vertical-align: top;
+	margin-right: 10px;
+}
+.aboutR dd p{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/***Portfolio 공통***/
+/**좌측메뉴**/
+.portL{
+	float: left;
+}
+
+.portTxt{
+	text-align: left;
+	margin-left: 279px;
+	padding: 35px 0;
+}
+.portTxt p{
+	font-size: 20px;
+	font-weight: 700;
+}
+.portTxt h2{
+	font-size: 60px;
+	font-weight: 900;
+}
+.portTxt h3{
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.mainPage{
+	background: url(../../images/main01.png) no-repeat center center;
+	background: url(../../images/main01.png) no-repeat center center;
+	background-size: cover;
+	width: 421px;
+	height: 244px;
+	margin: 0 auto;
+	text-indent: -9999px;
+}
+/*네비게이션 바 */
+.nav {
+	width:10%;
+	float : right;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 100;
+    margin-top : 80px;
+    opacity: 1;
+    -webkit-transform: translate3d(0,0,0);
+}
+.navbar ul {
+	list-style-type:none;
+	margin-right: 50px;
+}
+
+/**모바일 뷰버튼**/
+.portL .txtBox{
+	position: relative;
+}
+.mViewBtn{
+	background: url(../../images/goOff.png) no-repeat center center;
+	background-size: cover;
+	width: 80px; 
+	height: 68px;
+	position: absolute;
+	top: 130px;
+	right: 0px;
+}
+.mViewBtn a{
+	font-size: 0;
+	display: block;
+	width: 80px;
+	height: 68px;
+}
+.mViewBtn:hover{
+	background: url(../../images/goOn.png) no-repeat center center;
+	background-size: cover;
+	width: 80px; 
+	height: 68px;
+	position: absolute;
+	top: 130px;
+	right: 0px;
+	text-indent: -9999px;
+}
+/**모바일 뷰버튼**/
+
+
+/**우측메뉴**/
+.portR{
+	float: right;
+	width: 535px;
+	margin: 0 auto;
+	line-height: 42px;
+}
+.portR dt{
+	width: 135px;
+	font-size: 25px;
+	font-family: 'tmonmonsori', sans-serif;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 15px;
+}
+.portR dt:last-child{
+	margin-bottom: 0;
+}
+.portR .firstTit{
+	width: 100%;
+	display: block;
+	margin-bottom: 0;
+}
+.portR .lastTit{
+	margin-bottom: 0;
+}
+.portR dd{
+	width: 300px;
+	font-size: 20px;
+	font-weight: 400;
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 15px;
+}
+
+.portR .firstTxt{
+	display: block;
+	width: 100%;
+}
+.portR .lastTxt{
+	margin-bottom: 0;
+}
+
+/**뷰버튼**/
+
+.viewBtnOn{
+	background: url(../../images/viewBtn.png) no-repeat center center;
+	width: 273px;
+	height: 69px;
+	margin: 0 35px
+}
+.viewBtnOn a{
+	display: block;
+	width: 273px;
+	height: 69px;
+	text-indent: -9999px;
+}
+.viewBtnOn:hover{
+	background: url(../../images/viewBtnHover.png) no-repeat center center;
+}
+
+
+
+/***Portfolio01***/
+#section2{
+	background: rgb(255, 195, 203);
+	width: 100%;
+
+}
+.portfolio01 .viewBtnOn{
+	padding: 105px 0;
+}
+
+/***Portfolio02***/
+#section3{
+	background: rgb(194, 194, 199);
+	width: 100%;
+
+}
+/**좌측메뉴**/
+.portfolio02 .mainPage{
+	background: url(../../images/main02.png) no-repeat center center;
+	height: 230px;
+}
+.portfolio02 .portTxt{
+
+}
+
+/**우측메뉴**/
+.portfolio02 .viewBtnOn{
+	padding: 185px 0;
+} 
+
+/***Portfolio03***/
+#section4{
+	background: rgb(185, 239, 255);
+	width: 100%;
+	height:100vh;
+
+}
+/**좌측메뉴**/
+.portfolio03 .mainPage{
+
+	width: 449px;
+	height: 196px;
+
+}
+.portfolio03 .txtBox{
+	padding: 140px 0;
+}
+.portfolio03 .portTxt{
+	padding-bottom: 50px; 
+}
+
+/**우측메뉴**/
+.portfolio03 .portR .lastTit{
+	vertical-align: top;
+}
+.portfolio03 .portR .lastTxt{
+	width: 260px;
+	vertical-align: top;
+}
+
+.portfolio03 .viewBtnOn{
+	padding:152px 0;
+} 
+
+
+/***Portfolio05***/
+#section5{
+	background: rgb(101, 173, 255);
+	width: 100%;
+
+}
+/**좌측메뉴**/
+.portfolio04 .mainPage{
+
+	width: 450px;
+	height: 179px;
+
+}
+.portfolio04 .txtBox{
+	background: rgba(0,0,0,0.2);
+}
+
+
+/**우측메뉴**/
+.portfolio04 .portR .lastTit{
+	vertical-align: top;
+}
+.portfolio04 .portR .lastTxt{
+	width: 260px;
+	vertical-align: top;
+}
+
+.portfolio04 .viewBtnOn{
+	padding: 161px 0;
+} 
+
+/***Portfolio05***/
+#section6{
+	background: rgb(245, 214, 128);
+	width: 100%;
+
+}
+/**좌측메뉴**/
+.portfolio05 .mainPage{
+
+	width: 231px;
+	height: 284px;
+	
+}
+
+.portfolio05 .txtBox{
+	background: rgba(0,0,0,0.2);
+	padding: 90px 0;
+}
+
+/**우측메뉴**/
+
+.portfolio05 .portR .thirdTit{
+	vertical-align: top;
+}
+.portfolio05 .portR .thirdTxt{
+	width: 260px;
+	vertical-align: top;
+}
+
+.portfolio05 .viewBtnOn{
+	padding: 162px 0;
+} 
+
+/***Contact***/
+#section7{
+	background: #d5c4c4;
+	padding: 30px 0;
+}
+.contact .inner{
+	position: relative;
+}
+.contact .portTxt h2{
+	line-height: 65px;
+}
+
+.portTxt img{
+	width: 23px;
+	vertical-align: middle;
+}
+.portTxt span{
+	vertical-align: middle;
+	font-size: 18px;
+	font-weight: 600;
+	margin-left: 10px;
+}
+
+#section7{
+	align-items:center;
+	background-color: white;
+}
+#section7 p {
+	font-size:65px;
+	font-family: 'Oxygen', sans-serif;
+	color:rgb(82, 197, 82);
+	margin:auto;
+	text-align: center;
+}
+
+
+

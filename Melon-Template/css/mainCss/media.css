@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/***반응형 웹뷰***/
+.mViewBtn{
+	display: none;
+}
+@media screen and (max-width:768px){
+	body{
+		min-width: 100%;
+	}
+	.inner{
+		width: 100%;
+    }
+    .aboutIntro{
+        font-size: 13px;
+    }
+    .aboutIntro span{
+        font-size: 14px;
+    }
+	.mViewBtn{
+		display: block;
+	}
+	.section{
+		position: relative;
+        padding: 0;
+	}
+	.section .portL, .aboutL{
+		float: none;
+		margin: 0 auto;
+	}
+    #section0, #section1, #section2, #section3, #section4, #section5, #section6, #section7{
+        padding: 0;
+    } 
+	.intro .inner, .aboutL, .portL{
+	   text-align: center;
+	}
+    .introTxt{
+        position: static;
+    }
+    .introTxt dd{
+        margin-top: 30px;
+    }
+    .intro .txtBox{
+        padding: 240px 0;
+    }
+    .txtBox{
+        width: 100%;
+        height: 100%;
+        margin: 0 auto;
+    }
+    .section .portTxt{
+        margin-left: 0;
+        text-align: center;
+    }
+    .portTxt h2{
+        font-size: 48px;
+    }
+    .portTxt h3{
+        font-size: 20px;
+    }
+	.portR{
+		display: none;
+	}
+    .about .txtBox{
+        padding: 120px 0;
+    }
+	.aboutR{
+		display: none;
+	}
+    .contact .txtBox{
+        padding: 60px 0;
+        margin: 0;
+    }
+	.contact .portTxt{
+		margin: 0 auto;
+		text-align: center;
+	}
+	.contact .portTxt h2, .contact .portTxt h3{
+		margin: 0 auto;
+	}
+	.contact .portTxt h3{
+		display: block;
+		width: 387px;
+	}
+	.contact .cInfo{
+		padding-top: 15px;
+		line-height: 25px;
+        margin: 0;
+	}
+	.contact .cInfo li{
+		margin: 0;
+	}
+	.contact .cInfo span{
+		font-size: 15px;
+		padding: 0;
+	}
+	.contact .cInfo img{
+		width: 18px;
+	}
+	.contact .cTxtBox{
+		text-align: center;
+        margin: 0 auto;
+	}
+
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>kglim</display-name>
+  <welcome-file-list>
+    <welcome-file>default.html</welcome-file>
+   </welcome-file-list>
+   
+   <!-- email 전역자원 : Webcontent 안에 모든 페이지가 사용 가능 -->
+   <context-param>
+   		<description>개발자 마음 ....</description>
+   		<param-name>email</param-name>
+   		<param-value>webmaster@bit.or.kr</param-value>
+   </context-param>
+   <context-param>
+   		<description>기본 파일 저장 경로</description>
+   		<param-name>FilePath</param-name>
+   		<param-value>C:\\Web\\Download</param-value>
+   </context-param>
+   
+   <!-- 
+   	Webapp 전체 페이지에 적용될 수 있는 Error 페이지 처리
+   	기준.
+   	1. 상태코드 ( 500 서버코드문제, 404 요청페이지가 없음, 403 접근권한이 없음 )
+   	
+   	2. 예외 객체 별로 ( 세분화 ) : NullPoint, IndexOutBound .....
+    
+    -->
+<!--   
+	최종 배포시에 처리한다.
+  <error-page>
+    	<error-code>404</error-code>
+		<location>/error/error404.jsp</location>
+    </error-page>
+    
+    <error-page>
+    	<error-code>500</error-code>
+		<location>/error/error500.jsp</location>
+    </error-page>
+     -->
+</web-app>

@@ -1,0 +1,86 @@
+@charset "UTF-8";
+
+html {
+	font-family: 'Turret Road', cursive;;
+}
+
+body {
+	 background-image: linear-gradient(to right, #753475 , #FFB8D1);
+	 color: #fff;
+}
+
+.boards {
+	display: flex;
+	margin-top: 32px;
+}
+
+.board {
+	background: #141316;
+	margin: 0 16px;
+	border: 1px solid #FD951F11;
+	border-radius: 4px;
+}
+
+.board h3{
+	padding: 16px;
+	margin: 0;
+	color: #FD951Fcc;
+}
+
+.dropzone {
+	padding: 16px;
+	min-width: 280px;
+	min-height: 200px;
+	
+}
+
+.card {
+	padding: 16px;
+	box-shadow: 0 3px 3px -1px #FD951Fcc;
+	width: 250px;
+	margin: 20px 0; 
+	border-radius: 4px;
+	background: #1A1A1C;
+	font-weight: 600;
+	font-size: 18px;
+}
+
+.status {
+	width: 30px;
+	height: 8px;
+	background: #fff;
+	margin-bottom: 16px;
+	border-radius: 4px;
+}
+
+.status.green{
+	background: #66ff66;
+}
+
+.status.yellow{
+	background: #ffcc00;
+}
+
+.status.red{
+	background: #cc6699;
+}
+
+.highlight {
+	background: #111002;
+}
+
+.card, .dropzone {
+	transition: .3s ease-in-out;
+}
+
+.is-dragging {
+	cursor: move;
+	opacity: 0.3;
+}
+
+.dragover {
+	background: #253625;
+}
+
+
+

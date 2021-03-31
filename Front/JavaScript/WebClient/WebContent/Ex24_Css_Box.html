@@ -1,0 +1,33 @@
+<html>
+<head>
+<style>
+/*  
+	   두개의 DIV 태그의 전체 길이를 같게 만드세요
+       box-sizing은 박스의 크기를 어떤 것을 기준으로 계산할지를 정하는 속성입니다.
+       기본값 : content-box 
+      
+       content-box : 콘텐트 영역을 기준으로 크기를 정합니다.
+       border-box : 테두리를 기준으로 크기를 정합니다.
+    */
+div {
+	margin: 10px;
+	width: 150px;
+	/* box-sizing:content-box;  */
+	box-sizing: border-box;
+}
+
+#small {
+	border: 10px solid black;
+}
+
+#large {
+	border: 30px solid black;
+}
+</style>
+</head>
+<body>
+	<div id="small">Hello</div>
+	<div id="large">Hello</div>
+
+</body>
+</html>

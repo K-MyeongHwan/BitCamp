@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!-- <html manifest="cache.appcache"> -->
+<html>
+<head>
+	<meta charset="UTF-8">
+    <title>HTML5</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    
+   	 <style>
+	      html, body { height: 100%;margin: 0; padding: 0; }
+	      #map { height: 100%; }
+	      #box1,#box2, #box3,#box4,#box5,#box6,#box7,#box8,#box9,#box10
+	      {width:80px; height:80px; padding:3px; margin:10px; border:2px  solid #5F696B ; float: left; text-align: center; vertical-align: middle; }
+	    </style>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvX1oa8ChKGWt1LVZlx6qu8uK_vlINaB4&signed_in=true"></script>
+		
+		<script type="text/javascript">
+		var w;
+		
+		//HTML5 Local Storage
+		var color="#5F696B";
+		$(document).ready(function() {
+		inital_position=localStorage.getItem("LastPosition");
+		if(inital_position==null) inital_position="#box1";
+		$(inital_position).attr("style", "background-color:"+color);
+		$(inital_position).append('<img id="drag1" draggable="true" ondragstart="drag(event)" width="50" height="50" src="img2.jpg">');
+		
+		
+		//HTML5 Thread
+		w = new Worker("thread.js");
+		w.onmessage = function(event) {
+			 if(event.data == 2){
+				 color="#5D6843";
+				 $("#drag1").attr("src","img2.jpg");
+				 $("#drag1").parent().attr("style", "background-color: #5D6843");
+			 }
+			 else if(event.data == 3){
+				 color="#47586C";
+				 $("#drag1").attr("src","img3.jpg");
+				 $("#drag1").parent().attr("style", "background-color: #47586C");
+			 }
+ 			else {
+ 				color="#3F6067";
+ 				$("#drag1").attr("src","img4.jpg");
+ 				$("#drag1").parent().attr("style", "background-color: #3F6067");
+ 			}
+    	 };
+		});
+		
+		
+	 	  // HTML5 Drag & Drop
+ 	   function allowDrop(ev) { ev.preventDefault();  }
+		function drag(ev) { ev.dataTransfer.setData("text", ev.target.id); 
+		//색 바꾸기
+		ev.target.parentElement.setAttribute("style", "background-color: white"); 
+		}
+		function drop(ev) {
+		    ev.preventDefault();
+		    var data = ev.dataTransfer.getData("text");
+		    ev.target.appendChild(document.getElementById(data));
+		    //색 바꾸기
+		     ev.target.setAttribute("style", "background-color:"+color);
+		     // Map 로딩
+		    if(ev.target.id=="box2") navigator.geolocation.getCurrentPosition(current_position);
+		    else if (ev.target.id == "box3") target_position(37.394766,127.111201);
+			else if (ev.target.id == "box4") target_position(37.497980, 127.027653);
+			else if (ev.target.id == "box5") target_position(37.555086, 126.970680);
+			else if (ev.target.id == "box6") target_position(35.876490, 128.596138);
+			else if (ev.target.id == "box7") target_position(35.115010, 129.041570);
+			else if (ev.target.id == "box8") target_position(36.332392, 127.434232);
+			else if (ev.target.id == "box9") target_position(35.849853, 127.161884);
+			else if (ev.target.id == "box10") target_position(35.550942, 129.138003);
+			else if(ev.target.id == "box1") alert("Welcome");
+			else alert("Wrong position");
+		    localStorage.setItem("LastPosition","#"+ev.target.id );
+		}
+		
+		
+		// HTML5 Geolocation 
+		var map;
+		function current_position(position) {
+		  var mapOptions ={ zoom: 15, center: {lat: position.coords.latitude, lng: position.coords.longitude}};
+		  map = new google.maps.Map(document.getElementById('map'),mapOptions);
+		  var marker = new google.maps.Marker({position: {lat: position.coords.latitude, lng: position.coords.longitude},map: map});
+		  var infowindow = new google.maps.InfoWindow({content: '<p>Marker Location:' + marker.getPosition() + '</p>'  });
+		  google.maps.event.addListener(marker, 'click', function() {infowindow.open(map, marker);});
+		}
+		function target_position(x,y) {
+		  var mapOptions ={zoom: 15, center: {lat: x, lng: y}};
+		  map = new google.maps.Map(document.getElementById('map'),mapOptions);
+		  var marker = new google.maps.Marker({position: {lat: x, lng: y},map: map});
+		  var infowindow = new google.maps.InfoWindow({content: '<p>Marker Location:' + marker.getPosition() + '</p>'  });
+		  google.maps.event.addListener(marker, 'click', function() {infowindow.open(map, marker);});
+		}
+		</script>
+  </head>
+  
+  <body>
+  	<div id="box1" ondrop="drop(event)" ondragover="allowDrop(event)">시작</div>
+  	<div id="box2" ondrop="drop(event)" ondragover="allowDrop(event)">현재 위치</div>
+  	<div id="box3" ondrop="drop(event)" ondragover="allowDrop(event)">판교역</div>
+  	<div id="box4" ondrop="drop(event)" ondragover="allowDrop(event)">강남역</div>
+  	<div id="box5" ondrop="drop(event)" ondragover="allowDrop(event)">서울역</div>
+  	<div id="box6" ondrop="drop(event)" ondragover="allowDrop(event)">대구역</div>
+  	<div id="box7" ondrop="drop(event)" ondragover="allowDrop(event)" >부산역</div>
+  	 <div id="box8" ondrop="drop(event)" ondragover="allowDrop(event)" >대전역</div>
+  	<div id="box9" ondrop="drop(event)" ondragover="allowDrop(event)" >전주역</div>
+  	<div id="box10" ondrop="drop(event)" ondragover="allowDrop(event)" >울산역</div>
+    <div id="map" style="clear: left"></div>
+  </body >
+</html>

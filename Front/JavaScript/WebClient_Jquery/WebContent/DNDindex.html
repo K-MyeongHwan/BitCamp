@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Drag&Drop으로 Kanban보드 만들기</title>
+	
+	<script src="script.js"></script>
+	<link rel="stylesheet" href="style.css">
+	<link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@300;400;500;700;800&display=swap" rel="stylesheet"><!-- 폰트 -->
+</head>
+<body>
+	<div class="boards">
+		<!-- ToDo List 존 -->
+		<div class="board">
+			<h3>To-Do List</h3>
+			<div class="dropzone">
+			
+				<div class="card" draggable="true">
+					<div class="status green"></div>
+					<div class="content"> Servlet </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status green"></div>
+					<div class="content"> Model2 </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status green"></div>
+					<div class="content"> JDBC </div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!-- In Progress 존 -->
+		<div class="board">
+			<h3>In Progress</h3>
+			<div class="dropzone">
+			
+				<div class="card" draggable="true">
+					<div class="status yellow"></div>
+					<div class="content"> Javascript </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status yellow"></div>
+					<div class="content"> Jquery </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status yellow"></div>
+					<div class="content"> JSP </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status yellow"></div>
+					<div class="content"> Assignment </div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<!-- Done 존 -->
+		<div class="board">
+			<h3>Done</h3>
+			<div class="dropzone">
+			
+				<div class="card" draggable="true">
+					<div class="status red"></div>
+					<div class="content"> next level! </div>
+				</div>
+				
+				<div class="card" draggable="true">
+					<div class="status red"></div>
+					<div class="content"> next level! </div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>
+
+
+
+
+
+

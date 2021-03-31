@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!--  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+사용시 
+size() > length 변경 
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- <script src="//code.jquery.com/jquery-1.11.2.min.js"></script> -->
+<style> 
+.float_center{ 
+   float:center; 
+} 
+.layout{ 
+   margin:10px; 
+   width:700px; 
+} 
+.pocket{ 
+   border:solid 1px #000; 
+   height:300px; 
+   padding:0px; 
+   vertical-align: top; 
+} 
+.dnd{ 
+   width:100%; 
+} 
+.dnd tr{ 
+   height:30px; 
+} 
+.dnd td{ 
+   border-bottom:solid 1px #aaa; 
+} 
+.btn{ 
+   height:20px; 
+   border:solid 2px black; 
+   padding: 5px; 
+   font-weight: bold; 
+   cursor:pointer; 
+} 
+.center{ 
+   text-align: center; 
+} 
+</style> 
+<!--  
+https://api.jquery.com/category/selectors/
+
+조별 : selector 정리 올리기 (조별 게시판에)
+:has >> 사용방법
+.has()로 특정 요소를 가지고 있는 요소를 선택할 수 있습니다.
+$( 'h1').has( 'span' )
+은 span 요소를 가지고 있는 h1 요소를 를 선택합니다
+-->
+<script type="text/javascript"> 
+$(document).ready(function(){ 
+   $("#add").click(function(){ 
+      move($("#leftTable"),$("#rightTable")); 
+   }); 
+   $("#del").click(function(){ 
+      move($("#rightTable"),$("#leftTable")); 
+   }); 
+}); 
+function move(from, to) { 
+   var target = from.find("tr:has(:checked)"); 
+   if (target.length == 0) { 
+      alert("선택된 요소가 없습니다."); 
+      } else { 
+      for ( var i = target.length - 1; i >= 0; i--) { 
+         var item = target.eq(i); 
+         copy(to, from, item); 
+      } 
+      target = from.find("tr:has(:checked)"); 
+      target.each(function(i){ 
+         $(this).remove(); 
+      }); 
+   } 
+} 
+function copy(to, from, item) { 
+   var appended = false; 
+   var targettext = item.find("td").eq(1).text(); 
+   var trs = to.find("tr"); 
+   for ( var i = trs.length - 1; i >= 0; i--) { 
+      if (trs.eq(i).find("td").eq(1).text() < targettext) { 
+         item.find(":checked").removeAttr("checked"); 
+         trs.eq(i).after(item); 
+         appended = true; 
+         break; 
+      } 
+   } 
+   if (!appended) { 
+      item.find(":checked").removeAttr("checked"); 
+      to.prepend(item); 
+   } 
+   return true; 
+} 
+</script>
+</head>
+<body>
+    <table class="layout float_center">
+        <colgroup>
+            <col width="45%">
+            <col width="10%">
+            <col width="45%">
+        </colgroup>
+        <tr>
+            <td class="pocket center">
+                <table id="leftTable" class="dnd">
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test1</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test2</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test3</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test4</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test5</td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>test6</td>
+                    </tr>
+                </table>
+            </td>
+            <td class="center"><span id="add" class="btn">추가</span> <br>
+                <br> <span id="del" class="btn">삭제</span></td>
+            <td class="pocket center">
+                <table id="rightTable" class="dnd">
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

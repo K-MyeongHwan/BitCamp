@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css">
+<style>
+</style>
+<title>Document</title>
+<script>
+        $(document).ready(function(){
+          var availableTags = [
+      "ActionScript",
+      "AppleScript",
+      "Asp",
+      "BASIC",
+      "C",
+      "C++",
+      "Clojure",
+      "COBOL",
+      "ColdFusion",
+      "Erlang",
+      "Fortran",
+      "Groovy",
+      "Haskell",
+      "Java",
+      "JavaScript",
+      "Lisp",
+      "Perl",
+      "PHP",
+      "Python",
+      "Ruby",
+      "Scala",
+      "Scheme"
+    ];
+//직접 구현 : autocomplete 함수를
+//A ... 
+
+//availableTags 데이터 DB table 이 있다면
+//서버에서 A 글자를 전송하면 .. Like %A%
+//가공을 server .. java .. 디자인
+//server > client > data 전송 > 가공 ( client ) > 
+
+/*           $('#tags').autocomplete(
+        	{
+        		source: availableTags
+        	}	  
+          ); */
+        });
+    </script>
+</head>
+<body>
+	<div class="ui-widget">
+		<label for="tags">Tags: </label> <input id="tags">
+	</div>
+</body>
+</html>

@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KOSTA 백화점</title>
+<link rel="stylesheet"
+   href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+<link rel="stylesheet"
+   href="http://jqueryui.com/jquery-wp-content/themes/jqueryui.com/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+<style>
+ #wrapper {min-height: 100%;} 
+   #accordion div ul li {line-height: 2;}
+   #accordion div ul li:hover {font-weight : bold; color : blue; text-decoration : underline;}
+   #accordion div ul li:active {font-weight : bold; color : blue; text-decoration : underline;}
+   #footer{margin-top: -65px; height:65px;}
+   .ui-autocomplete-category {
+   font-weight: bold;
+   padding: .2em .4em;
+   margin: .8em 0 .2em;
+   line-height: 1.5;
+   }
+   #content-wrapper div>img{
+   	max-height: 150px;
+   	max-width: 150px;
+   }
+</style>
+
+<script type="text/javascript">
+   $(function() {
+      //결제 메뉴
+          $("#dialog").dialog({
+          autoOpen:false,
+          modal:true,
+          buttons:{
+             결제:function(){
+                $("#dialog2").dialog({
+                     buttons:{
+                        확인:function(){
+                        $("#dialog2").dialog("close");
+                        $("#dialog").dialog("close");
+                        $("#checkout").empty();
+                        total = 0;
+                        total_t = 0;
+                        $("#checkout").append("<div id='total_t'></div>");
+                        $("#dialog").empty();
+                        $("#dialog").append("<div id='total'></div>");
+                        }
+                     }
+                  });
+             },
+             
+             취소:function(){
+                $(this).dialog("close");
+             }
+          },
+          create:function(){
+           /*   for(var i = 0 ; i < list.length; i++)
+                $(this).append(list[i] + "<br>"); */
+          }
+       });
+      
+      
+          //아코디언 메뉴
+          $("#accordion").accordion({
+             collapsible : true,
+             active : false
+          });
+          //탭
+          $("#tabs").tabs().hide();
+          $("#tabs2").tabs().hide();
+          $("#tabs3").tabs().hide();
+
+          //아코디언 메뉴 클릭 링크(고기)
+          $('#cow').click(function() {
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 0
+             });
+          });
+
+          $('#pig').click(function() {
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 1
+             });
+          });
+
+          $('#chicken').click(function() {
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 2
+             });
+          });
+
+          //아코디언 메뉴 클릭 링크(과일)
+          $('#apple').click(function() {
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 0
+             });
+          });
+          $('#grape').click(function() {
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 1
+             });
+          });
+          $('#pear').click(function() {
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 2
+             });
+          });
+          
+        //건강식품
+           $('#hongsam').click(function() {
+              $('#tabs2').hide();
+              $('#tabs').hide();
+              $('#tabs3').show();
+              $('#tabs3').tabs({
+                 active : 0
+              });
+           });
+           
+           $('#garlic').click(function() {
+              $('#tabs2').hide();
+              $('#tabs').hide();
+              $('#tabs3').show();
+              $('#tabs3').tabs({
+                 active : 1
+              });
+           });
+           
+           $('#hacho').click(function() {
+              $('#tabs2').hide();
+              $('#tabs').hide();
+              $('#tabs3').show();
+              $('#tabs3').tabs({
+                 active : 2
+              });
+           });
+
+          $(function() {
+             $.widget("custom.catcomplete", $.ui.autocomplete, {
+                _create : function() {
+                   this._super();
+                   this.widget().menu("option", "items", "> :not(.ui-autocomplete-category)");
+                },
+                _renderMenu : function(ul, items) {
+                   var that = this,
+                      currentCategory = "";
+                   $.each(items, function(index, item) {
+                      var li;
+                      if (item.category != currentCategory) {
+                         ul.append("<li class='ui-autocomplete-category'>" + item.category + "</li>");
+                         currentCategory = item.category;
+                      }
+                      li = that._renderItemData(ul, item);
+                      if (item.category) {
+                         li.attr("aria-label", item.category + " : " + item.label);
+                      }
+                   });
+                }
+             });
+
+             var data = [
+                {
+                   label : "소고기",
+                   category : "신선식품"
+                },
+                {
+                   label : "돼지고기",
+                   category : "신선식품"
+                },
+                {
+                   label : "닭고기",
+                   category : "신선식품"
+                },
+                {
+                   label : "사과",
+                   category : "과일"
+                },
+                {
+                   label : "포도",
+                   category : "과일"
+                },
+                {
+                   label : "배",
+                   category : "과일"
+                },
+                {
+                   label : "홍삼",
+                   category : "건강식품"
+                },
+                {
+                   label : "흑마늘",
+                   category : "건강식품"
+                },
+                {
+                   label : "동충하초",
+                   category : "건강식품"
+                }
+             ];
+
+             $("#search").catcomplete({
+                delay : 0,
+                source : data
+             });
+
+          });
+       });
+       
+       
+        function send() {
+          var psearch = document.searchform.search.value;
+          
+          alert("검색한 품목 : " + psearch);
+          //고기
+          if (psearch == "소고기") {
+
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 0
+             });
+          }
+
+          if (psearch == "돼지고기") {
+
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 1
+             });
+          }
+
+          if (psearch == "닭고기") {
+
+             $('#tabs2').hide();
+             $('#tabs3').hide();
+             $('#tabs').show();
+             $('#tabs').tabs({
+                active : 2
+             });
+          }
+
+          //과일품목
+          if (psearch == "사과") {
+
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 0
+             });
+          }
+
+          if (psearch == "포도") {
+
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 1
+             });
+          }
+
+          if (psearch == "배") {
+
+             $('#tabs').hide();
+             $('#tabs3').hide();
+             $('#tabs2').show();
+             $('#tabs2').tabs({
+                active : 2
+             });
+          }
+          
+        //건강식품
+          if (psearch == "홍삼") {
+
+             $('#tabs').hide();
+             $('#tabs2').hide();
+             $('#tabs3').show();
+             $('#tabs3').tabs({
+                active : 0
+             });
+          }
+
+          if (psearch == "흑마늘") {
+
+             $('#tabs').hide();
+             $('#tabs2').hide();
+             $('#tabs3').show();
+             $('#tabs3').tabs({
+                active : 1
+             });
+          }
+
+          if (psearch == "동충하초") {
+
+             $('#tabs').hide();
+             $('#tabs2').hide();
+             $('#tabs3').show();
+             $('#tabs3').tabs({
+                active : 2
+             });
+          }
+       
+       } 
+    </script>
+<script type="text/javascript">
+$(function(){
+          var product = "";
+          var pay = 0;
+          var indexp = 0; 
+   
+          $( "#cow1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#cow2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#cow3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#pig1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#pig2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#pig3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+         $( "#chicken1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#chicken2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#chicken3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+         
+         $( "#apple1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#apple2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#apple3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#grape1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#grape2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#grape3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+         $( "#pear1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#pear2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#pear3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+      
+         $( "#ginseng1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#ginseng2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#ginseng3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#garlic1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#garlic2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#garlic3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+         $( "#hacho1" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#hacho2" ).draggable({ helper: "clone" ,opacity: "0.5"});
+          $( "#hacho3" ).draggable({ helper: "clone" ,opacity: "0.5"});
+       
+       $('#droppable').droppable(
+              {
+               drop:function(event, ui ){
+                  product = $('#'+ui.draggable[0].id).parent().children().eq(0).text();
+                 pay = parseInt($('#'+ui.draggable[0].id).parent().children().eq(3).text());
+                $('#checkout').append("<div id = d_"+ (indexp++) +"><div  name='product' >이름 :" +product +": 가격 :" +pay +
+                        "</div><button onclick=calculator('sub',"+pay+","+(indexp-1)+")> 빼기</button></div>");
+                      calculator("add", pay, indexp);
+                 $("#dialog").append("<div  id = di_"+ (indexp-1)+">이름 :" +product +": 가격 :" +pay + "</div>");
+                 
+                 $("#open_btn").click(function(){
+                     $("#dialog").dialog("open");
+                  });
+                  
+                     $("#reset").click(function(){
+                     $("#checkout").empty();
+                      total = 0;
+                      total_t = 0;
+                      $("#checkout").append("<div id='total_t'></div>");
+                      $("#dialog").empty();
+                      $("#dialog").append("<div id='total'></div>");
+                     });
+                  }
+              }
+       );
+});
+var total = 0 ;
+function calculator(event ,pay,index){
+      if(event == "add"){
+        total += pay;
+         $('#total_t').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+         $('#total').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+     }else if (event =="sub"){
+         total -= pay;
+         $('#total_t').html("<hr><div>총 가격 : "+total +" </div><div>-목록-<div>");
+         $('#total').html("<hr><div><br>총 가격 : </div>" +total +"<div>-목록-<div>");
+        $('#d_'+index).remove();
+        $('#di_'+index).remove();
+      }
+}
+</script> 
+</head>
+<body>
+   
+ <div id="wrapper" style="margin: 0 auto;">
+
+         <header id="header" style="text-align: center; width: 90%">
+            <img
+               src="http://static.ssgcdn.com/cmpt/banner/201608/2016083119512609072880904388_503.jpg">
+         </header>
+
+         <div id="nav-wrapper" style="float: left; width: 20%">
+
+  <form name="searchform"></form>
+
+            <label for="search"> 검색: </label> <input id="search"> 
+            <!-- <input type="button" id="con" width="17px" height="15px" alt="검색"
+               onclick="send()" value="검색"> -->
+            <input type="image" id="con" width="17px" height="15px" 
+                  src="images/search.png" alt="검색" onclick="send(); return false">
+      
+      
+            <div id="accordion">
+               <h3>신선식품</h3>
+               <div>
+                  <ul>
+                     <li id="cow">소고기</li>
+                     <li id="pig">돼지고기</li>
+                     <li id="chicken">닭고기</li>
+                  </ul>
+               </div>
+               <h3>과일</h3>
+               <div>
+                  <ul>
+                     <li id="apple">사과</li>
+                     <li id="grape">포도</li>
+                     <li id="pear">배</li>
+                  </ul>
+               </div>
+            <h3>건강식품</h3>
+               <div>
+                  <ul>
+                     <li id="hongsam">홍삼</li>
+                     <li id="garlic">흑마늘</li>
+                     <li id="hacho">동충하초</li>
+                  </ul>
+               </div>
+         </div>
+      </div>
+
+         <div id="content-wrapper" style="float: left; width: 653.16px; height:366.56px;">
+
+         <div id="tabs" style="float: left">
+               <ul>
+                  <li><a href="#tabs-1">소고기</a></li>
+                  <li><a href="#tabs-2">돼지고기</a></li>
+                  <li><a href="#tabs-3">닭고기</a></li>
+               </ul>
+            
+            <div id="tabs-1">
+            <p>우리한우짱짱맨</p>
+            <div id= "cow_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "cow1"> 한우 1호</label>
+               <img src="images/cow1.jpg" width=200px; height=200px; id = "cow1"/>
+               <b>가격 : </b> <b>120000</b><b>원($)</b>
+               </div>
+            <div id = "cow_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "cow2"> 한우 2호</label>
+               <img src="images/cow2.jpg" width=200px; height=200px; id = "cow2"/>
+               <b>가격 : </b> <b>200000</b><b>원($)</b>
+               </div>
+            <div id = "cow_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "cow3"> 한우 3호</label>
+               <img src="images/cow3.jpg" width=200px; height=200px; id = "cow3"/>
+               <b>가격 : </b> <b>80000</b> <b>원($)</b>
+            </div>
+            </div>
+            
+            <div id="tabs-2">
+            <p>꿀꾸루꾸꾸꿀</p>
+            <div id= "pig_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pig1"> 돼지 1호</label>
+               <img src="images/pig1.jpg" width=200px; height=200px; id = "pig1"/>
+               <b>가격 : </b> <b>70000</b> <b>원($)</b>
+               </div>
+            <div id = "pig_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pig2"> 돼지 2호</label>
+               <img src="images/pig2.jpg" width=200px; height=200px; id = "pig2"/>
+               <b>가격 : </b> <b>40000</b> <b>원($)</b>
+               </div>
+            <div id = "pig_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pig3"> 돼지 3호</label>
+               <img src="images/pig3.jpg" width=200px; height=200px; id = "pig3"/>
+               <b>가격 : </b> <b>50000</b> <b>원($)</b>
+            </div>
+            </div>
+            
+             <div id="tabs-3">
+            <p>치느님은 옳으시다!</p>
+            <div id= "chicken_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "chicken1"> 치킨 1호</label>
+               <img src="images/chicken1.jpg" width=200px; height=200px; id = "chicken1"/>
+               <b>가격 : </b> <b>25000</b> <b>원($)</b>
+               </div>
+            <div id = "chicken_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "chicken2"> 치킨 2호</label>
+               <img src="images/chicken2.jpg" width=200px; height=200px; id = "chicken2"/>
+               <b>가격 : </b> <b>18000</b> <b>원($)</b>
+               </div>
+            <div id = "chicken_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "chicken3"> 치킨 3호</label>
+               <img src="images/chicken3.jpg" width=200px; height=200px; id = "chicken3"/>
+               <b>가격 : </b> <b>20000</b> <b>원($)</b>
+            </div>
+         </div>
+         </div>
+
+          <div id="tabs2" style="float: left">
+               <ul>
+                  <li><a href="#tabs-4">사과</a></li>
+                  <li><a href="#tabs-5">포도</a></li>
+                  <li><a href="#tabs-6">배</a></li>
+               </ul>
+               
+              <div id="tabs-4">
+               <p>사과같이 이뿐 내얼굴</p>
+               
+               <div id="apple_1" style = "width:150px; float:left;margin-left:12px;" >
+               <label for ="apple1">사과 1호</label>
+               <img src="images/apple1.jpg" width=200px; height=200px; id="apple1" /> 
+               <b>가격 :</b><b>30000</b><b>원($)</b>
+               </div>
+               
+               <div id="apple_2" style = "width:150px; float:left;margin-left:12px;" >
+               <label for ="apple2">사과 2호</label>
+               <img src="images/apple2.jpg" width=200px; height=200px; id="apple2" /> 
+               <b>가격 :</b><b>35000</b><b>원($)</b>
+               </div>
+               
+               <div id="apple_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for ="apple3">사과 3호</label>
+               <img src="images/apple3.jpg" width=200px; height=200px; id="apple3"/>
+               <b>가격 :</b><b>40000</b><b>원($)</b>
+               </div>
+            </div>
+            
+            <div id="tabs-5">
+            <p>포도포도포도포도해</p>
+            <div id= "grape_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for ="grape1">포도 1호</label>
+               <img src="images/grape1.jpg" width=200px; height=200px; id = "grape1"/>
+               <b>가격 : </b><b>15000</b><b>원($)</b>
+               </div>
+               
+            <div id = "grape_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for ="grape2">포도 2호</label>
+               <img src="images/grape2.jpg" width=200px; height=200px; id = "grape2"/>
+               <b>가격 : </b><b>12000</b><b>원($)</b>
+               </div>
+               
+            <div id = "grape_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for ="grape3">포도 3호</label>
+               <img src="images/grape3.jpg" width=200px; height=200px; id = "grape3"/>
+               <b>가격 : </b><b>18000</b><b>원($)</b>
+            </div>
+               </div>
+            
+             <div id="tabs-6">
+            <p>통통배가 아니에욧!</p>
+            <div id="pear_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pear1">배 1호</label>
+               <img src="images/pear1.jpg" width=200px; height=200px; id = "pear1"/>
+               <b>가격 : </b><b>20000</b><b>원($)</b>
+               </div>
+               
+            <div id = "pear_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pear2">배 2호</label>
+               <img src="images/pear2.jpg" width=200px; height=200px; id = "pear2"/>
+               <b>가격 : </b><b>23000</b><b>원($)</b>
+               </div>
+               
+            <div id = "pear_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "pear3">배 3호</label>
+               <img src="images/pear3.jpg" width=200px; height=200px; id = "pear3"/>
+               <b>가격 : </b><b>22000</b><b>원($)</b>
+            </div>
+         </div>
+      </div>
+      
+      <div id="tabs3" style="float: left">
+               <ul>
+                  <li><a href="#tabs-7">홍삼</a></li>
+                  <li><a href="#tabs-8">흑마늘</a></li>
+                  <li><a href="#tabs-9">동충하초</a></li>
+               </ul>
+            
+            <div id="tabs-7">
+            <p>홍삼 사면 홍모삼</p>
+            <div id= "ginseng_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "ginseng1">홍삼 1호</label>
+               <img src="images/ginseng1.jpg" width=200px; height=200px; id = "ginseng1"/>
+               <b>가격 : </b><b>50000</b><b>원($)</b>
+               </div>
+               
+            <div id = "ginseng_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "ginseng2">홍삼 2호</label>
+               <img src="images/ginseng2.jpg" width=200px; height=200px; id = "ginseng2"/>
+               <b>가격 : </b><b>100000</b><b>원($)</b>
+               </div>
+               
+            <div id = "ginseng_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "ginseng3">홍삼 3호</label>
+               <img src="images/ginseng3.jpg" width=200px; height=200px; id = "ginseng3"/>
+               <b>가격 : </b><b>120000</b><b>원($)</b>
+            </div>
+            </div>
+            
+            <div id="tabs-8">
+            <p>흑마늘!!</p>
+            <div id= "garlic_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "garlic1">흑마늘 1호</label>
+               <img src="images/garlic1.jpg" width=200px; height=200px; id = "garlic1"/>
+               <b>가격 : </b><b>60000</b><b>원($)</b>
+               </div>
+               
+            <div id = "garlic_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "garlic2">흑마늘 2호</label>
+               <img src="images/garlic2.jpg" width=200px; height=200px; id = "garlic2"/>
+               <b>가격 : </b><b>65000</b><b>원($)</b>
+               </div>
+               
+            <div id = "garlic_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "garlic3">흑마늘 3호</label>
+               <img src="images/garlic3.jpg" width=200px; height=200px; id = "garlic3"/>
+               <b>가격 : </b><b>58000</b><b>원($)</b>
+            </div>
+            </div>
+            
+            <div id="tabs-9">
+            <p>동충하초</p>
+            <div id= "hacho_1" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "hacho1">동충하초 1호</label>
+               <img src="images/hacho1.jpg" width=200px; height=200px; id = "hacho1"/>
+               <b>가격 : </b><b>100000</b><b>원($)</b>
+               </div>
+               
+            <div id = "hacho_2" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "hacho2">동충하초 2호</label>
+               <img src="images/hacho2.jpg" width=200px; height=200px; id = "hacho2"/>
+               <b>가격 : </b><b>130000</b><b>원($)</b>
+               </div>
+            <div id = "hacho_3" style = "width:150px; float:left;margin-left:12px;">
+               <label for = "hacho3">동충하초 3호</label>
+               <img  src="images/hacho3.jpg" width=200px; height=200px; id = "hacho3"/>
+               <b>가격 : </b><b>125000</b><b>원($)</b>
+            </div>
+         </div>
+      </div>
+
+      </div>
+      
+      <div id ="checkout" style="margin-left: 80%">
+      <div id = "total"></div></div>
+      
+      <div id="droppable" style="border-color: red; white:150px;height: 150px ; ">
+         <img alt="장바구니" src="images/cart.png" style="white:150px; height: 150px; position: absolute;" ><hr>
+        <div id="btngroup" align="center">
+        <input type = "button" value = "결제" id = "open_btn" >
+       <input type = "button" value = "비우기" id = "reset" >
+       </div>
+      </div>
+      
+
+   </div>
+ <div id="footer" style="text-align: center; clear: both;">
+         Copyright ⓒ 2016 KOSTA 129th 1조 All rights reserved. </div>
+
+<!-- 팝업창 -->
+<div id = "dialog" title = "결제창"><div id="total_t"></div></div>
+<div id = "dialog2" title = "결제완료^^"></div>
+</body>
+</html>

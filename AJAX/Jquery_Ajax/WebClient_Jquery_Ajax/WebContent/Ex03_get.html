@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	//Jquery.get(URL[, data ][, success ][, dataType ])
+	$(function() {
+		$('#btn').click(function() {
+			//비동기 함수 get
+			$.get("Ex03_Company.xml", function(data) {
+				//응답이 왔고, 그 응답이 성공적이라면 ... ( readyState == 4 ~ )
+				console.log(data);
+				//여기서부터는 비동기가 아니고, Jquery ~~~~
+
+				$('#display').empty(); //자식요소 제거하기
+				console.log($(data).find('Company'));
+				//find 함수 >> return Array[ ~ ]
+
+				//$().each(function(index,element){})
+				$(data).find('Company').each(function() {
+					//this 사용
+					//console.log(this);
+					let entry = $(this);
+					/* 
+							<Company CompanyType="private">
+								<CompanyName>Bit</CompanyName>
+								<CompanyNumber>2019</CompanyNumber>
+								<CompanyAddress>서울시 서초구</CompanyAddress>
+								<Name></Name>
+							</Company>
+					 */
+					 let html = "<div>" + entry.attr('CompanyType') + "</div>";
+					 html += "<div>" + entry.find('CompanyName').text() + "</div>";
+					 html += "<div>" + entry.find('CompanyNumber').text() + "</div>";
+					 html += "<div>" + entry.find('CompanyAddress').text() + "</div>";
+					 html += "<div>" + entry.find('Name').text() + "</div>";
+					 html += "<hr>";
+					 $('#display').append(html);
+				});
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<input type="button" id="btn" value="회사소개">
+	<div id="display" style="background-color: gray">DATA</div>
+</body>
+</html>

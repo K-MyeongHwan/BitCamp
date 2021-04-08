@@ -120,7 +120,7 @@ window.onload = function () {
 				dropzone.addEventListener("dragleave", dragLeave);
 				dropzone.addEventListener("drop", drop);
 				board.appendChild(dropzone);
-				
+
 				$('#boardName').val('');
 				$('.boards').append(board);
 			}
@@ -171,5 +171,5 @@ window.onload = function () {
 		}
 	});
 
-
+	//여기까지 KanBan
 }

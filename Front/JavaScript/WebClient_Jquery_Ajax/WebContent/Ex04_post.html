@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+	/* 
+	jQuery.post( url [, data ] [, success ] [, dataType ] )
+		1. bad
+		Ex04_Server.jsp?name=hong&pwd=1004
+		
+		2. soso 
+		let name = $('#name').val();
+		let pwd = $('#pwd').val();
+		let param = 'name='+name+"&"+'pwd'+pwd;
+		
+		$.post("Ex04_Server.jsp",param, ~ )
+		
+		3. good~
+		JSON 객체 parameter
+		const data = {
+			"name" : $('#name').val(),
+			"pwd" : $('#pwd').val()
+		}
+		
+		$.post("Ex04_Server.jsp",data, ~ )
+	 */
+	$(function() {
+		$('#btn').click(function() {
+			const data = {
+				"name" : $('#name').val(),
+				"pwd" : $('#pwd').val()
+			}
+			$.post("Ex04_Server.jsp", data, function(responsedata) {
+				$('#message').html(responsedata);
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	이름 :
+	<input type="text" id="name">
+	<br> 비번 :
+	<input type="text" id="pwd">
+	<br>
+	<input type="button" id="btn" value="비동기 전송">
+	<hr>
+	<div id="message"></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	/*
+	1. XMLHttpRequest 객체 얻기
+	2. onreadystatechange 이벤트 핸들러 구현 (함수)
+	3. 요청 정보 ( open() )
+	4. 요청 보내기 (send() )
+	5. 응답 처리 (Text(JSON), xml )
+	 */
+	 var httpReq = null;
+
+		function getInstance() {
+			//xmlHttpRequest 객체를 만드는 코드
+			if (window.XMLHttpRequest) {
+				httpReq = new XMLHttpRequest(); //현재 브라우져 XMLHttpRequest 내장
+			} else if (window.ActiveXObject) { //IE6 이하   //지금 필요없어요
+				httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+			} else {
+				throw new Error("AJAX 지원하지 않습니다");
+			}
+			return httpReq;
+		}
+
+		function handlerStateChange() {
+			if (httpReq.readyState == 4) {
+				//서버에서 응답이 왔다면
+				if (httpReq.status >= 200 && httpReq.status < 300) {
+					//가공
+					//text, xml
+					//responseText, responseXML
+					
+					document.getElementById("word").innerHTML = httpReq.responseText;
+				} else {
+					alert("status Text : " + httpReq.status);
+				}
+			}
+		}
+		function sendData(word) {
+			httpReq = getInstance();
+			httpReq.onreadystatechange = handlerStateChange; // 괄호 금지ㅣㅣ
+			httpReq.open("GET","Ex05_word_Search.jsp?word=" + word); //form 태그 구성
+			httpReq.send(); //form 태그안에 submit 버튼 클릭
+		}
+</script>
+</head>
+<body>
+	<h3>단어 검색하기</h3>
+	word : <input type="text" id="txtword" onkeyup="sendData(this.value)">
+	
+	<fieldset>
+		<legend>검색단어</legend>
+		<span id="word"></span>
+	</fieldset>
+</body>
+</html>

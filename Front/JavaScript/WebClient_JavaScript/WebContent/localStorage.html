@@ -4,19 +4,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Insert title here</title>
-    <script type="text/javascript">
-        window.onload = function () {
-            LocalStorage 데이터 추가하기
-            localStorage.Test = “Sample”;
-            localStorage[“Test”] = “Sample”
-            localStorage.setItem(“Test”, ”Sample”);
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-        }
-    </script>
 </head>
 
 <body>
 
+    <body>
+        <!-- 색상을 보기위한 텍스트구역 -->
+        <textarea name="txt" id="txt" cols="30" rows="10"></textarea><br />
+        
+        <!-- 폰트색상을 바꿈 ( color 타입 ) -->
+        <label for="textcolor">change text color</label>
+        <input type="color" id="textcolor" /><br />
+
+        <!-- 배경색을 바꿈 ( color 타입 ) -->
+        <label for="bgcolor">change bg color</label>
+        <input type="color" id="bgcolor" /><br />
+
+
+        <button id="set_color">set color</button>
+        <!--색상 설정 저장 버튼-->
+        
+        <button id="get_color">get color</button>
+        <!--색상 설정 읽기 버튼-->
+
+        <script>
+            //글 상자에 글자를 입력
+            $('#txt').val('글상자 영역의 색상 값을 저장합니다.');
+
+            //글자색 변경 시 글상자의 글자색에 적용
+            //change : 값이 바뀌었을 때 발생하는 이벤트
+            $('#textcolor').change(function () {
+                var color = $(this).val();
+                $('#txt').css('color', color);
+            });
+
+            //배경색 변경시 글상자의 배경색에 적용
+            $('#bgcolor').change(function () {
+                var color = $(this).val();
+                $('#txt').css('backgroundColor', color);
+            });
+
+            //글자색과 배경색을 로컬 스토리지에 저장
+            $('#set_color').click(function () {
+                var bgcolor = $('#bgcolor').val();
+                var textcolor = $('#textcolor').val();
+                var obj = {
+                    bgcolor: bgcolor,
+                    textcolor: textcolor
+                }
+                localStorage.setItem('color', JSON.stringify(obj));
+            });
+
+            //로컬 스토리지에 저장한 환경 설정을 읽어 오기
+            $('#get_color').click(function () {
+                var color = JSON.parse(localStorage.getItem('color'));
+                $('#txt').css({
+                    'backgroundColor': color.bgcolor,
+                    'color': color.textcolor
+                });
+            });
+        </script>
+    </body>
 </body>
 
 </html>

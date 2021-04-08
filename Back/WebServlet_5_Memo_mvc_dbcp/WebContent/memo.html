@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		//비동기를 사용해서 (xmlHttpRequest) Id 검증하세요
+		//http://localhost:8090/WebServlet_4_Memo_mvc/MemoId?id=admin
+		//받은 결과가 : "false" alert("사용불가")
+		//받은 결과가 : "true"  alert("사용가능")
+		
+		$(function(){
+			$('#message').click(function(){
+				if($('#id').val() == ""){
+					alert("ID 입력");
+					$('#id').focus();
+				}else{
+					$.ajax(
+						{
+						   //http://192.168.0.218:8090/WebServlet_4_memo_mvc_dbcp/MemoId	
+						   url:"MemoId", //Ex10_ok.jsp	요청주소만 명시 가능 ....
+						   data:{id:$('#id').val()}, //MemoId?id=kglim
+						   dataType:"html", //xml , json , script , html , text
+						   success:function(responsedata){
+							   console.log(">" + responsedata + "<");
+							   if(responsedata == "true"){
+								   alert("사용가능");
+								   $('#email').focus();
+							   }else{
+								   alert("사용불가능");
+								   $('#id').val("");
+								   $('#id').focus();
+							   }
+						   },
+						   error:function(xhr){
+							   alert(xhr.status);
+						   }
+						}		
+					);
+				}
+			});
+		});
+		
+	</script>
+</head>
+<body>
+<div style="margin-top:70px;"></div> 
+<!--  html 파일  action="MemoServlet"  -->
+<form name="f" action="MemoServlet" method="get"> 
+ <div align="center"> 
+    <table width="600" border="0" cellpadding="7" > 
+        <tr align="center" bgcolor="gold" height="50"> 
+            <td colspan="2"> 
+                <font size="4" color="#0033CC" face="굴림체"> 
+                <b> 
+                   Servlet Memo
+                </b> 
+                </font> 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center" > 
+                <b>ID</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" name="id" maxlength="10"  id="id"> 
+                <input type="button" value="ID확인" id="message">
+            </td> 
+        </tr>     
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>EMAIL</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" name="email" maxlength="60" > 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>MEMO</b> 
+            </td> 
+            <td> 
+                <textarea name="content" cols="50" class="box2"></textarea> 
+            </td> 
+        </tr> 
+        <tr bgcolor="gold"> 
+            <td colspan="2" align="center" class="c2"> 
+                <input type="submit" value="전송" >
+                <input type="reset" value="취소"> 
+            </td> 
+        </tr> 
+     
+    </table> 
+  
+  
+ </div>
+</form>
+<hr>
+<a href="MemoList">목록보기</a> 
+ <!--  
+ http://localhost:8090/WebServlet_4_Memo_mvc/MemoList
+ -->
+</body>
+</html>
+
+
+
+
+
+

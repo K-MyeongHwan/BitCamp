@@ -1,0 +1,40 @@
+--회원가입 테이블
+create table mvcregister(
+ id number constraint pk_mvcregister_id primary key,
+ pwd varchar2(20) not null,
+ email varchar2(20) not null
+);
+
+Model2 기반 MVC
+MODEL
+--DTO : mvcregister 테이블 같은 구조의 클래스 (getter , setter )구현
+--DAO : CRUD 함수 (DB 연동 connection pool (DBCP))
+--SERVICE 현재 생략
+
+VIEW
+--jsp (EL & JSTL)  > servlet 쪽에서 저장(request객체), view지정 , forward 한  데이터 가지고 출력
+                   > ${requestScope.list}
+--보안상 > WEB-INF > Register 폴더  관리
+
+CONTROLLER
+-- frontcontroller 역활  servlet (하나의 servlet 모든 요청 받고 처리)
+
+--Client [요청을 받고] , [판단]하고 , 업무 수행 , 데이터 담고 , view 지정 , forward
+
+판단   1. command 방식 :  servlet.do?cmd=login&id=kglim&pwd=1004   > cmd > if(cmd.equals("login"))
+         2. url 방식 :      login.do?id=kglim&pwd=1004  :  login.do > url 주소로 요청을 판단
+
+
+1. 연결 테스트 (context.xml , ojdbc6.jar 추가, 연결.jsp)
+
+2. package 구조 설정 
+
+3. DTO
+
+4. DAO
+
+5. JSP UI
+
+6. CONTROLLER 
+
+테이블 생성 -> DTO -> Connection Pool -> DAO -> VIEW ( 틀만, UI만 ) -> Controller ( FrontController ) -> VIEW 

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+		<style type="text/css" >
+	.wrap-loading{ 
+    	/*로딩 이미지*/
+        position: fixed;
+        top:50%;
+        left:50%;
+        margin-left: -21px;
+        margin-top: -21px;
+    }
+
+    .display-none{ /*감추기*/
+        display:none;
+    }
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$.ajax(  //parameter json 객체 ()
+					{
+						url:"Ex07_Ajax_board.json",
+						type:"POST",       //httpReq.open("post")
+						dataType:"json", //서버가 응답하는 데이터 형식(Text(json,script,txt,html) , xml) 
+						success :function(data){
+												alert("success");
+												$.each(data,function(index,obj){
+														$('#treedata').append(obj.id + "/" + obj.name + "/" + obj.title + "/"+obj.content + "<br>");
+												});
+						},
+						error:function(xhr){
+							alert(xhr.status); //404 , 500
+						}
+						,beforeSend:function(){  //readyState ==3 (서버 데이터가 오는 도중)
+				       							 //(이미지 보여주기 처리)
+				       							alert("beforeSend");
+				        						$('.wrap-loading').removeClass('display-none');
+					    }
+				    	,complete:function(){
+					        					//(이미지 감추기 처리)
+					        					alert("complete");
+					        					$('.wrap-loading').addClass('display-none');
+				   		 }
+						
+					}		
+			);
+		});
+	</script>
+</head>
+<body>
+<!-- https://loading.io/ -->
+<div class="wrap-loading display-none">
+    <div><img src="https://tistory2.daumcdn.net/tistory/1898109/skin/images/Spinner.gif" /></div>
+</div>
+<table id="treedata" border="1">
+</table>	
+</body>
+</html>

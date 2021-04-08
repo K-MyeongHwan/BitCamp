@@ -1,0 +1,93 @@
+.wrap {
+   width: 100%;
+   text-align: center;
+   background-color:#361f67
+}
+
+.header {
+   padding-top: 20px; 
+   width : 500px;
+   margin: auto;
+   width: 500px;
+   height:100px;
+   background-color:#361f67
+}
+
+body {
+   background-color: #f5f6f7;
+   margin: auto;
+}
+
+.title {
+   font-size: 25px;
+   font-family: "굴림";
+   font-weight: bold;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   text-align: center;
+   text-shadow: 10px;
+   color: white;
+   padding-bottom: 20px;
+}
+
+#table {
+   width: 95%;
+   background-color: #f5f6f7;
+   font-size: 14px;
+   font-family: "돋움";
+   margin: auto;
+   margin-top: 20px;
+   margin-bottom: 30px;
+}
+
+th {
+   font-size: 16px;
+   border : 1px solid black;
+}
+
+tr {
+   text-align: center;
+}
+
+td{
+padding-bottom: 5px;
+border-bottom:1px solid lightgray;
+
+}
+
+tr:hover {
+   background-color: lightgray;
+}
+p{
+font-size: 15px;
+   font-family: "굴림";
+   color:gray;
+}
+img {
+   width: 280px;
+   height: 70px;
+   margin: auto;
+}
+
+#top3 {
+   margin: 20px 0 0 20px;
+   text-align: center;
+   width: 90%;
+   display: flex;
+   justify-content: space-between;
+   border: 1px solid lightgray;
+   border-radius: 20px;
+   padding: 10px;
+   margin: auto;
+}
+
+#top3  img {
+   width: 85%;
+   height: 85%;
+}
+
+#chart {
+	width: 80%;
+	border: 1px solid black;
+	margin : auto;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	//$.getJSON()
+	//기본 옵션이 : dataType >> json 설정 되어 있어요
+	//jQuery.getJSON( url [, data ] [, success ] )
+		$(function(){
+			$('#btn .btnload').click(function(){
+				//let tag = $("<div></div>").html("<b>hello</b>");
+				//console.log(tag);
+				//$('#display').append(tag);
+				
+				//비동기 함수
+				$.getJSON("Ex05_json.json",function(data){
+					//응답이 왔고 정상 건이라면
+					console.log(data);
+					//가공(개발자 마음)
+					//response >> [{},{},{},{}]
+					//문제) Table 만들고  Table td안에 num, name값을 출력하세요
+					//$.each()
+					//결과를 append >> id="display" div태그에
+					//hint) 객체.속성명 or 객체["속성명"]
+					/*
+					$.each(data,function(index,obj){
+						for(let key in obj){
+							console.log("key : " + key);
+							console.log(obj[key]);
+						}
+					});
+					*/
+					
+					let table="<table border='1'>";
+            		//each 문사용해서 tr , td 만들고 서버에서 받은 데이터 넣고 ....
+            		table+="<tr><th>INDEX</th><th>NUM</th><th>NAME</th></tr>";
+            			$.each(data,function(index,obj){
+            				/*
+            				for(let key in obj){
+            					console.log("key :" + key);
+            					console.log(obj[key]); //key 던지면  value 얻는다
+            				}
+            				*/
+            				//key point
+            				//1. 객체.속성명
+            				//2. 객체["속성명"]
+            				  table+="<tr>";
+            				  		table+="<td>" + index + "</td>";
+            				  		table+="<td>" + obj.num + "</td>";
+            				  		if(obj.num){
+            					  		table+="<td>" + obj["Name"] + "</td>";
+            				  		}else{
+            					 		 table+="<td>" + "EMPTY" + "</td>";
+            				 		 }
+            				  table+="</tr>";
+            			});
+            		
+            		table+="</table>";
+            		
+            		$('#display').html(table);
+                	//$('#display').append(table);
+				});
+			});
+		});
+	
+	</script>
+</head>
+<body>
+		<div id="btn" >
+			<div class="btnload">JSON DATA LOAD</div>
+		</div>
+		<div id="display">
+		</div>
+</body>
+</html>

@@ -19,6 +19,7 @@ hr {
   background-image : -ms-linear-gradient(left, #eee, #777, #eee);
   background-image : -o-linear-gradient(left, #eee, #777, #eee);
 }
+
 .ETC {
   display:flex;
 }
@@ -44,7 +45,7 @@ input[type=button] {
 
 input[type=text] {
   font-size : 15px;
-  min-width: 280px;
+  width:600px;
   height: 50px;
   margin : 5px;
 }
@@ -54,6 +55,14 @@ input[type=text] {
 	border: 1px solid #FF6600;
 	border-radius: 4px;
   width:300px;
+}
+
+.title {
+	background: #FF6600;
+	border: 1px solid #FF6600;
+	border-radius: 4px;
+  width:1200px;
+  padding : 15px;
 }
 
 .board h3{
@@ -72,7 +81,7 @@ input[type=text] {
 	padding: 16px;
 	border: 1px solid black;
 }
-
+/*여기까지 KanBan*/
 body {
   margin: 0;
   min-width: 250px;
@@ -111,17 +120,6 @@ body {
   clear: both;
 }
 
-/* Style the input
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 75%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-} */
-
 /* Style the "Add" button */
 .addBtn {
   padding: 10px;
@@ -139,7 +137,7 @@ input {
 .addBtn:hover {
   background-color: #bbb;
 }
-
+/*여기까지 todolist*/
 .float_center{ 
 	float:center; 
  } 

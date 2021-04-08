@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			//id="message" 클릭하면 $.ajax 사용해서 
+			//요청 @WebServlet("/MemoId")
+			//http://192.168.0.3:8090/WebServlet_4_memo_mvc/MemoId
+			//url:"MemoId"
+			//"true" 사용가능
+			//"false" 사용불가 다시입력 ...
+			
+			$('#message').click(function(){
+				if($('#id').val() == ""){
+					alert("ID 입력");
+					$('#id').focus();
+				}else{
+			   /*
+				$.ajax(
+						{
+						   url:"MemoId", //Ex10_ok.jsp	
+						   data:{id:$('#id').val()}, //MemoId?id=aa
+						   dataType:"html", //xml , json , script , html , text
+						   success:function(responsedata){
+							   console.log(">" + responsedata + "<");
+							   if(responsedata == "true"){
+								   alert("사용가능");
+								   $('#email').focus();
+							   }else{
+								   alert("사용불가능");
+								   $('#id').val("");
+								   $('#id').focus();
+							   }
+						   },
+						   error:function(){
+							   
+						   }
+						}		
+					);
+				*/
+				  //비동기 (controller -> service -> view -> 전달)
+			     // servlet -> 
+				   $.ajax(
+					 {
+						url:"MemoId.memo",
+						data:{id:$('#id').val()},
+						dataType:"html",
+						success:function(responsedata){
+							//console.log(responsedata);
+							$('#messagediv').html(responsedata);
+							//console.log(">" + responsedata + "<");
+							let data =responsedata.trim();
+							//console.log(">" + data + "<");
+							 if(data == "true"){
+								   alert("사용가능");
+								   $('#email').focus();
+							 }else{
+								   alert("사용불가능");
+								   $('#id').val("");
+								   $('#id').focus();
+							  }
+						}
+					 }	  
+				  );
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+<div style="margin-top:70px;"></div> 
+<!--  html 파일  action="MemoServlet"  -->
+<form name="f" action="MemoAdd.memo" method="get"> 
+ <div align="center"> 
+    <table width="600" border="0" cellpadding="7" > 
+        <tr align="center" bgcolor="gold" height="50"> 
+            <td colspan="2"> 
+                <font size="4" color="#0033CC" face="굴림체"> 
+                <b> 
+                   Servlet Memo
+                </b> 
+                </font> 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center" > 
+                <b>ID</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" id="id" name="id" maxlength="10" >
+                <input type="button" value="ID확인" id="message">  
+            </td> 
+        </tr>     
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>EMAIL</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" id="email" name="email" maxlength="60" > 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>MEMO</b> 
+            </td> 
+            <td> 
+                <textarea name="memo" cols="50" class="box2"></textarea> 
+            </td> 
+        </tr> 
+        <tr bgcolor="gold"> 
+            <td colspan="2" align="center" class="c2"> 
+                <input type="submit" value="전송" >
+                <input type="reset" value="취소"> 
+            </td> 
+        </tr> 
+     
+    </table> 
+ </div>
+</form>
+<hr>
+<h3>ID 확인 여부</h3>
+<div id="messagediv" style="background-color: gold">
+
+</div>
+<hr>
+<a href="MemoList.memo">목록보기</a> 
+ 
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

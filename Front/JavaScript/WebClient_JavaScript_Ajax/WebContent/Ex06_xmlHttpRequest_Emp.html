@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	var httpReq = null;
+
+	function getInstance() {
+		//xmlHttpRequest 객체를 만드는 코드
+		if (window.XMLHttpRequest) {
+			httpReq = new XMLHttpRequest(); //현재 브라우져 XMLHttpRequest 내장
+		} else if (window.ActiveXObject) { //IE6 이하   //지금 필요없어요
+			httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		} else {
+			throw new Error("AJAX 지원하지 않습니다");
+		}
+		return httpReq;
+	}
+
+	function handlerStateChange() {
+		if (httpReq.readyState == 4) {
+			//서버에서 응답이 왔다면
+			if (httpReq.status >= 200 && httpReq.status < 300) {
+				//가공
+				//text, xml
+				//responseText, responseXML
+				document.getElementById("txtdata").innerHTML = httpReq.responseText;
+			} else {
+				alert("status Text : " + httpReq.status);
+			}
+		}
+	}
+	function sendData() {
+		httpReq = getInstance();
+		httpReq.onreadystatechange = handlerStateChange; // 괄호 금지ㅣㅣ
+		let empno = document.getElementById("emp").value;
+		httpReq.open("GET", "Ex06_EmpSearch.jsp?empno=" + empno); //form 태그 구성
+		httpReq.send(); //form 태그안에 submit 버튼 클릭
+	}
+</script>
+</head>
+<body>
+	<h3>사원 검색하기 ( 비동기 )</h3>
+	<select name="emp" id="emp" onchange="sendData()">
+		<option value="0000">SELECT EMPNO</option>
+		<option value="7788">SCOTT</option>
+		<option value="7902">FORD</option>
+		<option value="7521">WORD</option>
+	</select>
+	<hr>
+	<div id="txtdata">EMP DATA LOAD</div>
+	
+	<hr>
+	
+	<h3>사원 검색하기 ( 동기 )</h3>
+	<a href="Ex06_EmpSearch.jsp?empno=7788">사원검색</a>
+</body>
+</html>

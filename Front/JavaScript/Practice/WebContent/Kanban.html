@@ -7,7 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KANBAN, ToDoList</title>
+  <title>KANBAN</title>
   <script src="script.js"></script>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Turret+Road:wght@300;400;500;700;800&display=swap"
@@ -58,7 +58,8 @@
       <nav class="nav-menu d-none d-lg-block">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li class="active"><a href="Kanban.html">KanBan, ToDoList</a></li>
+          <li class="active"><a href="Kanban.html">KanBan</a></li>
+          <li><a href="ToDoList.html">ToDoList</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -70,12 +71,12 @@
     <!-- ======= Breadcrumbs ======= -->
     <section class="breadcrumbs">
       <div class="container">
-
+        
         <div class="d-flex justify-content-between align-items-center">
-          <h2>KanBan, ToDoList</h2>
+          <h2>KanBan</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>KanBan, ToDoList</li>
+            <li>KanBan</li>
           </ol>
         </div>
 
@@ -84,6 +85,11 @@
 
     <section class="inner-page">
       <div class="container">
+        <div id="myDIV" class="title">
+          <h2 style="margin:5px">해야할 일 생성</h2>
+          <input type="text" id="myInput" placeholder="Title...">
+          <button id="#cardBtn">추가</button>
+        </div>
         <p>
         <div class="boards">
           <!-- 해야할 일 -->
@@ -107,7 +113,7 @@
             </div>
           </div>
         </div>
-        
+
         <div class="ETC">
           <div class="board" style="margin : 15px; width: 290px;">
             <!--board 생성 버튼-->
@@ -121,9 +127,6 @@
             </div>
             <input id="cardName" type="text" placeholder="새 항목의 내용" style="display:flex"></input>
             <input id="cardBtn" type="button" value="새 항목"></input>
-            <hr>
-            <input id="boardName" type="text" placeholder="새 보드의 이름" style="display:flex"></input>
-            <input id="boardBtn" type="button" value="보드 생성"></input>
           </div>
 
           <!--쓰레기 통-->
@@ -140,11 +143,18 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
+  <!-- footer -->
   <footer id="footer">
     <div class="container">
       <h3>Practice Page</h3>
-      <p>새 보드를 만들었을 때, 화면의 변화의 구현이 부족함.</p>
+      <p>내가 제일 부족하다고 느끼는 프론트부분을 연습하기 위한 페이지</p>
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
       <div class="copyright">
         &copy; Copyright <strong><span>Selecao</span></strong>. All Rights Reserved
       </div>

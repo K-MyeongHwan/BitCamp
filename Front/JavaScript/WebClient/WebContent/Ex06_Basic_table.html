@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>테이블 병합하기</title>
+<style type="text/css">
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #333333;
+}
+table {
+	border-collapse: collapse;
+}
+
+td, th {
+	border: 1px solid blue;
+}
+</style>
+</head>
+<body>
+	<h3>일반테이블</h3>
+	<table>
+		<tr>
+			<td>가</td>
+			<td>나</td>
+			<td>다</td>
+		</tr>
+		<tr>
+			<td>라</td>
+			<td>마</td>
+			<td>바</td>
+		</tr>
+		<tr>
+			<td>사</td>
+			<td>아</td>
+			<td>자</td>
+		</tr>
+	</table>
+	<hr>
+	<h3>일반테이블2</h3>
+	<table style="height: 200px; width: 500px">
+		<tr>
+			<th>글번호</th>
+			<th>제목</th>
+			<th>조회수</th>
+		</tr>
+		<tr>
+			<th>1</th>
+			<th>어쩌고</th>
+			<th>20</th>
+		</tr>
+		<tr>
+			<th>2</th>
+			<th>안녕</th>
+			<th>10</th>
+		</tr>
+	</table>
+
+	<h3>일반테이블 병합</h3>
+	<table style="height: 200px; width: 500px">
+		<tr>
+			<td colspan="2">가,나</td>
+			<td rowspan="2">다</td>
+		</tr>
+		<tr>
+			<td>라</td>
+			<td>마</td>
+		</tr>
+		<tr>
+			<td colspan="3">사, 아, 자</td>
+		</tr>
+	</table>
+	<hr>
+
+	<h3>일반테이블 병합</h3>
+	<table style="height: 200px; width: 500px">
+		<tr>
+			<td colspan="2" rowspan="2">가,나,라,마</td>
+			<td>다</td>
+		</tr>
+		<tr>
+			<td>바</td>
+		</tr>
+		<tr>
+			<td>사</td>
+			<td>아</td>
+			<td>자</td>
+		</tr>
+	</table>
+</body>
+</html>

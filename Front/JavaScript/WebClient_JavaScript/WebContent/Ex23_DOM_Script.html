@@ -1,0 +1,95 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+table {
+	width: 100%
+}
+
+table, tr, th, td {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+
+td {
+	background-color: gold;
+	text-align: center;
+}
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		//동적 테이블 버튼을 클릭하면 .. 행 입력값, 열 입력값 을 통해서 동적으로 테이블 생성
+		//div 태그 뒤에 붙이세요
+		document.getElementById("b1").onclick = function() {
+			//동적으로 생성되는 테이블
+			let intRow = parseInt(document.getElementById("txtrow").value);
+			let intColumn = parseInt(document.getElementById("txtcolumn").value);
+
+			let eletable = document.createElement("table");
+			//<table></table>
+			//<table id="Tab"></table>
+
+			for (let i = 0; i < intRow; i++) {
+				let elerow = document.createElement("tr");
+				//<tr></tr>
+				for (let j = 0; j < intColumn; j++) {
+					let eCell = document.createElement("td");
+					let eText = document.createTextNode((i + 1) + "행" + (j+1) + "열");
+					eCell.appendChild(eText);
+					//<td>~행~열</td>
+					elerow.appendChild(eCell);
+					//<tr><td>~행~열</td><td>~행~열</td></tr>
+				}
+				//tr 생성시  <tr><td></td></tr>
+				eletable.appendChild(elerow); //Table tr add
+				//<table><tr><td>~행~열</td><td>~행~열</td></tr><tr><td>~행~열</td><td>~행~열</td></tr></table>
+			}
+			//body 
+			console.log(eletable);
+			document.getElementById("div").appendChild(eletable);
+		}
+		//<table>
+		//	<tr>
+	 	//		<td></td>
+	 	//		<td></td>
+	 	//	</tr>
+	 	//</table>
+	 	
+		//만들어진 테이블 삭제
+		document.getElementById("b2").onclick = function() {
+			
+			//1. id 를 이용하여 삭제하기
+			//테이블 들이 id=tab
+			//let tab = document.getElementById("Tab");
+			//제일 처음 만나는 id=Tab 요소를 가지고 온다
+			//--> 버튼을 계속누르면, 다 없어진다.
+			//console.log(tab);
+			//document.getElementById("div").removeChild(tab);
+
+			//2.Table id속성이 없다면?
+			let tables = document.getElementsByTagName("table");
+			console.log(tables);
+			console.log(tables.length);
+			console.log(tables[tables.length-1]);
+
+			//배열의 마지막요소부터 지운다.
+				if(tables.length > 0) {
+					document.getElementById("div").removeChild(tables[tables.length-1]);
+				} else {
+					alert("모두 삭제되었습니다");
+				}
+		}
+	}
+</script>
+</head>
+
+<body>
+	<div id="div">
+		행의수 : <input type="text" id="txtrow" name="txtrow" value="2"><br>
+		열의수 : <input type="text" id="txtcolumn" name="txtcolumn" value="2"><br>
+		<input type="button" id="b1" value="동적테이블 생성">
+		 <input type="button" id="b2" value="동적테이블 제거">
+	</div>
+</body>
+</html>

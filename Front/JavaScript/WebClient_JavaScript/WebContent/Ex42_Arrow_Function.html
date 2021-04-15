@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<p id="demo"></p>
+	<p id="demo2"></p>
+</body>
+<script type="text/javascript">
+	//일반함수
+	//function foo(){
+	//	
+	//}
+	
+	//익명함수
+	let foo = function() {
+		console.log("익명함수");	
+	}
+	
+	//ES6 (함수의 줄임 표현)
+	//매개변수가 없는 경우는 {} 를 뺀다
+	let bar = () => console.log("bar");
+	bar();
+	
+	//매개변수 1개
+	//let bar2 = function(x){x}
+	let bar2 = x => x;
+	/* 
+	let hello = (val) => "hello" + val;
+	let v = hello("Aaa");
+	console.log(v);
+	 */
+	 let hello;
+	 hello = val => "hello" + val;
+	 let v = hello("aaa");
+	 console.log(v);
+	 document.getElementById("demo").innerHTML = hello("방가방가");
+	 
+	 //매개변수 2개이상
+ 	//let bar3 = (a,b) => { return a+b};
+ 	let bar3 = (a,b) => a+b;
+ 	let v2 = bar(10,20);
+ 	console.log(v2);
+ 	
+ 	let bar4 = ( a,b) => {let c=100; return a+b+c};
+ 	
+ 	//객체 반환시
+ 	let bar5 = () => ({a:1, b:2, c:3});
+ 	let v3 = bar5();
+ 	console.log(v3);
+ 	
+ 	//즉시 실행 함수 ( 암기 )
+ 	//함수의 원칙 : 호출에 의해서 실행된다.
+ 	(
+ 		function() {
+ 			console.log("즉시실행함수");
+ 		}()
+ 	);
+ 	
+ 	//화살표 표현식
+ 	(
+ 		() => {
+ 			console.log("즉시실행함수");
+ 		}
+ 	)();
+ 	
+ 	//https://www.w3schools.com/jsref/jsref_obj_array.asp
+ 	//JavaScript의 Array 가 가지고 있는 다양한 함수
+ 	
+ 	//암기
+ 	//for(let i = 0; i < 10; i++) {}
+	//for(let index in array) { Array[index] }
+	//{a:1, b:2, c:3}
+	//for(let key in object) {}
+    // 추가적으로 
+    //Array.isArray() => 이게 배열이니?
+    //Array.forEach(function()); 
+    //Array.map()
+    function myfunc() {
+    	let fruits = ["A","B","C","D"];
+    	let x = document.getElementById("demo2");
+    	x.innerHTML = Array.isArray(fruits);
+    }
+    myfunc();
+   	
+    let txt="";
+    let numbers=[45,4,9,16,25];
+    numbers.forEach(myfunc2);
+    //value, index 를 가지고 논다.
+    function myfunc2(value,index,array) {
+    	txt=txt +"(" + value + ")" + "[" + index + "]     [" + array +  "]";
+    	console.log(txt);
+    }
+    
+    let numbermap = numbers.map(myfunc3);
+    console.log(numbermap); //new Array 생성됨.
+    //새로운 배열을 만들 때, 사용한다.
+    //노는거 + return array 다.
+    function myfunc3(value, index, array) {
+    	return value * 2;
+    }
+    
+    //////////////////////////////////////////////////
+    //조작된 배열을 return 함
+    let evens = [2,4,6,8];
+    let odds = evens.map(val=> val+1); //function(val) {return val+1}
+    console.log(odds);
+    
+    let nums = evens.map((value,index) => value + index);
+    console.log(nums);
+    
+    let arr= [];
+    evens.forEach(value=> {
+    	if(value%2===0) {
+    		arr.push(value);
+    	} 
+    });
+    console.log(arr);
+    </script>
+</html>

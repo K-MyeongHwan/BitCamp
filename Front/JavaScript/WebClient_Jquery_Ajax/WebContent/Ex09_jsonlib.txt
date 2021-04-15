@@ -1,0 +1,39 @@
+	JSON 형식으로 가공하기
+	LIB 제공
+	
+	다운로드 사이트
+	
+	http://json-lib.sourceforge.net/index.html
+	직접 : http://sourceforge.net/projects/json-lib/files/
+	
+	
+	1. json-lib-2.4-jdk15.jar  필요하고
+	    안에서 다른 클래스를 참조하는 그 클래스들이 아래 있는 녀석들 
+	   
+	Lib 사용하기 위해서 아래 jar  파일 찿아서 다운로드 ...
+	Json-lib requires (at least) the following dependencies in your classpath:
+	jakarta commons-lang 2.5
+	jakarta commons-beanutils 1.8.0
+	jakarta commons-collections 3.2.1
+	jakarta commons-logging 1.1.1
+	ezmorph 1.0.6
+	
+	
+	1. 객체 한 건일 경우
+	JSONObject jsonobject= JSONObject.fromObject(member);
+	DTO >  {id:kglim, name:"홍길동"}
+	
+	
+	2. 객체 배열일 경우
+	JSONArray jsonmember =  JSONArray.fromObject(memberlist);
+	List<member> memberlist = new ArrayList<>()
+	[
+		 {id:kglim, name:"홍길동"},
+		 {id:kglim, name:"홍길동"},
+		 {id:kglim, name:"홍길동"}
+	]
+
+
+
+
+

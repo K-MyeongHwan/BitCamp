@@ -1,0 +1,178 @@
+<html>
+ <head>
+  <title> 회원가입 </title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--  
+  	조별과제 : 
+    jquery 를 사용하여 유효성 검증 코드를 만드시고
+    MemberJoinOK.jsp 를 통해서 데이터 받아서 결과 출력하세요
+     
+    userId : keyup 이벤트  정해진 표현에 맞지 않으면 ID 추가 입력
+    ex) let id ="정규표현식" 
+    ex) if(id.test($(this).val()) != true) { 확인요청 } else {}
+    
+    userPass : keyup 이벤트에서 정해진 표현과 일치 하지 않으면 (정규표현 가능)
+    
+    userPassCheck : keyup  >> userPass 같은 값인지 확인 일치여부 확인
+    
+    userEmail : keyup 이벤트에서 email 형식과 일치여부 확인
+    
+    userPhone : keyup 이벤트에서 phone 형식과 일치여부 확인
+    
+    
+    submit 전송시 
+    userId , userPass , userPassCheck , userEmail , userPhone
+    , userSsn1 , userSsn2 , userZipCode , userPhone
+       값이 입력되지 않으면 다시 입력을 요청
+  -->
+  <style>
+    body{font-family:"malgun gothic";font-size:9pt;}
+    th { text-align:right; background-color:#dbdbdb}
+    th.title { text-align:center; font-size:12pt;background-color:#ffffff;}
+  </style>
+ </head>
+ <body>
+    <form name="signForm" id="signForm" method="post" action="MemberJoinOK.jsp">
+	    <table>
+		    <tr>
+		        <th colspan="2" class="title">회원가입</th>
+		    </tr>
+		    <tr>
+		        <th>아이디</th>
+		        <td>
+		        	<input type="text" maxlength="20" id="userId" name="userId" title="3~16자리의 영문+숫자 조합으로 입력해주세요">
+		       	</td>
+		        <td class="tdid"></td>
+		    </tr>
+	        
+		    <tr>
+		        <th>이름</th>
+		        <td>
+		        	<input type="text" maxlength="20" id="userName" name="userName" title="이름" >
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>패스워드</th>
+		        <td>
+		        	<input type="password" maxlength="20" id="userPass" name="userPass" title="3~16자리의 영문+숫자 조합으로 입력해주세요">
+		        </td>
+		        <td class="tdpw"></td>
+		    </tr>
+		    <tr>
+		        <th>패스워드 확인</th>
+		        <td><input type="password" maxlength="20" id="userPassCheck" name="userPassCheck"  title="패스워드 확인"></td>
+		        <td class="tdpwch"></td>
+		    </tr>
+		    <tr>
+		        <th>성별</th>
+		        <td><input type="radio" name="gender" value="male" checked>남 &nbsp&nbsp;
+		               <input type="radio" name="gender" value="female">여  </td>
+		    </tr>
+		    <tr>
+		        <th>이메일</th>
+		        <td><input type="text" maxlength="50" id="userEmail" name="userEmail"  title="이메일"></td>
+		        <td class="tdmail"></td>
+		    </tr>
+		    <tr>
+		        <th>주민번호</th>
+		        <td>
+		        	<input type="text" maxlength="6" id="userSsn1" name="userSsn1" title="주민번호1"> -
+		        	<input type="text" maxlength="7" id="userSsn2" name="userSsn2" title="주민번호2 ">
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>우편번호</th>
+		        <td>
+			        <input type="text" maxlength="10" id="userZipCode" name="userZipCode" size="9" title="주소-우편번호" > 
+			        <input type="button" value="우편번호검색"  />
+		        </td> 
+		    </tr>
+		    <tr>
+		       <th>주소1</th>
+		        <td>
+		        	<input type="text" maxlength="20" size="45" id="userAddr1" name="userAddr1" title="주소-기본주소" >
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>주소2</th>
+		        <td>
+		        	<input type="text" maxlength="20" size="45" id="userAddr2" name="userAddr2" title="주소-상세주소">
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>핸드폰번호</th>
+		        <td>
+		            <input type="text" size="30" maxlength="20" id="userPhone" name="userPhone" title="'010','-'없이 입력하세요">
+		        </td>
+		        <td class="tdphone"></td>
+		    </tr>
+		    <tr>
+		        <th>취미</th>
+		        <td>
+			        <input type="checkbox" name="hobby" value="등산">등산 
+			        &nbsp;&nbsp;
+			        <input type="checkbox" name="hobby" value="자전거">자전거 
+			        &nbsp;&nbsp;
+			        <input type="checkbox" name="hobby" value="컴퓨터">컴퓨터
+			        &nbsp;&nbsp;
+			        <input type="checkbox" name="hobby" value="영화감상">영화감상
+		        </td>
+		    </tr>
+		    <tr>
+		        <th>생년월일</th>
+		        <td>
+		        	<input type="text" name="year"> 년
+		        	<select name="month">
+					      <option value="01">01</option>
+					      <option value="02">02</option>
+					      <option value="03">03</option>
+					      <option value="04">04</option>
+		    		</select> 월 
+		    		<select name="day">
+					      <option value="01">01</option>
+					      <option value="02">02</option>
+					      <option value="03">03</option>
+					      <option value="04">04</option>
+		    		</select> 일
+		    	</td>
+		    </tr>
+		    <tr>
+		        <td colspan="2">
+		            <input type="submit" value="가입완료" >    
+		            <input type="reset" value="입력취소">        
+					<input type="button" id="check">
+				</td> 
+		    </tr>
+	    </table>
+    </form>
+ </body>
+ <script>
+	let checkIdPwd = RegExp(/^(?=.*[a-zA-Z])(?=.*[0-9]).{3,16}$/);
+	$('#check').on('click',function(){
+		if(!checkIdPwd.test($('#userId').val())){
+		alert("3~16자리의 영문+숫자 조합으로 입력해주세요");
+		$('#userId').val("");
+		$('#userId').focus();
+		return false;
+		}
+	});
+
+	$('#check').on('click',function(){
+		if(!checkIdPwd.test($('#userPass').val())){
+		alert("3~16자리의 영문+숫자 조합으로 입력해주세요");
+		$('#userPass').val("");
+		$('#userPass').focus();
+		return false;
+		} 
+		if($('#userPassCheck').val() != $('#userPass').val()){
+		alert("비밀번호 확인란이 일치하지 않습니다.");
+		$('#userPassCheck').val("");
+		$('#userPassCheck').focus();
+		return false;
+		} 
+	});
+
+ </script>
+</html>

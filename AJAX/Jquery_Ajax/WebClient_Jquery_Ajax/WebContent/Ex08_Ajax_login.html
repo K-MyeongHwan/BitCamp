@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	/*  
+		$.ajax() 함수를 사용해서 id 값 pwd 값 비동기로 전송하고
+		그 결과에 따라서 : success , fail
+		$('#message').html('<p>로그인 성공</p>')
+		$('#message').html('<p>로그인 실패</p>')
+		Jquery effect 효과 적용 (슬라이드 효과)
+	
+		parameter  연습   >> {}
+		val() , text() , html() , attr() 연습
+		effect > slideUp() , slideDown() 연습
+		
+		숨겨진 함정 : 넘어오는 데이터는 반드시 console 로 출력해서 확인 또 확인 ...
+		if(result == 'success'){} ....
+	*/
+	$(function(){
+		$('#login').click(function(){
+			const actionurl = $('#form1').attr("action");
+			//Ex08_Ajax_loginOk.jsp
+			let form_data = {
+					user_id : $('#user_id').val(),
+					user_pwd : $('#user_pw').val(),
+			};
+			
+			//비동기 함수
+			$.ajax({
+						url : actionurl,
+						type : "POST",
+						dataType : "html",
+						data : form_data,
+						success : function(responsedata){
+							console.log(">" + responsedata + "<");
+							let result = responsedata.trim();
+							if(result == 'success') {
+								$('#message').html("<p style='color:green;font-weight:bold'>로그인 성공</p>");
+							} else {
+								//fail
+								$('#message').html("<p style='color:red;font-weight:bold'>로그인 실패</p>");
+							}
+						},
+						error : function(xhr){
+							console.log(xhr.status);
+						}
+					});
+		});	
+	});
+	</script>
+</head>
+<body>
+	<form id="form1" name="form1" action="Ex08_Ajax_loginOk.jsp" method="post">
+		<table>
+			<tr>
+				<td>아이디</td>
+				<td><input type='text' id='user_id' name='user_id' tabindex='1' /></td>
+				<td rowspan='2'>
+					<input type='button' id='login' tabindex='3' value='로그인' style='height: 50px' /></td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type='password' id='user_pw' name='user_pw' tabindex='2' /></td>
+			</tr>
+		</table>
+	</form>
+	<div id="message"></div>
+</body>
+</html>

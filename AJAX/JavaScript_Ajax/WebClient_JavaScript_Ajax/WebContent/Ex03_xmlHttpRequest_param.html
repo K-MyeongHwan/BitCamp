@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	/*
+	1. XMLHttpRequest 객체 얻기
+	2. onreadystatechange 이벤트 핸들러 구현 (함수)
+	3. 요청 정보 ( open() )
+	4. 요청 보내기 (send() )
+	5. 응답 처리 (Text(JSON), xml )
+	 */
+	 
+	function getInstance() {
+		//xmlHttpRequest 객체를 만드는 코드
+		if (window.XMLHttpRequest) {
+			httpReq = new XMLHttpRequest(); //현재 브라우져 XMLHttpRequest 내장
+		} else if (window.ActiveXObject) { //IE6 이하   //지금 필요없어요
+			httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+		} else {
+			throw new Error("AJAX 지원하지 않습니다");
+		}
+		return httpReq;
+	}
+
+	function handlerStateChange() {
+		if (httpReq.readyState == 4) {
+			//서버에서 응답이 왔다면
+			if (httpReq.status >= 200 && httpReq.status < 300) {
+				//정상적인 응답이라면 , 200 <= status < 300 ( 200 ~ 299 )
+				//개발자 마음
+				//서버가 비동기로 클라이언트를 줄 수 있는 Data
+				//1. Text ( text, html, script, css, json) >> responseText
+				
+				//2. xml >> responseXML
+				
+				console.log(httpReq.responseText);
+				//마음대로오오
+				let TempArray = [];
+				TempArray = httpReq.responseText.split(",");
+				
+				let printdata = "";
+				for(let i = 0; i < TempArray.length; i++) {
+					printdata += TempArray[i] + "<br>";
+				}
+				
+				document.getElementById("div_view").innerHTML = printdata;
+			} else {
+				alert("status Text : " + httpReq.status);
+			}
+		}
+	}
+	function sendData() {
+		httpReq = getInstance();
+		httpReq.onreadystatechange = handlerStateChange; // 괄호 금지ㅣㅣ
+		
+		let key = document.getElementById("select_menu").selectedIndex;
+		
+		httpReq.open("POST", "Ex03_Server_param.jsp?no="+key); //form 태그 구성
+		//jsp?no=0 or jsp?no=1 or jsp?no=2
+		
+		httpReq.send(); //form 태그안에 submit 버튼 클릭
+	}
+</script>
+</head>
+<body>
+	<h3>Ajax param 값 처리하기</h3>
+	<div style="background-color: gray; width: 500px; text-align: center;">
+		<hr style="color: red">
+		<select id="select_menu" onchange="sendData()">
+			<option>0번 index</option>
+			<option>1번 index</option>
+			<option>2번 index</option>
+		</select>
+	</div>
+	<span id="div_view"></span>
+</body>
+</html>

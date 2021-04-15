@@ -1,0 +1,305 @@
+/* -----------------------------------------------------
+  Pure CSS Progress Bars
+  GitHub Project: https://github.com/rkchauhan/pure-css-progress-bars/
+  By: Ravikumar Chauhan
+  Find me on -
+  Twitter: https://twitter.com/rkchauhan01
+  Facebook: https://www.facebook.com/ravi032chauhan
+  GitHub: https://github.com/rkchauhan
+  CodePen: http://codepen.io/rkchauhan
+-------------------------------------------------------- */
+/* -----------------------------------------------------
+  Google Roboto font
+-------------------------------------------------------- */
+.examples h2 {
+  font-family: 'Roboto';
+    font-size: 30px;
+    line-height: 30px;
+    font-weight: 900;
+    color: #25242a;
+    margin-bottom: 20px;
+}
+
+.cssProgress {
+  width: 100%;
+  margin-bottom: 40px;
+  background-color: black;
+}
+.cssProgress .progress {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+    background-color: black;
+  
+}
+
+.cssProgress .cssProgress-bar {
+  display: block;
+  float: left;
+  width: 0%;
+  height: 100%;
+  background: #3798d9;
+  box-shadow: inset 0px -1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-transition: width 0.8s ease-in-out;
+          transition: width 0.8s ease-in-out;
+}
+
+
+
+.cssProgress-label-num{
+	position:absolute;
+	right:1px;
+	text-align: right;
+}
+	
+
+.cssProgress .cssProgress-label {
+  position: absolute;
+  overflow: hidden;
+  left: 0px;
+  right: 0px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 0.7em;
+  text-align: 	right;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.3);
+}
+.cssProgress .cssProgress-active {
+  background-color:#926ab1 !important;
+}
+.cssProgress .cssProgress-danger {
+  background-color: #926ab1 !important;
+}
+.cssProgress .cssProgress-success {
+  background-color: #926ab1 !important;
+}
+.cssProgress .cssProgress-warning {
+  background-color: #926ab1 !important;
+}
+.cssProgress .cssProgress-right {
+  float: right !important;
+}
+.cssProgress .cssProgress-label-left {
+  margin-left: 10px;
+  text-align: left !important;
+}
+.cssProgress .cssProgress-label-right {
+  margin-right: 10px;
+  text-align: right !important;
+}
+.cssProgress .cssProgress-label2 {
+  display: block;
+  margin: 2px 0;
+  padding: 0 8px;
+  font-size: 0.8em;
+}
+.cssProgress .cssProgress-label2.cssProgress-label2-right {
+  text-align: right;
+}
+.cssProgress .cssProgress-label2.cssProgress-label2-center {
+  text-align: center;
+}
+.cssProgress .cssProgress-stripes,
+.cssProgress .cssProgress-active,
+.cssProgress .cssProgress-active-right {
+  background-image: -webkit-linear-gradient(135deg, rgba(255, 255, 255, 0.125) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.125) 50%, rgba(255, 255, 255, 0.125) 75%, transparent 75%, transparent);
+  background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.125) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.125) 50%, rgba(255, 255, 255, 0.125) 75%, transparent 75%, transparent);
+  background-size: 35px 35px;
+}
+.cssProgress .cssProgress-active {
+  -webkit-animation: cssProgressActive 2s linear infinite;
+  -ms-animation: cssProgressActive 2s linear infinite;
+  animation: cssProgressActive 2s linear infinite;
+}
+.cssProgress .cssProgress-active-right {
+  -webkit-animation: cssProgressActiveRight 2s linear infinite;
+  -ms-animation: cssProgressActiveRight 2s linear infinite;
+  animation: cssProgressActiveRight 2s linear infinite;
+}
+@-webkit-keyframes cssProgressActive {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 35px 35px;
+  }
+}
+@-ms-keyframes cssProgressActive {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 35px 35px;
+  }
+}
+@keyframes cssProgressActive {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 35px 35px;
+  }
+}
+@-webkit-keyframes cssProgressActiveRight {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -35px -35px;
+  }
+}
+@-ms-keyframes cssProgressActiveRight {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -35px -35px;
+  }
+}
+@keyframes cssProgressActiveRight {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -35px -35px;
+  }
+}
+
+
+/* -----------------------------------------------------
+   Progress Bar 
+-------------------------------------------------------- */
+.progress {
+  background-color: #EEE;
+  border-radius: 3px;
+  box-shadow: inset 0px 1px 3px rgba(0, 0, 0, 0.2);
+}
+.progress .cssProgress-bar {
+  height: 18px;
+  border-radius: 3px;
+}
+.progress .cssProgress-label {
+  line-height: 18px;
+}
+
+
+@-webkit-keyframes cssProgressGlowActive1 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #3798D9;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #3798D9;
+  }
+}
+@-ms-keyframes cssProgressGlowActive1 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #3798D9;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #3798D9;
+  }
+}
+@keyframes cssProgressGlowActive1 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #3798D9;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #3798D9;
+  }
+}
+@-webkit-keyframes cssProgressGlowActive2 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #9575cd;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #9575cd;
+  }
+}
+@-ms-keyframes cssProgressGlowActive2 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #9575cd;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #9575cd;
+  }
+}
+@keyframes cssProgressGlowActive2 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #9575cd;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #9575cd;
+  }
+}
+@-webkit-keyframes cssProgressGlowActive3 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ef5350;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ef5350;
+  }
+}
+@-ms-keyframes cssProgressGlowActive3 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ef5350;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ef5350;
+  }
+}
+@keyframes cssProgressGlowActive3 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ef5350;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ef5350;
+  }
+}
+@-webkit-keyframes cssProgressGlowActive4 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #66bb6a;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #66bb6a;
+  }
+}
+@-ms-keyframes cssProgressGlowActive4 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #66bb6a;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #66bb6a;
+  }
+}
+@keyframes cssProgressGlowActive4 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #66bb6a;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #66bb6a;
+  }
+}
+@-webkit-keyframes cssProgressGlowActive5 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ffb74d;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ffb74d;
+  }
+}
+@-ms-keyframes cssProgressGlowActive5 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ffb74d;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ffb74d;
+  }
+}
+@keyframes cssProgressGlowActive5 {
+  0%, 100% {
+    box-shadow: 5px 0px 15px 0px #ffb74d;
+  }
+  45% {
+    box-shadow: 1px 0px 4px 0px #ffb74d;
+  }
+}

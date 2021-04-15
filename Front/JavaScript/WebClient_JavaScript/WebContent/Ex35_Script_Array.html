@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		//javascript 배열 ( Array ) >> java ( Collection )
+		
+		let array = ['포도','사과'];
+		document.write(array.toString() + "<br>"); //재정의 ( 배열값 출력 )
+		document.write(array + "-default toString() <br>");
+		
+		for(let i = 0; i < array.length; i++) {
+			document.write(array[i]+"<br>");
+		}
+		document.write("<hr>");
+		for(let index in array ) {
+			document.write(array[index] + "<br>");
+		}
+		
+		//동적
+		array[2] = "바나나"; //동적 데이터 추가
+		document.write(array.toString() + "-" + array.length + "<br>");
+		
+		//쓰지마ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+		array[10] = "애플망고"; //동적 데이터 추가
+		document.write(array.toString() + "-" + array.length + "<br>");
+		document.write(array[9] + "_array[9]<br>"); //undefined
+		
+		array[9] = "배";
+		document.write(array[9] + "_초기화 : 타입설정 : _array[9]<br>"); //배
+		
+		let array2 = ["one","two","three"];
+		document.write("array2 : " + array2.length + "<br>");
+		
+		//쓰지마ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+		array2.length = 2; //강제로 줄여버림
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+		
+		//쓰지마ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ
+		array2.length = 4; //강제로 늘려버림
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+	
+		
+		//무슨 다 쓰지말래 
+		//권장 방법
+		//Array >> stack >> LIFO >> push(), pop()
+		array2.push("four");
+		document.write(array2.toString() + "-" + array2.length + "<br>");
+		
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		document.write(array2.pop() + "<br>");
+		/*
+		four
+		undefined
+		undefined
+		two
+		one
+		*/
+		
+		//Good
+		let list = [];
+		list.push("A");
+		list.push("B");
+		list.push("C");
+		
+		document.write("<br>" + list.pop());
+	</script>
+</head>
+<body>
+
+</body>
+</html>

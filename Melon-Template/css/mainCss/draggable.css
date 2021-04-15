@@ -1,0 +1,53 @@
+
+
+#dragDiv {
+    width: 1000px;
+    height:180px;
+    margin:auto;
+
+}
+
+#box {
+    width:1000px;
+    height:100%;
+    position:relative;
+   /* border:1px solid black;*/
+    overflow:hidden;
+    margin-top:50px;
+}
+
+/*javascript로는 애니메이션같이 못 하나?*/
+#box ul{
+    display:flex;
+    height:100%;
+    position:relative;
+    animation:slide 18s linear infinite;
+}
+
+@keyframes slide{
+    0% { left : 0; }
+    100% { left:-1200px; }
+
+}
+
+#box ul:hover{
+    animation-play-state: paused;
+}
+
+#box ul li{
+    height:100%;
+    margin-right:20px;
+
+}
+
+.draggingTarget { 
+    width:180px;
+    height:100%;
+    background-color:gray;
+    box-sizing: border-box;
+}
+
+.draggingTarget{
+    background-size: 190px;
+}
+

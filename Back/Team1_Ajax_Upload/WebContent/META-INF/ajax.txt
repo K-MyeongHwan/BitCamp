@@ -1,0 +1,60 @@
+<script type="text/javascript">
+	 //https://api.flickr.com/services/feeds/photos_public.gne?tags=raccoon&tagmode=any&format=json&jsoncallback=?
+	
+	 $(function(){
+		  $('#btn').click(function(){
+			 let flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?" 
+			 //tags=raccoon&tagmode=any&format=json
+			 let data={tags:$('#search').val() ,tagmode:"any" ,format:"json"}
+			 
+			 $.getJSON(flickerAPI, data, function(data,textStatus,xhr){ //flickerAPI의 주소 뒤에 data가 합쳐져서 JSON을 호출함.
+				  console.log(data); //호출한 JSON이 요기있네? 알아서 활용하자!
+				  console.log(textStatus); //성공유무. 나중에 이걸로 제대로불러왔는지 체크가능할듯함
+				  console.log(xhr.readyState); //4번이뜨겠죠? 로딩완료시. 만약불러오는값이 너무많아서 3번이면 적당히 타이머로 조절하던가 할수있을듯합니다.
+
+				  console.log(data.items);
+				  
+				  $('#images').empty();
+				  $.each(data.items, function(index,obj){
+					 $('<img>').attr("src",obj.media.m).appendTo("#images"); //data.items.media.m에 이미지 src가있는데 그걸이용
+					 //img 태그를 생성하고 src 속성에 이미지 경로 설정 div append
+				  });
+			 });
+		  });
+	  });	
+	
+	</script>
+	
+<script type="text/javascript">
+		$(function(){
+			$.ajax(  //parameter json 객체 ()
+					{
+						url:"Ex07_Ajax_board.json",
+						type:"POST",       //httpReq.open("post")
+						dataType:"json", //서버가 응답하는 데이터 형식(Text(json,script,txt,html) , xml) 
+						success :function(data){
+												alert("success");
+												$.each(data,function(index,obj){
+														$('#treedata').append(obj.id + "/" + obj.name + "/" + obj.title + "/"+obj.content + "<br>");
+												});
+						},
+						error:function(xhr){
+							alert(xhr.status); //404 , 500
+						}
+						,beforeSend:function(){  //readyState ==3 (서버 데이터가 오는 도중)
+				       							 //(이미지 보여주기 처리)
+				       							alert("beforeSend");
+				        						$('.wrap-loading').removeClass('display-none');
+					    }
+				    	,complete:function(){
+					        					//(이미지 감추기 처리)
+					        					alert("complete");
+					        					$('.wrap-loading').addClass('display-none');
+				   		 }
+						
+					}		
+			);
+		});
+	</script>
+	
+	

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	//while
+		let i = 1;
+		let sum = 0;
+		while(i <= 10) {
+			sum+=i;
+			i++;
+		}
+		document.write("sum : " + sum + "<br>" + i + "<br>");
+		
+		//for
+		let sum2 = 0;
+		for(let i=0; i<10; i++) {
+			if(i%3===0) {
+				console.log("i : "+ i);
+				//break;
+				continue;
+			}
+			console.log("for i : " + i);
+			sum2+=i;
+		}
+		document.write("sum2 : " + sum2 + "<br>");
+		
+		//do ~ while
+			let a = 1;
+		do {
+			document.write(a+"<br>");
+			a++;
+		}while(a<11);
+		
+		//개선된 for 문
+		//javascript : for(let i in array) { };
+		
+		/*
+		java : 정적 ( Array ) <=> 동적 ( Collection ) --> 방의 크기가 고정, 동적 ( 다양한 클래스를 제공받음 > ArrayList, Hashset, Hashmap)
+		int[] arr = new int[3] 
+		int[] arr= new int[]{1,2,3}
+		int[] arr= {1,2,3}
+		
+		ArrayList al = new ArrayList();
+		al.add(1);
+		al.add(2);
+		
+		javascript : 정적 + 동적 > Array
+		선언방법
+		let arr = []; > 개쩐다, 가장 좋아하는 코드
+		> arr.push();
+		*/
+		
+		let arr = [10,20,30]; //1
+		for(let i = 0; i < arr.length; i++) {
+			document.write(arr[i]+"<br>");
+		}
+		
+		let eng = new Array(3); //2
+		for(let i = 0; i < eng.length; i++) {
+			document.write(eng[i]+"<br>");
+		}
+		/* undefined
+		undefined
+		undefined */ //각각의 방이 타입정보를 가지지 못함 ( 초기화를 하지 않음 )
+		
+		eng[0] = 100;
+		eng[1] =  200;
+		eng[2] = 300;
+		document.write("<hr>");
+		for(let i = 0; i < eng.length; i++) {
+			document.write(eng[i]+"<br>");
+		}
+		
+		//빈 배열이라도 이걸로써랑
+		//javascript Array >> 자료구조 >> stack( LIFO )
+		let arr2 = [];
+		arr2.push(10);
+		arr2.push(20);
+		arr2.push(30);
+		
+		//1. 배열 기본 생성 방법
+		let array = new Array(5); //딴거쓰장
+		
+		let array2 = new Array(10,20,30); //딴거쓰장
+		
+		let array3 = [1,2,3]; //이거쓰장
+		
+		//javascript array는 동적배열고, STACK 구조 ( LIFO ) 를 가지고 있다.
+		let array4 = [];
+		array4.push(10);
+		array4.push(11);
+		document.write(array.pop()); //stack 구조 > 11
+		
+		
+		</script>
+</head>
+<body>
+
+</body>
+</html>

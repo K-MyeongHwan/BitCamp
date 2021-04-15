@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+
+        
+
+</style>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		totalcount();
+
+	});
+	function totalcount(){
+				$.ajax({
+					url:"Ex09_jsonlib.txt",
+					dataType:"text",
+					type:"POST",
+					success:function(data){
+						console.log(data);
+						var count=4;
+		                var page = '<span style="padding:4px;" class="page" id="first">처음</span>';
+		                for(var i = 1; i <= count ; i++){
+		                    page += '<span style="padding:4px;" class="page" id="paging'+i+'">'+i+'</span>'
+		                }
+		                page += '<span style="padding:4px;" class="page" id="next">마지막</span>'
+		                
+		                $('#pagelist').append(page);
+		                $('.page').click(function(){
+		      	          //console.log(url);
+		      	          var count=4;
+		      	          var cur = $(this).text(); //클릭한 페이지
+		      	          
+		      	          console.log(cur);
+		      	          if(cur == "처음"){
+		      	              data = {"cp":1};
+		      	          }else if(cur == "마지막"){
+		      	              data = {"cp":count};
+		      	          }else {
+		      	              data = {"cp":(cur)};
+		      	          }
+
+		      	          //list(url,data);
+		      	      });
+					}
+				});
+				
+    }
+
+	</script>
+</head>
+<body>
+    
+	 <div style="margin-bottom:15px; text-align:center" id="pagelist">
+	 </div>
+</body>
+	
+</html>

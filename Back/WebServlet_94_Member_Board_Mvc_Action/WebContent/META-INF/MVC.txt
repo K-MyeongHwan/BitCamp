@@ -1,0 +1,123 @@
+DROP TABLE MEMBER;
+
+CREATE TABLE MEMBER(
+	MEMBER_ID	VARCHAR2(15),
+	MEMBER_PW	VARCHAR2(13),
+	MEMBER_NAME	VARCHAR2(15),
+	MEMBER_AGE	NUMBER,
+	MEMBER_GENDER	VARCHAR2(5),
+	MEMBER_EMAIL	VARCHAR2(30),
+	PRIMARY KEY(MEMBER_ID)
+);
+
+CREATE TABLE MEMBERBOARD(
+	BOARD_NUM	NUMBER,
+	BOARD_ID	VARCHAR2(20), --회원ID
+	BOARD_SUBJECT	VARCHAR2(50),
+	BOARD_CONTENT	VARCHAR2(2000),
+	BOARD_FILE	VARCHAR2(50),
+	BOARD_RE_REF	NUMBER,  --Ref
+	BOARD_RE_LEV	NUMBER,  --depth
+	BOARD_RE_SEQ	NUMBER,  --step
+	BOARD_READCOUNT	NUMBER,
+	BOARD_DATE	DATE,
+	PRIMARY KEY(BOARD_NUM)
+);
+
+ALTER TABLE MEMBERBOARD
+ADD CONSTRAINT fk_board_id FOREIGN KEY(board_id) 
+REFERENCES member(member_id);
+
+
+
+SELECT * FROM MEMBER;
+SELECT * FROM MEMBERBOARD;
+
+
+MVC
+
+DB Connetion Service (DBCP) 설정
+초기화 작업 (Web.xml , servlet 에서)
+
+
+M(model)
+{
+	DAO : CRUD(insert, select, update , delete)  => 연결 , DB작업  
+	memberdao.java => db연결 , insert method , update method ....
+
+	DTO(VO : value object) => Data 담는 클래스(변수)
+	기본 Table 1:1 가는 클래스 
+	member.java => private int memberid -> public ..getter setter  구현
+}
+
+V(view)
+{
+	UI : *.jsp , *.html , *.htm
+        jsp : 액션태그(include , forward , UseBean ,EL , JSTL) 결합 
+                     + HTML + javaScript + jquery + ajax
+  	
+}
+
+C(controller) : 서블릿
+{
+	servlet( 상속받는 HttpServlet 클래스를 상속구현)
+        => 웹상에서 요청 / 응답을 처리할수있게 만든 클래스 :HttpServlet )
+        => doGet() , doPost() => request , response 처리를 위해서 
+          
+        =>사이트 전체에 대한 통제 (요청 처리 모든 프로세스를 관장)
+    Service (BI) 업무처리 영역
+}
+
+
+MVC
+
+DB Connetion Service (DBCP) 설정
+초기화 작업 (Web.xml , servlet 에서)
+1. DBCP (설정파일) context.xml (META-INF)
+2. WEB-INF/lib 
+   DBCP 관련설정파일  3개
+   Oracle JDBC 1개 (ojdbc6.jar)
+   FileUpload 1개    (cos.jar)
+
+M:
+	DAO:     net.member.db.MemberDAO.java
+	DTO(VO):net.member.db.MemberBean.java  
+
+V:
+    member 폴더 안에
+    *.jsp
+
+C: 
+   Controller :
+   net.member.action.Action.java
+   net.member.action.ActionForward.java
+   net.member.action.MemberFrontController.java
+   
+   businessis(BI) : 게시판 페이징 처리 , 로그인 처리
+   (Action)Service (BI) 업무처리 영역
+   net.member.action.MemberDeleteAction....
+   net.member.action.MemberListAction...
+   net.member.action.MemberLoginAction..
+   
+   * 크게 두가지영역 (board , member)
+   board=>BoardFrontController (제어)
+   member=> MemberFrontController(제어)
+   1. http://localhost:8090/MVCMemberBoard/MemberLogin.me
+   2. MemberFrontController 실행되고 =>MemberLogin.me
+   3. ./member/loginForm.jsp  => clinet response
+   4. submit(); -> MemberLoginAction.me
+   5.  //서비스 요청 (로그인)
+	   //login 처리하는 BI 단
+	   //MemberLoginAction(); 실행
+	   //DAO DB연결 , select  -> 실제 회원인지 아닌지 
+	   //그 결과에 따른 처리
+	   //회원이라면 =>
+	   //**session.setAttribute("id", member.getMEMBER_ID());
+	   //각각 페이지에서 session.getAttribute("id")
+	   //인증 유무 판단
+   
+   
+   
+
+
+

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 필수 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--  Jquery  UI (js 파일(함수) , css 파일)  -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" 	href="//code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css">
+<style type="text/css">
+
+</style>
+<script type="text/javascript">
+		$(document).ready(function(){
+			//$('#dialog').dialog();  load 되자 마자 ...
+			
+			$('#event_date').datepicker(
+				{dateFormat: "yy년mm월dd일"}		
+			);
+			
+			
+			$('#dialog').dialog(
+				{
+					autoOpen: false,
+					show:{effect:"blind",duration:2000},
+					hide:{effect:"explode",duration:1000},
+					buttons:{
+						       "submit" : function(){
+						    	   let eventname=$('#event_name').val();
+						    	   let eventdate=$('#event_date').val();
+						       		//내용을 부모창에 전달함
+						       		//태그를 생성한다. full name으로 새엇ㅇ
+						       		
+						       		$('<h3></h3>').html(eventname + ": " + eventdate).appendTo('#output'); //<h3> 태그 생성
+						       		//<h3>소풍 : 2021년 3월 21일</h3> > div > appendTo
+									$('#dialog').dialog("close");
+						       },
+								"reset" : function(){
+									$('#event_name').val("");
+									$('#event_date').val("");
+								},
+								"cancle" : function(){
+									$('#event_name').val("");
+									$('#event_date').val("");
+									$('#dialog').dialog("close");
+								}
+					        },
+					//resizable: false,
+					modal:true  //팝업을 닫기 전까지는  부모창 접근 불가 ^^
+				}		
+			);
+			
+			$('#open_button').click(function(){
+				$('#dialog').dialog("open"); //autoOpen: true
+			});
+		});
+		
+		
+		
+	
+	</script>
+</head>
+<body>
+<h3 id="open_button">일정생성</h3>
+<hr>
+<div id="output">
+	
+</div>
+		<!-- popup div -->
+		<div id="dialog" title="일정관리">
+			<h3>일정만들기</h3>
+			<label for="event_name">일정이름</label>
+			<input type="text" id="event_name">
+			<br>
+			<label for="event_date">일정날짜</label>
+			<input type="text" id="event_date">
+			<br>
+		</div>
+</body>
+</html>
+
+
+
+
+

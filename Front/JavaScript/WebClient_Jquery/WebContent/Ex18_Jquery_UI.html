@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<!-- 필수 -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!--  Jquery  UI (js 파일(함수) , css 파일)  -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<link rel="stylesheet" 	href="//code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css">
+<style type="text/css">
+   table {font-size: 50%}
+</style>
+<script type="text/javascript">
+		$(document).ready(function(){
+			
+			let monthNames =[];
+			for(let i = 1 ; i <= 12 ; i++){
+				monthNames.push(i+"월");
+			}
+			
+			
+			$("#startdate , #enddate , #dates").datepicker(
+				{
+					dateFormat: "yy-mm-dd",
+					monthNames: monthNames,
+					prevText: "이전달", //풍선도움말(tool tip)
+					nextText: "다음달",
+					dayNamesMin:["일","월","화","수","목","금","토"] ,
+					yearSuffix: "년"	,
+					numberOfMonths: 1
+				}		
+			
+			);
+			
+			$('#startdate').datepicker("option","onClose",function(selectedDate){
+				
+				$('#dates').datepicker("option","minDate",selectedDate);
+				$('#totaldates').text(calcDates());
+				
+			});
+			
+			$('#enddate').datepicker("option","onClose",function(selectedDate){
+				
+				$('#dates').datepicker("option","maxDate",selectedDate);
+				$('#totaldates').text(calcDates());
+				
+			});
+			
+		});
+		
+		
+		
+		function calcDates()
+        {
+            var minDate = new Date($("#dates").datepicker("option","minDate"));
+            var maxDate = new Date($("#dates").datepicker("option","maxDate"));
+                    
+            //console.log("****" +maxDate.getDate() + " / " + minDate.getDate());
+            //console.log("date : " + (maxDate.getDate() - minDate.getDate()));
+            /*  
+		        var totdate = 0;
+		        if(maxDate.getDate() >= minDate.getDate()){
+            	
+            	totDate = maxDate.getDate() - minDate.getDate();
+            	console.log("totDate : " + totDate);
+               } 
+            */
+            var totDate = 0;
+            if(maxDate >= minDate){
+            	console.log(maxDate.getTime()+"/"+minDate.getTime()); 
+            	console.log(maxDate.getTime()-minDate.getTime() + "/" + (24*60*60*1000))
+            	console.log((maxDate.getTime()-minDate.getTime())/(24*60*60*1000));
+                totDate = (maxDate.getTime()-minDate.getTime())/(24*60*60*1000) + 1;
+            } 
+            return totDate;
+        }
+	</script>
+</head>
+<body>
+		<h3>교육기간</h3>
+		<p>
+			시작일 : <input type="text" id="startdate">
+			~종료일 : <input type="text" id="enddate">
+		</p>
+		<div id="dates">
+			<p>
+				교육기간은 총 <span id="totaldates">0</span>
+			</p>
+		</div>
+</body>
+</html>
+
+
+
+
+

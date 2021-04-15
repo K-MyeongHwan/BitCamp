@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Insert title here</title>
+<style type="text/css">
+#menudiv {
+	width: 300px;
+	height: 300px;
+	float: left;
+	margin: 3px;
+	background-color: gold;
+}
+</style>
+<script type="text/javascript">
+	/*
+		low-level interface 비동기 함수 ( Jquery.ajax(), $.ajax() )
+		$.ajax(url,[settings]);
+		https://api.jquery
+		url : 요청주소 ( 경로 )
+		[settings] : 여러개의 옵션 > JSON 객체 형태 {}
+		
+		settings의 option 중 ...
+		dataType : 서버가 클라이언트에게 응답하는 데이터 형식 정의
+		> Text : json, script, html, text (responseText)
+		> xml : xml ( responseXML )
+	*/
+	$(function() {
+		$('#message').click(function(){
+			//비동기 함수 호출
+			$.ajax({
+						url:"Ex02_Server_menu.html",
+						dataType : "html", //서버가 응답하는 데이터 형식
+						success : function(responsedata) { //서버 응답 데이터를 받음
+							// 서버에서 응답이 왔고, 그 응답이 정상이라면 ...
+							//$('#menudiv').html(responsedata);
+							$('#menudiv').html($(responsedata).find("li"));
+						}
+			});
+		});
+	});
+</script>
+</head>
+<body>
+	<div id="menudiv">
+		<a href="#" id="menu1"></a>
+	</div>
+	<span id="message">클릭하세용</span>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		window.onload = function() {
+			//계층 트리 ( node, 부모 자식 접근가능 )
+			let menode;
+			menode = document.getElementById("me");
+			menode.style.backgroundColor="gold";
+			
+			let parentnode = menode.parentNode;//body
+			parentnode.style.backgroundColor="green";
+			
+			let grandnode = parentnode.parentNode; //html
+			grandnode.style.backgroundColor="blue";
+			
+			let my = document.getElementById("mychild");
+			console.log(my); //ul
+			console.log(my.firstChild.nodeName);  // li
+			console.log(my.firstChild.innerText); //AA
+			//innerHTML, innerText >> p, div, li, span >> value 속성이 없다.
+			console.log(my.firstChild.nextSibling.nextSibling.innerText);
+			//첫번째 Child를 기준으로 옆에 Child의 innerText
+			//BB
+			
+			console.log(my.childNodes); //ul의 li들 > 배열들
+			//[<li>AA</li>][<li>BB</li>][<li>CC</li>]	
+			console.log(my.childNodes.length);
+		}
+		
+	</script>
+</head>
+<body>
+<div>A</div><div>B</div><div id="me">C</div><div>D</div><div>E</div>
+<ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+</body>
+</html>

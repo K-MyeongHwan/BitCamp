@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function eventProductor(form) {
+	console.log(form);
+	//console.log(form.productor.value); //선택된 option 태그의 value 값
+	//console.log(form.productor.text);
+	//console.log("index : " + form.productor.selectedIndex); //방번호
+	//select > [option][option][option][option][option]
+	//                      0              1              2            3             4
+	//document.forms[].elements[]
+	//console.log(form.productor.options[0].value);
+	//console.log(form.productor.options[0].text);
+	//console.log(form.productor.options[form.productor.selectedIndex].value);
+	//console.log(form.productor.options[form.productor.selectedIndex].text);
+	
+	let index = form.productor.selectedIndex;
+	let text = form.productor.options[index].text;
+	let value = form.productor.options[index].value;
+	
+	if(index==0) {
+		form.valProductor.value="";
+		form.txtProductor.value="";
+	} else {
+		form.valProductor.value=value;
+		form.txtProductor.value=text;
+	}
+}
+
+function eventBrand() {
+        let form = document.frmdata;   // 함수안에 접근 ....
+        
+        let index = form.brand.selectedIndex;
+        let text = form.brand.options[index].text;
+        let value = form.brand.options[index].value;
+        
+        if(index == 0){
+        	form.valBrand.value="";
+        	form.txtBrand.value="";
+        }else{
+        	form.valBrand.value=value;
+        	form.txtBrand.value=text;
+     }
+}
+
+</script>
+</head>
+<body>
+모델별 최저가 검색
+<br>
+	<form name="frmdata">
+			<select  style="width: 200px" name="productor"  onchange="eventProductor(this.form)">
+				<option value="A000" selected>제조사</option> <!-- select[0]  -->
+				<option value="A001">삼성전자</option>
+				<option value="A002">LG전자</option>
+				<option value="A003">Apple</option>
+				<option value="A004">Dell</option>
+			</select>
+		    <input type="text" name="valProductor" size="10">
+		    <input type="text" name="txtProductor" size="10">
+		    <br>
+  <select style="width: 200px"  name="brand"  onchange="eventBrand()">
+		        <option value="B000" SELECTED>브랜드</option>
+		        <option value="B001">센스</option>
+		        <option value="B002">X-Note</option>
+		        <option value="B003">MAC</option>
+		        <option value="B004">VAIO</option>
+		    </select>
+			    <input type="text" name="valBrand" size="10">
+			    <input type="text" name="txtBrand" size="10">
+	</form>
+</body>
+</html>

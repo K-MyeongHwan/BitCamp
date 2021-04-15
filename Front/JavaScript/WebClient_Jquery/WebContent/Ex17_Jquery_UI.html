@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/sunny/jquery-ui.css">
+<style>
+</style>
+<title>Document</title>
+<script>
+$(document).ready(function(){
+	$('#datepicker').datepicker(
+			{
+				dateFormat : "yy-mm-dd",
+				numberOfMonths : 2,
+				onSelect : function(date){alert("onSelect : " + date)},
+				onClose : function(date){
+				 	console.log(date);
+				 	let currentdate = $('#datepicker').datepicker('getDate');
+					console.log(typeof(currentdate));
+					let date2 = new Date(currentdate);
+					alert(date2.getFullYear() + "/" + date2.getDate());
+				}
+			});
+});
+    </script>
+</head>
+<body>
+	<p>
+			Date : <input type="text" id="datepicker">
+	</p>
+</body>
+</html>

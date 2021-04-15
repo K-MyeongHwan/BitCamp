@@ -1,0 +1,209 @@
+
+MVC 게시판 만들기
+데이터구조 설계
+SELECT * FROM BOARD;
+DROP TABLE board;
+
+CREATE TABLE board(
+board_num number,              --글번호
+board_name VARCHAR2(20),   --작성자
+board_pass  VARCHAR2(15),     --작성자 비번
+board_subject VARCHAR2(50),  --글제목
+board_content VARCHAR2(2000), --글내용
+board_file VARCHAR(50), --글의 첨부될 파일 이름
+board_re_ref NUMBER,     --참조글(글의 묶음)
+board_re_lev  NUMBER,    --글의 깊이 (들여쓰기)(depth)
+board_re_seq  NUMBER,   --글의 순서 (step)
+board_readcount NUMBER, --글의 조회수
+board_date DATE,          --글쓴 날짜
+PRIMARY KEY(board_num)
+);
+
+alter table board
+add notice varchar2(10)
+
+공지사항 (notice)  >> Y ,N
+새글
+
+
+
+SELECT * FROM board;
+SELECT * FROM board;
+
+--REF , seq
+1    3     1
+2    3     2
+3    3     3
+4    3     4
+5    2     1
+6   2     2
+7    1      1
+8    1      2
+9    1      3 
+     
+select * from
+ (
+   select rownum rnum,
+        BOARD_NUM,
+            BOARD_NAME,
+            BOARD_SUBJECT,
+      BOARD_CONTENT,
+            BOARD_FILE,
+            BOARD_RE_REF,
+            BOARD_RE_LEV,
+      BOARD_RE_SEQ,
+            BOARD_READCOUNT,
+            BOARD_DATE 
+            from 
+         (
+                   select * 
+                    from board order by BOARD_RE_REF desc,BOARD_RE_SEQ ASC
+                  )
+  ) 
+where rnum>=1 and rnum<=5
+
+
+18건  
+pagesize = 5
+pagelist  =  4개          1~5 , 5~10 , 11~15 , 16~18
+pageindex = 3           11~15개의 데이터
+
+
+현재 읽은 글
+
+--ref 10 , seq 3 
+-->10     4
+--ref 10 , seq 4
+update board 
+set BOARD_RE_SEQ=BOARD_RE_SEQ+1 
+where BOARD_RE_REF=10;
+and BOARD_RE_SEQ>3";
+
+--------------------------------------------   
+
+URI 주소기반 명령처리
+->
+->1.Board.Controller : FrontController (사이트 모든 요청)
+
+
+--MVC 패턴의 구성
+--client ->  servlet(요청처리) : FrontController(초기진입 담당)
+--           servlet(Action)  : ActionController(처리담당)
+
+--        ->(DataBean)Model( DAO   ,   
+                         DTO(Data transfer object) 또는 VO(value object)
+--                  ->DAO <-> DBMS
+
+--        -> VIEW (jsp) 구성
+
+
+
+사용자가 페이지 요청
+http://localhost:8080/MVCBoard/BoardList.bo
+
+1.처음동작
+Board.Controller.Action.BoardFrontController
+
+2.다음동작
+init() -> doGet() or doPost() => doProcess()
+
+3.사용자가 요청한 Command분리작업
+ BoardList.bo 문자열을 얻더내는 작업
+ 
+4. Action 인터페이스 상속 구현한 클래스
+BoardListAction실행되고 
+return ActionFoward 객체 리턴
+
+5.리턴되는 것이 따라 페이지 이동 처리 
+  (화면에 qna_board_list.jsp) 보게 된다
+
+
+tp://localhost:8090/MVCBoard/BoardList.bo 
+=> Server 요청   
+=> Web.xml 설정 <url-pattern>*.bo</url-pattern>
+=> Board.Contorller.Action.BoardFrontController  실행
+=>doProcess() 호출
+=>BoardListAction 객채생성 (데이터 가지고 있느 서비스)
+=>사용자 요청(어떤 page를 보겠다는 요청대하 처리를 하는 서비스)
+=>BoardListAction (DB연결과 , select , 객체에 담는 처리)
+=>결과를 View(qna_board_list.jsp)
+
+(C)BoardFrontController -> (S)BoardListAction
+(M)(BoardDao, BoardBean -> (V)(qna_board_list.jsp)
+
+UI ->qna_board_list.jsp 
+   ->pagelist 처리 하는 코드
+   ->pagesize = 10개
+   ->pageindex = nowpage 처리하는 코드 핵심
+
+   ->링크 (상세정보를 ) : 보여지는 제목 (링크 글번호)
+
+상세보기 (한건의 데이터)
+BoardDetailAction.bo?num=2
+-> Board.Contorller.Action.BoardFrontController  실행
+->BoardDetailAction.java
+
+
+
+
+----------------
+//기존 (command : parameter  판단)
+    	//board?cmd=list
+    	//String cmd = request.getParameter("cmd")
+    	//cmd 유무에 따라서 글을 쓸것인지 조회를 할 것인지 결정
+    	
+    	
+    	//URI 값 으로 판단 (요청된 주소값으로 명령 판단)
+    	/*
+    	 StringBuffer url = request.getRequestURL(); 
+    	 // URL : 전체주소 (프로토콜 + IP + 포트 + 상세경로)
+ 		 String uri = request.getRequestURI();            
+ 		 // URI : 프로젝트 이하 경로 (CP + SP)
+ 		 String cp = request.getContextPath();﻿           
+ 		 // CP : 프로젝트 명
+ 		 String sp = request.getServletPath();            
+ 		 // SP : 패키지 + 파일명
+ 
+ 		----------------------------------------------------------------
+ 		URL  : http://localhost:8080/TestBoard/JSPBoard/created.jsp
+ 		URI  : /TestBoard/JSPBoard/created.jsp
+ 		CP   : /TestBoard
+ 		SP   : /JSPBoard/created.jsp 
+       */
+    	String RequestURI = request.getRequestURI();
+    	String ContextPath = request.getContextPath();
+    	//point
+    	String command = RequestURI.substring(ContextPath.length());
+    	
+    	System.out.println("RequestURI : " + RequestURI);
+    	System.out.println("ContextPath : " + ContextPath);
+    	System.out.println("판단기준 command : " + command);
+    	
+    	//localhost:8090/WebJSP12_Model2_MVC_board/boardlist.do
+    	//RequestURI :  /WebJSP12_Model2_MVC_board/boardlist.do
+    	//ContextPath : /WebJSP12_Model2_MVC_board
+    	//command :     /boardlist.do
+    	
+    	//모든 처리의 일관성 (일관처리)
+    	//처리의 표준화를 가져가기 위해서
+    	//인터페이스 Action ...
+
+
+-----------------------------------
+FrontController 처리 유형
+
+1.  : 순수한 화면 처리
+	forward = new ActionForward();
+	forward.setRedirect(true);  -> sendRedirect
+	forward.setPath("qna_board_write.jsp");
+	
+2.  : request 를 데이터 받아야 한다면 
+    forward = new ActionForward();
+	forward.setRedirect(false);  -> *.do?num=10
+	forward.setPath("qna_board_write.jsp");
+	
+3.  : DTO ,DAO , 로직처리 있는 경우
+      해당 객체 생성시
+     action = new BoardAddAction(); //다형성 
+	 forward = action.execute(request, response);
+		

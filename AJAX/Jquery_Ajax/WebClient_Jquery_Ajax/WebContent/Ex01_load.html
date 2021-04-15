@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*  
+			Jquery 제공하는 비동기 함수(Ajax) 학습
+			https://api.jquery.com/category/ajax/
+			https://www.w3schools.com/jquery/jquery_ajax_intro.asp
+			
+			Jquery 비동기 함수는 내부적으로 : XmlHttpRequest 객체를 사용
+			
+			Ajax
+			Global Ajax Event Handlers  (10%)
+			Helper Functions (10%)
+			Low-Level Interface : 30% (모든 옵션을 개발자 제어) >> $.ajax()
+			Shorthand Methods   : 50% (기본 옵션을 가지고 있는 함수) >> load() , get()
+			
+			
+			$( "#result" ).load( "ajax/test.html" );
+			.load( url [, data ] [, complete ] )
+			Description: Load data from the server and place the returned HTML into the matched elements.
+			
+			[url]
+			Type: String
+			A string containing the URL to which the request is sent.
+
+			[data]
+			Type: PlainObject or String ( JSON 형태, == Map 의 형태 )
+			A plain object or string that is sent to the server with the request.
+
+			[complete]
+			Type: Function( String responseText, String textStatus, jqXHR jqXHR )
+			( 콜백함수 )
+			A callback function that is executed when the request completes.
+			
+			load함수
+			1. 서버에서 받은 데이터가 (html,text) 형식
+			2. Client 정한 특정요소에 자동으로 매핑할 목적 (자동 innerHTML)
+			
+			[data] 라는 인자는 Parameter를 설정해주는 것
+			--> .jsp?msg=hello 
+			--> 객체설정 ( JSON ) { name : "KMH ", age : 100 }
+			--> ?name=KMH&age=100
+					
+			load 메소드의 3번째 파라미터, callback 함수 : 개발자의 의도가 아니라, 프로그램 논리에 의해서 호출되는 함수
+			callback 함수의 파라미터 :
+				1. responseText : 서버의 응답 결과 ( text or html )
+				2. textStatus : 서버의 응답에 대한 반응 문자열 ( "success" or "fail" )
+				3. xhr : XMLHttpRequest 객체의 주소값을 가진다. ( == XMLHttpRequest 객체 )
+			
+			==> callback 함수 실행 시점 : readyState == 4 일 때
+		*/	
+		
+		$(function(){
+			$('#btn').click(function() {
+				$('#display').load("Ex01_Server_Date.jsp", {"msg":$('#msg2').val()}, function(responseText, textStatus, xhr) {
+						if(textStatus == "success") {
+							//readyState ==4, state == 200
+							//정상 응답
+							console.log("responseText : " + responseText);
+						} else {
+							//readyState == 4, status : 500, 404 ~
+							//비정상 응답
+							console.log("response fail : " + xhr.status + "," + xhr.statusText );
+							//xhr. ~ ( == XMLHttpRequest. ~ )
+						}
+				});
+			});
+		});
+	</script>
+</head>
+<body>
+	<h3>동기처리</h3>
+	<div>
+		  <form action="Ex01_Server_Date.jsp" method="get">
+		  		<input type="text" name="msg" id="msg">
+		  		<input type="submit" value="동기전송">		  
+		  </form>
+	</div>
+	<h3>비동기 처리</h3>
+	<input type="text" name="msg2" id="msg2">
+	<input type="button" id="btn" value="비동기전송">
+	
+	<div id="display"></div>
+</body>
+</html>
+
+
+
+

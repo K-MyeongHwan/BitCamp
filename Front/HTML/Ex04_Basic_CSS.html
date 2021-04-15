@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+/* 
+		가상 선택자( a : link, a : hover ... )
+		: link, visited, hover, active > 의미만 존재한다.
+		
+	*/
+a:link {
+	color: green;
+	background-color: transparent;
+	text-decoration: none;
+}
+
+a:visited {
+	color: pink;
+	background-color: transparent;
+	text-decoration: none;
+}
+
+a:hover {
+	color: red;
+	background-color: black;
+	text-decoration: underline;
+}
+
+a:active {
+	color: yellow;
+	background-color: blue;
+	text-decoration: underline;
+}
+/*
+	CSS 의 적용은 기존에 존재하는 태그( 요소, Element) 기준
+	ex) p, h3 , div ~
+	
+	Selector ( 선택자 ) : 
+	h1, h2, h3 ~ 똑같은 스타일을 적용하고 싶다.
+	> 하나하나 일일이 다 스타일을 적용할까?
+	>> 다중 선택자
+	h1  {color : red;} - 단일 선택자
+	h2 {color : red;}	
+	h3 {color : red;}
+			=	
+ 	h1, h2, h3 { color : red; } - 다중 선택자
+ 	
+ 	사용자가 별도의 CSS 를 만들 수 있다.
+ 	#kmh { color : }
+ 	
+*/
+#kmh {
+	color: gold
+} /* #으로 만든 것은 id로 이용한다. (한개만) */
+.hong {
+	color: blue
+} /* . 으로 만든 것은 class를 이용한다. (여러개) */
+h1, h2, h3 {
+	color: red;
+}
+
+h4 {
+	color: black;
+}
+</style>
+</head>
+<body>
+	<h1>
+		<a href="http:\\www.president.go.kr" target="_blank">방문하기</a>
+	</h1>
+	<br>
+	<h1>선택자1</h1>
+	<h2>선택자2</h2>
+	<h4>단일</h4>
+	<!-- 사용자 정의 CSS -->
+	<!-- id, class 속성을 사용해서 반영한다. -->
+	<!-- CSS, Javascript, jquery 등 공통적으로 사용하기 때문에 중요하다 -->
+
+	<p id="kmh">id라는 속성을 사용해서 CSS를 적용한 것</p>
+	<p class="hong">class라는 속성을 사용해서 CSS를 적용한 것</p>
+	<br>
+	<hr>
+ 	<p>북마크 기능</p>
+	<p>
+		<a href="#C4">Jump to Chapter 4</a>
+	</p>
+	<p>
+		<a href="#C10">Jump to Chapter 10</a>
+	</p>
+
+	<h2>Chapter 1</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 2</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 3</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2 id="C4">Chapter 4</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 5</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 6</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 7</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 8</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 9</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2 id="C10">Chapter 10</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 11</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 12</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 13</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 14</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 15</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 16</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 17</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 18</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 19</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 20</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 21</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 22</h2>
+	<p>This chapter explains ba bla bla</p>
+
+	<h2>Chapter 23</h2>
+	<p>This chapter explains ba bla bla</p>
+
+</body>
+</html>

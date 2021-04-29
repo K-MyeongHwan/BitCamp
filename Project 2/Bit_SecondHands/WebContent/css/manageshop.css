@@ -1,0 +1,304 @@
+@charset "UTF-8";
+#ordermenu{
+	margin-left:auto;
+}
+#manageshop_menu {
+	
+	height:90px;
+	position: fixed;
+	top:140px;
+	z-index: 999;
+	background-color:white;
+	width: 100%
+}
+
+#manageshop_menu ul{
+	display:flex;
+	margin-bottom:20px;
+	color:gray;
+	padding-left:100px;
+	padding:0;
+	
+}
+
+.deco::after{
+	content:" | ";
+	margin:20px;
+}
+
+#filter_menu li{
+	margin-right:20px;
+}
+
+#filter_menu li input, select{
+	height:40px;
+	padding:10px;
+	border:1px solid lightgray;
+	color:gray;
+}
+
+/*이렇게 따로 지정해줘야 헤더에 있는 메인 검색버튼이 영향을 안 받는다*/
+#searchmyproductbtn{
+	width:40px;
+	height:40px;
+	padding:10px;
+	border:1px solid gray;
+}
+
+#filter_menu button{
+	background-color:white;
+	color:gray;
+}
+
+#ordermenu{
+	margin-bottom:20px;	
+}
+
+#currentpage{
+	color:red;
+}
+
+/*style.css에도 기본 설정값 있으니 참고*/
+.shopping-cart{
+	margin-top:30px;
+	
+}
+
+#myproductlist th, #buylist th{
+	text-align:center;
+}
+
+#myproductlist tr, #buylist tr{
+	border:1px solid lightgray;
+}
+
+/*상품목록 테이블의 td당 속성*/
+.p_img, .b_img{
+	width:240px;
+}
+
+.p_name{
+	width:160px;
+	word-break:all;
+}
+
+p_status{
+	width:120px;
+}
+p_price{
+	width:120px;
+}
+.p_ed, .b_date{
+	width:120px;
+	word-break:all;
+}
+
+.p_fnc{
+	width:100px;
+}
+
+
+.p_img img{
+	width:150px;
+	vertical-align:center;
+	height:150px;
+}
+
+.editbtn{
+	width:60px;
+	height:40px;
+	border:1px solid lightgray;
+	background-color:white;
+	text-align:center;
+	color:#0072e6;
+	margin-bottom:5px;
+}
+
+.deletebtn{
+	width:60px;
+	height:40px;
+	border:1px solid lightgray;
+	background-color:white;
+	text-align:center;
+	color:#f70000;
+}
+
+#buylist tbody tr{
+	border-bottom: 1px solid #ebebeb;
+	
+}
+.cart-pic img{
+	width:100px;
+	height:100px;
+}
+.cart-table table tr th.p-name {
+    text-align: center!important;
+}
+
+.cart-table table tr td.cart-title h5 {
+    color: #252525;
+    text-align: center;
+    font-size:15px!important;
+}
+.cart-title, .cart-pic{
+	cursor: pointer;
+}
+.cart-title a{
+	color:black;
+}
+.cart-table table tr td {
+    padding-bottom: 20px!important;
+    padding-top: 20px!important;
+}
+.buy_num{
+	font-size: 18px!important;
+    font-weight: 400;
+}
+.reviewbtn{
+	padding: 0px 10px;
+    height: 30px;
+    width:74px;
+    border: 1px solid rgb(238, 238, 238);
+    display: flex;
+    margin: auto;
+    font-weight: 800;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 13px;
+    background: rgb(247 0 0);
+    color: rgb(255 255 255);
+}
+.reviewspan{
+	padding: 0px 10px;
+    height: 30px;
+    width:104px;
+    border: 1px solid rgb(238, 238, 238);
+    display: flex;
+    margin: auto;
+    font-weight: 400;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
+}
+.storename{
+	margin-top:10px;
+	padding: 0px 10px;
+    height: 30px;
+    border: 1px solid rgb(238, 238, 238);
+    display: flex;
+    font-weight: 400;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
+}
+.cart-table table tr td.date{
+	color: #4c4c4c;
+    font-size: 13px;
+    font-weight: 400;
+}
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap');
+
+html,
+body {
+    height: 100%
+}
+
+body {
+    display: grid;
+    place-items: center;
+    font-family: 'Manrope', sans-serif;
+    background: #000
+}
+
+.cross {
+    padding: 10px;
+    color: #d6312d;
+    cursor: pointer;
+    font-size: 23px
+}
+
+.cross i {
+    margin-top: -5px;
+    cursor: pointer
+}
+
+.comment-box {
+    padding: 5px
+}
+
+.comment-area textarea {
+    resize: none;
+    border: 1px solid #ff0000
+}
+
+.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #ffffff;
+    outline: 0;
+    box-shadow: 0 0 0 1px rgb(255, 0, 0) !important
+}
+
+.send {
+    color: #fff;
+    background-color: #ff0000;
+    border-color: #ff0000
+}
+
+.send:hover {
+    color: #fff;
+    background-color: #f50202;
+    border-color: #f50202
+}
+
+.rating {
+    display: inline-flex;
+    margin-top: -10px;
+    flex-direction: row-reverse
+}
+
+.rating>input {
+    display: none
+}
+
+.rating>label {
+    position: relative;
+    width: 28px;
+    font-size: 35px;
+    color: #ff0000;
+    cursor: pointer
+}
+
+.rating>label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating>label:hover:before,
+.rating>label:hover~label:before {
+    opacity: 1 !important
+}
+
+.rating>input:checked~label:before {
+    opacity: 1
+}
+
+.rating:hover>input:checked~label:before {
+    opacity: 0.4
+}
+.btn-success {
+    color: #fff;
+    background-color: #ff0000!important;
+    border-color: #ff7878!important;
+}

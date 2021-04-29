@@ -1,0 +1,104 @@
+#productdetailName {
+	margin-top: 20px;
+	margin-left: 60px;
+}
+
+#myshopeditBtn{
+	width: 150px;
+	height: 50px;
+	font-size: 20px;
+	text-align: center;
+	margin-top: 220px;
+	margin-left: 70px;
+	
+}
+
+#ProductPhoto {
+	width: 290px;
+	height: 290px;
+	margin-left: 70px;
+	background-color: gray;
+}
+
+#ProductTotal {
+	display: flex;
+}
+
+#Storename {
+	margin: 25px 0px 0px 35px;
+		font-size: 20px;
+		font-weight: bold;
+	
+}
+#editBtn{
+	width: 55px;
+	height: 21px;
+	margin: 30px 0px 0px 10px;
+	font-size: 11px;
+}
+.counttext{
+	font-size: 15px;
+    padding: 20px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    direction: ltr;
+    text-align: left;
+    color: rgb(0 0 0);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+.productcount, .likecount, .reviewcount{
+	color: rgb(247, 47, 51);
+	margin: 0px;
+    padding: 0px;
+    border: 0px;
+    vertical-align: baseline;
+}
+.myproductlist{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.myproductlist li {
+	width: 300px;
+	padding:15px;
+	
+}
+.myproductlist li a{
+	
+	color:black;
+	text-decoration:none;
+	font-size:15px;
+	
+}
+.myproductlist li a:hover{
+	
+	color:#f70000;
+	text-decoration:none;
+	
+}
+
+#shopbtn{
+	
+	width:100%;
+	
+}
+
+#shopbtn input{
+	border:1px solid lightgray;
+	background-color:white;
+	color:#0072e6;
+	width:120px;
+	padding:10px;
+	height:40px;
+	margin:10px auto;
+	font-size:12px;
+
+}
+
+#leftbtn{
+	margin-right:auto;
+}

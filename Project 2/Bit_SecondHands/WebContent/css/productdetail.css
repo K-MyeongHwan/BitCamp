@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+.pd-title ul li{
+	
+	margin-bottom : 10px;
+}
+
+/* #contactseller{
+	position:absolute;	
+	bottom:0;
+	
+} */
+#contactseller input{
+	border:none;
+	width:160px;
+	color:white;
+	padding:10px 0;
+	text-align:center;
+	margin-top:10px;
+}
+
+#like{
+	margin-right:auto;
+	background-color:darkgray;
+
+}
+
+#call{
+	background-color:#f69e07;
+	margin-right:auto;
+}
+
+#buynow{
+	background-color:#f70000;
+	margin-left:auto;
+}
+#manageshop{
+	background-color:#f69e07;
+}
+#p_content{
+	margin-right:auto;
+}
+
+#moreimgs{
+	width:100%;
+	display:flex;
+	overflow:scroll;
+	-ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+}
+
+#moreimgs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
+.sub_imgs{
+	width:120px;
+	height:120px;
+	padding:10px;
+	
+}
+
+.sub_imgs img{
+	width:100%;
+	height:100%;
+	margin:auto;
+}
+
+/*
+#replytext{
+	
+	width:200px;
+	height:100px;
+	
+}
+*/
+
+#replytext input{
+	border:none;
+	color:gray;
+	padding:5px;
+	background-color:white;
+}
+
+#replyarea table{
+	margin:20px 0;
+	border-top:1px gray solid;
+	width:100%;
+	color:gray;
+}
+
+#replyarea table th{
+	padding:20px;
+	width:100%;
+}
+
+.replybtn{
+	border:none;
+	color:gray;
+	padding:5px;
+	background-color:white;
+}
+
+#shopcontainer{
+	border-left:1px lightgray solid;
+}
+
+#shopcontainer h5{
+	text-align:center;
+}
+
+#shopinfo{
+	
+	display:flex;
+	flex-wrap:wrap;
+	
+}
+
+#title{
+	width:100%;
+	text-align:center;
+	padding:10px;
+
+}
+
+.recently_p{
+	width:150px;
+	height:150px;
+	margin:auto;	
+}
+
+.recently_p img{
+	width:150px;
+	height:150px;
+	object-fit:cover;
+}
+
+#more{
+	width:100%;
+}
+
+#moreinfo{
+	width:100%;
+	border:1px lightgray solid;
+	background-color:white;
+	color:gray;
+	margin-top:20px;
+}

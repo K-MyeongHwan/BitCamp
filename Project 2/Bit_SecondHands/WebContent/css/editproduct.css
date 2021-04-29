@@ -1,0 +1,22 @@
+@charset "UTF-8";
+#imgUpBtn {
+  	width:80px; 
+    font-size: 12px;
+    color:white;
+    border: none;
+    background-color:#f70000;
+    border-radius: 5px;
+}
+
+#att_zone {
+  min-width: 400px;
+  min-height: 210px;
+  padding: 10px;
+  border: 1px dotted #f70000;
+}
+
+#att_zone:empty:before {
+  content: attr(data-placeholder);
+  color: #f70000;
+  font-size: .9em;
+}
